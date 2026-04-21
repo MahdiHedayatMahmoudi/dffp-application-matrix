@@ -1,0 +1,67 @@
+[
+  {
+    "name": "DWD gridded weather (1 x 1 km)",
+    "description": "High-resolution gridded meteorological fields for Germany at ~1 km resolution (daily). Used for weather indices, phenology forcing and climate-derived variables.",
+    "papers": [
+      "Timing and intensity of heat and drought stress determine wheat yield losses in Germany",
+      "Transparent and Reproducible Crop Model Calibration Using Exclusively Public Data: Improving Phenology and Yield Predictions in APSIMx",
+      "Insuring crops from space: the potential of satellite-retrieved soil moisture to reduce farmers' drought risk exposure"
+    ]
+  },
+  {
+    "name": "ESA CCI satellite soil moisture (multi-decadal, ~0.25\u00b0)",
+    "description": "Long-term satellite-retrieved surface soil moisture product (coarse ~0.25\u00b0) used to derive drought indices at regional/farm-aggregate scale.",
+    "papers": [
+      "Insuring crops from space: the potential of satellite-retrieved soil moisture to reduce farmers' drought risk exposure"
+    ]
+  },
+  {
+    "name": "SQR soil map (250 x 250 m)",
+    "description": "Soil survey / soil properties raster at ~250 m resolution used to derive plant-available water (PAW) and soil covariates.",
+    "papers": [
+      "Timing and intensity of heat and drought stress determine wheat yield losses in Germany"
+    ]
+  },
+  {
+    "name": "Soil inventory grid (8 x 8 km)",
+    "description": "Coarser soil inventory samples used as input for regional APSIMx calibration and soil parameterization.",
+    "papers": [
+      "Transparent and Reproducible Crop Model Calibration Using Exclusively Public Data: Improving Phenology and Yield Predictions in APSIMx"
+    ]
+  },
+  {
+    "name": "High-resolution soil/topography (\u22485 m)",
+    "description": "Fine-scale soil and topographic covariates used for parcel-level erosion nowcasting (slope, curvature, local soil attributes).",
+    "papers": [
+      "Soil-erosion events on arable land are nowcast by machine learning"
+    ]
+  },
+  {
+    "name": "NDVI / optical (Landsat-like, 30 m)",
+    "description": "Medium-resolution vegetation index time series used as dynamic covariate for erosion nowcasting and vegetation state.",
+    "papers": [
+      "Soil-erosion events on arable land are nowcast by machine learning"
+    ]
+  },
+  {
+    "name": "RapidEye time series (5\u20136.5 m)",
+    "description": "High-resolution optical time series used for deriving phenological indicators and optimal acquisition time frames.",
+    "papers": [
+      "Detection of Phenology-Defined Data Acquisition Time Frames For Crop Type Mapping"
+    ]
+  },
+  {
+    "name": "Municipality-level yield dataset (1995\u20132019)",
+    "description": "Observed winter-wheat yield time series aggregated to administrative units used for explanatory analysis of heat/drought impacts.",
+    "papers": [
+      "Timing and intensity of heat and drought stress determine wheat yield losses in Germany"
+    ]
+  },
+  {
+    "name": "Aerial erosion observation labels (2011\u20132012 campaign)",
+    "description": "Field-parcel level training and validation labels for erosion occurrence and severity derived from aerial flight campaigns.",
+    "papers": [
+      "Soil-erosion events on arable land are nowcast by machine learning"
+    ]
+  }
+]

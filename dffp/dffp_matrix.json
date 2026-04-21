@@ -1,0 +1,374 @@
+[
+  {
+    "category": "Spatial resolution & scale-consistency",
+    "fitness": [
+      {
+        "paper": "Timing and intensity of heat and drought stress determine wheat yield losses in Germany",
+        "fitness": "High",
+        "reasoning": "Native weather and phenology at 1x1 km and soil at 250 m are well matched to municipality-level aggregation and the explanatory use case; weighted-averaging approach aligns scales.",
+        "evidence": [
+          "Spatial_scale: 1x1 km grid for weather and phenology; SQR soil map at 250x250 m; aggregated to municipality level using weighted averages"
+        ]
+      },
+      {
+        "paper": "Soil-erosion events on arable land are nowcast by machine learning",
+        "fitness": "High",
+        "reasoning": "Covariates include parcel-appropriate high-resolution inputs (5 m soil/topography, 30 m NDVI) and outputs are field-parcel level, minimizing scale-mismatch.",
+        "evidence": [
+          "Spatial_scale: Field-parcel level estimates; covariate native resolutions: rainfall indices 1 km, phenology 1 km, NDVI 30 m (Landsat-like), soil/topography 5 m"
+        ]
+      },
+      {
+        "paper": "Transparent and Reproducible Crop Model Calibration Using Exclusively Public Data: Improving Phenology and Yield Predictions in APSIMx",
+        "fitness": "Moderate",
+        "reasoning": "Weather at 1 km is adequate, but soil inventory at 8 km is coarse relative to field heterogeneity; phenology observations reported within ~5 km add spatial uncertainty for field-scale transfer.",
+        "evidence": [
+          "Spatial_scale: Weather raster: 1 x 1 km; soil inventory: 8 x 8 km grid samples; phenology observations reported within ~5 km radius of station"
+        ]
+      },
+      {
+        "paper": "Detection of Phenology-Defined Data Acquisition Time Frames For Crop Type Mapping",
+        "fitness": "High",
+        "reasoning": "RapidEye native resolution (5\u20136.5 m) matches crop-type mapping / phenology detection objectives at field scales; spatial resolution is appropriate.",
+        "evidence": [
+          "Spatial_scale: RapidEye: 5 m \u00d7 5 m (processing level 3A); RapidEye: 6.5 m \u00d7 6.5 m (processing level 1B for DM site)"
+        ]
+      },
+      {
+        "paper": "Insuring crops from space: the potential of satellite-retrieved soil moisture to reduce farmers' drought risk exposure",
+        "fitness": "Low",
+        "reasoning": "Primary soil-moisture input at ~0.25\u00b0 is orders of magnitude coarser than farm parcels; while DWD 1 km is available, the insurance design relies on coarse satellite pixels and farm-level aggregation introduces scale mismatch risks.",
+        "evidence": [
+          "Spatial_scale: Satellite: 0.25\u00b0 (~28 km \u00d7 18 km in Eastern Germany); DWD gridded product: 1 km \u00d7 1 km; farm-level aggregation via median across pixel/grid cells intersecting farm"
+        ]
+      }
+    ],
+    "explanation": "High fitness when native resolution matches decision unit (parcel or municipality). Coarse satellite soil moisture reduces fitness for farm-level insurance unless careful aggregation and basis-risk analyses are applied."
+  },
+  {
+    "category": "Temporal coverage & alignment",
+    "fitness": [
+      {
+        "paper": "Timing and intensity of heat and drought stress determine wheat yield losses in Germany",
+        "fitness": "High",
+        "reasoning": "Daily weather/PAW available since 1993 and yields cover 1995\u20132019, providing long overlapping records for robust explanatory analysis.",
+        "evidence": [
+          "Temporal_resolution: 1995-2019 (yield dataset period); daily weather and PAW available since 1993"
+        ]
+      },
+      {
+        "paper": "Soil-erosion events on arable land are nowcast by machine learning",
+        "fitness": "Moderate",
+        "reasoning": "Model designed for daily nowcasting but training labels are limited to aerial campaigns in 2011\u20132012, constraining temporal representativeness of rare or interannual erosion regimes.",
+        "evidence": [
+          "Temporal_resolution: Training observations from spring/summer 2011 and 2012 (aerial flights between 01-Apr-2011 and 30-Sep-2012); model designed for daily nowcasting"
+        ]
+      },
+      {
+        "paper": "Transparent and Reproducible Crop Model Calibration Using Exclusively Public Data: Improving Phenology and Yield Predictions in APSIMx",
+        "fitness": "High",
+        "reasoning": "Calibration uses 2009\u20132023 with spin-up and phenology obs 2010\u20132023, providing sufficient temporal depth for parameter inference and validation.",
+        "evidence": [
+          "Temporal_resolution: 2009-2023 (2009 used as spin-up; phenology observations limited to 2010-2023 for calibration timeframe)"
+        ]
+      },
+      {
+        "paper": "Detection of Phenology-Defined Data Acquisition Time Frames For Crop Type Mapping",
+        "fitness": "Moderate",
+        "reasoning": "Time series cover 2010\u20132015; adequate for deriving DOY ranges and phenology statistics but limited for long-term interannual variability assessment.",
+        "evidence": [
+          "Temporal_resolution: 2010-2015"
+        ]
+      },
+      {
+        "paper": "Insuring crops from space: the potential of satellite-retrieved soil moisture to reduce farmers' drought risk exposure",
+        "fitness": "High",
+        "reasoning": "ESA CCI offers >40 years and DWD ~27 years; analysis used 1995\u20132015 \u2014 sufficient for historical payout/premium estimation and statistical bootstrapping.",
+        "evidence": [
+          "Temporal_resolution: 1995\u20132015 (analysis period); ESA CCI provides >40 years record, DWD ~27 years"
+        ]
+      }
+    ],
+    "explanation": "Long, overlapping time series favor explanatory studies and insurance design; event-focused models need temporally diverse training labels to generalize."
+  },
+  {
+    "category": "Variable representativeness & relevancy",
+    "fitness": [
+      {
+        "paper": "Timing and intensity of heat and drought stress determine wheat yield losses in Germany",
+        "fitness": "High",
+        "reasoning": "Directly derives 18 weather indices, PAW, phenology signals and links them to yields \u2014 variables are relevant and tailored for drought/heat impact analysis.",
+        "evidence": [
+          "Outputs: Set of 18 weather indices (WIs); Variance reduction (VR) values per WI; Estimated WI\u00d7SCR coefficients (\u03b4) per SCR"
+        ]
+      },
+      {
+        "paper": "Soil-erosion events on arable land are nowcast by machine learning",
+        "fitness": "Moderate",
+        "reasoning": "Combines rainfall indices, dynamic vegetation (NDVI), phenology and high-res topography which are relevant, but rainfall indices at 1 km and NDVI at 30 m may miss micro-scale runoff initiation processes in some contexts.",
+        "evidence": [
+          "Spatial_scale: covariate native resolutions: rainfall indices 1 km, phenology 1 km, NDVI 30 m (Landsat-like), soil/topography 5 m",
+          "Outputs: Feature importance rankings"
+        ]
+      },
+      {
+        "paper": "Transparent and Reproducible Crop Model Calibration Using Exclusively Public Data: Improving Phenology and Yield Predictions in APSIMx",
+        "fitness": "Moderate",
+        "reasoning": "APSIMx calibration uses physically relevant variables (phenology stages, yields) but soil inputs are spatially coarse which may limit representativeness of soil-driven processes.",
+        "evidence": [
+          "Outputs: Simulated phenological stage dates (DOY) mapped to BBCH/Zadok; Simulated dry matter yields"
+        ]
+      },
+      {
+        "paper": "Detection of Phenology-Defined Data Acquisition Time Frames For Crop Type Mapping",
+        "fitness": "High",
+        "reasoning": "Dataset and methods are tailored to capture phenological indicators and optimal spectral features; outputs map directly to required phenology metrics (DOY ranges, F_P_max, best spectral features).",
+        "evidence": [
+          "Outputs: Phenological indicator phases per crop with DOY ranges, N_P_obs, F_P_max, F_P_mean, R_P and best-performing spectral feature"
+        ]
+      },
+      {
+        "paper": "Insuring crops from space: the potential of satellite-retrieved soil moisture to reduce farmers' drought risk exposure",
+        "fitness": "Moderate",
+        "reasoning": "Satellite surface soil moisture is a relevant drought proxy but may not fully capture root-zone water availability or crop stress at farm-level; combining DWD and farm aggregation partially addresses representativeness.",
+        "evidence": [
+          "Use_case: Design and evaluation of farm-individual index insurance contracts using satellite-retrieved soil moisture",
+          "Spatial_scale: Satellite: 0.25\u00b0; DWD gridded product: 1 km; farm-level aggregation via median"
+        ]
+      }
+    ],
+    "explanation": "Direct measurements or tailored indices score high; proxies or coarse products that inadequately represent the process (e.g., root-zone moisture) lower fitness."
+  },
+  {
+    "category": "Uncertainty quantification & propagation",
+    "fitness": [
+      {
+        "paper": "Timing and intensity of heat and drought stress determine wheat yield losses in Germany",
+        "fitness": "Moderate",
+        "reasoning": "Uses variance reduction / R2 for explanatory power and AIC for model comparison \u2014 these quantify model fit but do not fully propagate data input uncertainty into yield effect maps.",
+        "evidence": [
+          "Uncertainty: Variance reduction (VR) / R2 for mixed models; AIC for model comparison",
+          "Outputs: Municipality-level mean yield effects (dt ha-1) and maps"
+        ]
+      },
+      {
+        "paper": "Soil-erosion events on arable land are nowcast by machine learning",
+        "fitness": "High",
+        "reasoning": "Random forest ensemble provides forward uncertainty estimates and probabilistic outputs; confusion matrices and validation metrics augment uncertainty characterization.",
+        "evidence": [
+          "Uncertainty: Ensemble-based uncertainty estimation inherent to random forest (forward uncertainty estimation provided)",
+          "Outputs: Ensemble-based uncertainty estimates / probabilistic outputs; Confusion matrices and validation metrics"
+        ]
+      },
+      {
+        "paper": "Transparent and Reproducible Crop Model Calibration Using Exclusively Public Data: Improving Phenology and Yield Predictions in APSIMx",
+        "fitness": "Moderate",
+        "reasoning": "Reports RMSE, nRMSE and pbias and recommends sensitivity analyses; good for model error quantification but limited explicit propagation of input data uncertainty into calibrated parameters.",
+        "evidence": [
+          "Uncertainty: Use of RMSE, nRMSE and pbias; Recommendation to conduct sensitivity analyses prior to calibration"
+        ]
+      },
+      {
+        "paper": "Detection of Phenology-Defined Data Acquisition Time Frames For Crop Type Mapping",
+        "fitness": "Moderate",
+        "reasoning": "PHASE provides kriging standard deviations and reports expected model uncertainty in days, which helps spatial/temporal uncertainty but may not quantify all sources (sensor noise, cloud gaps).",
+        "evidence": [
+          "Uncertainty: PHASE model provides kriging standard deviation as spatial inaccuracy metric; Model uncertainty expected between 3 and 8 days"
+        ]
+      },
+      {
+        "paper": "Insuring crops from space: the potential of satellite-retrieved soil moisture to reduce farmers' drought risk exposure",
+        "fitness": "High",
+        "reasoning": "Uses bootstrapping (1000 draws) and reports confidence intervals and p-values; uncertainty estimation is central to premium/payout computation and is well integrated.",
+        "evidence": [
+          "Uncertainty: Bootstrapping (1000 draws) to expand payout distributions and derive premiums; Reporting of confidence intervals and p-values"
+        ]
+      }
+    ],
+    "explanation": "Ensemble and resampling approaches provide actionable uncertainty for operational decisions; explanatory studies often report fit metrics but may not propagate input uncertainty into decisions."
+  },
+  {
+    "category": "Validation & ground truth availability",
+    "fitness": [
+      {
+        "paper": "Timing and intensity of heat and drought stress determine wheat yield losses in Germany",
+        "fitness": "High",
+        "reasoning": "Municipality-level observed yields over 1995\u20132019 provide robust ground truth for explanatory modeling and validation of yield impacts.",
+        "evidence": [
+          "Temporal_resolution: 1995-2019 (yield dataset period); Outputs: Municipality-level mean yield effects (dt ha-1) and maps"
+        ]
+      },
+      {
+        "paper": "Soil-erosion events on arable land are nowcast by machine learning",
+        "fitness": "Moderate",
+        "reasoning": "Aerial-flight-derived labels from 2011\u20132012 are strong ground truth at parcel scale but are temporally and (possibly) spatially limited, constraining representativeness.",
+        "evidence": [
+          "Temporal_resolution: Training observations from spring/summer 2011 and 2012 (aerial flights ...); Outputs: Binary detection of erosion occurrence per field parcel"
+        ]
+      },
+      {
+        "paper": "Transparent and Reproducible Crop Model Calibration Using Exclusively Public Data: Improving Phenology and Yield Predictions in APSIMx",
+        "fitness": "High",
+        "reasoning": "Uses phenology observations and separate-site validation to assess transferability \u2014 strong practice for calibration/validation.",
+        "evidence": [
+          "Uncertainty: Validation at separate sites to assess robustness and transferability; Temporal_resolution: phenology observations 2010-2023"
+        ]
+      },
+      {
+        "paper": "Detection of Phenology-Defined Data Acquisition Time Frames For Crop Type Mapping",
+        "fitness": "Moderate",
+        "reasoning": "Phenology observations support deriving DOY ranges but spatial sampling and sensor availability (RapidEye) may limit representativeness across regions or years.",
+        "evidence": [
+          "Outputs: Phenological indicator phases per crop with DOY ranges, N_P_obs..."
+        ]
+      },
+      {
+        "paper": "Insuring crops from space: the potential of satellite-retrieved soil moisture to reduce farmers' drought risk exposure",
+        "fitness": "Moderate",
+        "reasoning": "Insurance design uses long time series but farm-level ground truth (actual farm losses/yields) appears limited or aggregated; payout simulations depend on quality of aggregated indices versus actual losses (basis risk).",
+        "evidence": [
+          "Outputs: Farm-level simulated insurance payouts; Spatial_scale: farm-level aggregation via median across pixel/grid cells intersecting farm"
+        ]
+      }
+    ],
+    "explanation": "Strong, representative ground truth improves credibility; limited temporal/spatial coverage of labels reduces generality for operational systems."
+  },
+  {
+    "category": "Aggregation, preprocessing & reproducibility",
+    "fitness": [
+      {
+        "paper": "Timing and intensity of heat and drought stress determine wheat yield losses in Germany",
+        "fitness": "Moderate",
+        "reasoning": "Aggregation (weighted averages to municipality) and WI derivation are described via outputs, but full reproducibility depends on shared code and raw data access (not explicitly stated in input).",
+        "evidence": [
+          "Outputs: Set of 18 weather indices (WIs); Municipality-level mean yield effects; Spatial aggregation described"
+        ]
+      },
+      {
+        "paper": "Soil-erosion events on arable land are nowcast by machine learning",
+        "fitness": "Moderate",
+        "reasoning": "Machine-learning pipeline with ensemble uncertainty and validation metrics suggests good methodology; reproducibility depends on availability of training labels and pre-processing scripts.",
+        "evidence": [
+          "Outputs: Feature importance rankings; Confusion matrices and validation metrics; Ensemble-based uncertainty estimates"
+        ]
+      },
+      {
+        "paper": "Transparent and Reproducible Crop Model Calibration Using Exclusively Public Data: Improving Phenology and Yield Predictions in APSIMx",
+        "fitness": "High",
+        "reasoning": "Explicit emphasis on transparency and exclusively public data implies well-documented preprocessing and calibration workflows conducive to reproduction.",
+        "evidence": [
+          "Use_case: Provide a transparent, reproducible calibration workflow and reference cultivar parameters using exclusively public datasets"
+        ]
+      },
+      {
+        "paper": "Detection of Phenology-Defined Data Acquisition Time Frames For Crop Type Mapping",
+        "fitness": "Moderate",
+        "reasoning": "PHASE outputs and kriging sd are reported; reproducibility depends on availability of RapidEye stacks and PHASE implementation details (unclear from input).",
+        "evidence": [
+          "Outputs: Phenological indicator phases per crop with DOY ranges; Uncertainty: PHASE model provides kriging standard deviation"
+        ]
+      },
+      {
+        "paper": "Insuring crops from space: the potential of satellite-retrieved soil moisture to reduce farmers' drought risk exposure",
+        "fitness": "Moderate",
+        "reasoning": "Bootstrapping and payout simulations are documented; reproducibility benefits from public ESA CCI and DWD but depends on sharing of aggregation rules and code.",
+        "evidence": [
+          "Uncertainty: Bootstrapping (1000 draws); Outputs: Farm-level simulated insurance payouts, premiums"
+        ]
+      }
+    ],
+    "explanation": "Public-data workflows score high; ML and aggregation studies need shared labels and code for full reproducibility."
+  },
+  {
+    "category": "Accessibility & public-data usage",
+    "fitness": [
+      {
+        "paper": "Timing and intensity of heat and drought stress determine wheat yield losses in Germany",
+        "fitness": "Moderate",
+        "reasoning": "Likely relies on DWD and national soil maps which are often public, but reproducible use requires sharing processed indices and aggregation scripts.",
+        "evidence": [
+          "Spatial_scale and Temporal_resolution reference DWD 1x1 km and long daily records"
+        ]
+      },
+      {
+        "paper": "Soil-erosion events on arable land are nowcast by machine learning",
+        "fitness": "Low",
+        "reasoning": "Key training labels derive from bespoke aerial flight campaigns (2011\u20132012) which are typically not widely available; some covariates (Landsat) are public, but full replication may be constrained.",
+        "evidence": [
+          "Temporal_resolution: Training observations from spring/summer 2011 and 2012 (aerial flights ...)"
+        ]
+      },
+      {
+        "paper": "Transparent and Reproducible Crop Model Calibration Using Exclusively Public Data: Improving Phenology and Yield Predictions in APSIMx",
+        "fitness": "High",
+        "reasoning": "Explicit use of exclusively public data and reproducible calibration indicates good accessibility and reusability.",
+        "evidence": [
+          "Use_case: Provide a transparent, reproducible calibration workflow using exclusively public datasets"
+        ]
+      },
+      {
+        "paper": "Detection of Phenology-Defined Data Acquisition Time Frames For Crop Type Mapping",
+        "fitness": "Low",
+        "reasoning": "RapidEye imagery is commercial and may not be publicly accessible; PHASE outputs might be reproducible only if the imagery and code are shared.",
+        "evidence": [
+          "Spatial_scale: RapidEye: 5 m \u00d7 5 m (processing level 3A) \u2014 commercial provider"
+        ]
+      },
+      {
+        "paper": "Insuring crops from space: the potential of satellite-retrieved soil moisture to reduce farmers' drought risk exposure",
+        "fitness": "High",
+        "reasoning": "ESA CCI and DWD are public products; methods (bootstrapping) are standard and could be reproduced if aggregation rules and farm boundaries are provided.",
+        "evidence": [
+          "Spatial_scale: ESA CCI provides >40 years record, DWD ~27 years; Use of bootstrapping and reporting of CIs"
+        ]
+      }
+    ],
+    "explanation": "Public products (DWD, ESA CCI) enable high accessibility; proprietary imagery and bespoke aerial labels reduce accessibility and reusability."
+  },
+  {
+    "category": "Operational suitability (latency & update cadence)",
+    "fitness": [
+      {
+        "paper": "Timing and intensity of heat and drought stress determine wheat yield losses in Germany",
+        "fitness": "Low",
+        "reasoning": "Study is retrospective/explanatory with multi-decadal records and municipal aggregation; not designed for near-real-time operational nowcasting.",
+        "evidence": [
+          "Use_case: Analyze how timing and intensity of heat and drought stress determine winter wheat yield losses (explanatory)"
+        ]
+      },
+      {
+        "paper": "Soil-erosion events on arable land are nowcast by machine learning",
+        "fitness": "High",
+        "reasoning": "Model explicitly designed for daily nowcasting with ensemble uncertainty estimates and parcel-level outputs appropriate for operational monitoring.",
+        "evidence": [
+          "Temporal_resolution: model designed for daily nowcasting; Outputs: Binary detection per field parcel; Ensemble-based uncertainty estimates"
+        ]
+      },
+      {
+        "paper": "Transparent and Reproducible Crop Model Calibration Using Exclusively Public Data: Improving Phenology and Yield Predictions in APSIMx",
+        "fitness": "Moderate",
+        "reasoning": "Calibration improves model performance for forecasting but the workflow targets reproducible parameter estimation rather than real-time operational input streams.",
+        "evidence": [
+          "Use_case: Provide calibration workflow and reference cultivar parameters; Temporal_resolution: 2009-2023"
+        ]
+      },
+      {
+        "paper": "Detection of Phenology-Defined Data Acquisition Time Frames For Crop Type Mapping",
+        "fitness": "Moderate",
+        "reasoning": "Produces guidance for optimal acquisition timing (planning use) rather than continuous near-real-time monitoring; cadence of RapidEye acquisitions limits immediacy.",
+        "evidence": [
+          "Use_case: identify phenological phases that suit for optimal class separation in crop mapping; Temporal_resolution: 2010-2015"
+        ]
+      },
+      {
+        "paper": "Insuring crops from space: the potential of satellite-retrieved soil moisture to reduce farmers' drought risk exposure",
+        "fitness": "Moderate",
+        "reasoning": "Satellite soil moisture products have varying latency; design focused on historical payout/pricing rather than intraseason operational payouts, though could be adapted for near-real-time if low-latency data are available.",
+        "evidence": [
+          "Use_case: Design and evaluation of farm-individual index insurance; Spatial_scale: Satellite: 0.25\u00b0; DWD 1 km"
+        ]
+      }
+    ],
+    "explanation": "Nowcasting requires low-latency, high-cadence inputs; retrospective analyses prioritize long records and may be unsuited for daily operational decisions without changes."
+  }
+]

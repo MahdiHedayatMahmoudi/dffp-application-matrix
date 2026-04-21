@@ -35,17 +35,65 @@ The result is a **cross-paper application matrix** that reveals hidden tensions 
 ## 🏗️ Project Structure
 
 ```bash
+
 dffp-application-matrix/
 │
-├── app_ui.py                 # Streamlit frontend
-├── dffp_pipeline.py          # Cross-paper reasoning engine
-├── models.py                 # Pydantic data models
-├── utils.py                  # Extraction & HTML utilities
-├── interactive_template.html # Interactive report template
+├── data/
 │
-├── requirements.txt
+│   ├── raw/
+│   │   └── papers/
+│   │       ├── all_papers/              # ALL 20 PDFs
+│   │       │   ├── p01.pdf
+│   │       │   ├── p02.pdf
+│   │       │   └── ...
+│   │       │
+│   │       └── selected/                # ONLY the 10 used in this run
+│   │           ├── p03.pdf
+│   │           ├── p05.pdf
+│   │           └── ...
+│
+│   ├── interim/
+│   │   └── markdown/
+│   │       ├── p03.md
+│   │       ├── p05.md
+│   │       └── ...
+│
+│   ├── processed/
+│   │   └── extraction/
+│   │       ├── p03.json
+│   │       ├── p05.json
+│   │       └── ...
+│
+│   ├── dffp/
+│   │   ├── datasets.json
+│   │   │
+│   │   ├── categories.json
+│   │   │
+│   │   ├── matrix.json
+│   │   │
+│   │   ├── result.json
+│   │   │
+│   │   └── narratives.txt/
+│ 
+├── outputs/
+│   ├── reports/
+│   │   └── report.html
+│   └── figures/
+│
+├── app/
+│   │   ├── app_ui.py                 # Streamlit frontend
+│   │   │
+│   │   ├── dffp_pipeline.py          # Cross-paper reasoning engine
+│   │   │
+│   │   ├── models.py                 # Pydantic data models
+│   │   │
+│   │   └── utils.py                  # Extraction & HTML utilities
+│ 
 ├── .gitignore
+├── requirements.txt
 └── README.md
+
+
 ```
 
 ---

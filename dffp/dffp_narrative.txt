@@ -1,0 +1,35 @@
+Summary of shared datasets and cross-paper implications
+
+Shared datasets & anchor products
+- DWD 1×1 km gridded weather is the clearest common backbone across multiple studies (explanatory yield analysis, APSIMx calibration, and insurance work). Treating DWD as the core consistent meteorological layer simplifies integration across use cases.
+- ESA CCI soil moisture serves as a long, public drought proxy used for insurance applications but is spatially coarse (~0.25°) relative to farm parcels and parcel-level operational needs.
+- High-resolution remote sensing (RapidEye) and bespoke aerial-label datasets are critical for phenology detection and erosion labels respectively, but are not uniformly available across studies and vary in accessibility.
+
+Comparing use cases and main differences
+- Explanatory analyses (heat/drought vs. yields) and model calibration prioritize long, overlapping time series and municipality/regional aggregation, focusing on statistical inference and reproducibility.
+- Operational nowcasting (erosion) prioritizes high spatial fidelity, low latency and ensemble uncertainty for daily decisions at the parcel scale.
+- Insurance design bridges retrospective analysis and operational needs by relying on long-term indices and quantified payout uncertainty, yet faces basis-risk challenges when coarse satellite pixels are aggregated to farm level.
+- Phenology detection is a planning/feature-selection use case (optimal acquisition windows) requiring high spatial/temporal image stacks rather than continuous near-real-time products.
+
+Key tensions and risks when combining these datasets/use-cases
+1) Spatial-scale mismatch: coarse satellite soil moisture (~0.25°) vs parcel-level needs (erosion, insurance). Aggregation reduces signal fidelity and increases basis risk.
+2) Temporal representativeness: ML nowcasts trained on limited seasons (2011–2012) may not generalize across years/climates; explanatory and insurance studies require multi-decadal records.
+3) Heterogeneous variable definitions: proxies differ (surface soil moisture vs root-zone PAW vs meteorological drought indices) and may not be interchangeable without process models or empirical linking.
+4) Validation asymmetry & label availability: aerial-derived erosion labels and commercial imagery limit reproducibility and cross-study validation compared to public weather/soil products.
+5) Uncertainty handling differences: some studies propagate uncertainty into decisions (insurance, RF ensembles), while others use fit metrics (R2/AIC) that do not fully capture input/data uncertainty.
+
+Recommendations to improve fitness-for-purpose across integrated systems
+- Adopt a common spatial/temporal reference grid for multi-study integration: use DWD 1×1 km as the meteorological backbone and explicitly document any aggregation/disaggregation (weights, masks, area overlap).
+- Harmonize variable definitions and create lookup/translation tables (e.g., mapping ESA CCI surface SM to estimated root-zone PAW via a simple mechanistic or empirical model) and report resulting uncertainty from translation.
+- Make preprocessing and aggregation code public (indices derivation, municipality weighting, bootstrapping scripts, RF training pipelines and label masks) to raise reproducibility and ease integration.
+- Prioritize collecting and publishing representative, multi-season ground truth labels for operational tasks (e.g., erosion) or invest in data-augmentation / synthetic-label approaches with uncertainty quantification to reduce temporal sample bias.
+- Propagate input uncertainty through models: combine ensemble inputs (weather, soil moisture) with model ensembles or bootstrap procedures so downstream outputs (maps, premiums, classifications) include uncertainty measures usable for decisions.
+- For insurance/farm-level decision contexts, quantify and report basis risk explicitly (e.g., distribution of correlation between index and farm yields/losses) and evaluate using farm-level ground truth where possible.
+
+Immediate practical guidance
+- Use DWD 1×1 km as common meteorological input for cross-study synthesis, but retain product-specific variables where high-resolution information is needed (5 m topo/soil for erosion; RapidEye for phenology mapping).
+- For tasks requiring both long-term statistics and operational cadence (insurance that could be paid intra-season), combine the long-term ESA CCI climatology for premium design with higher-resolution/near-real-time DWD or merged products for payouts to reduce basis risk.
+- When integrating ML nowcasts with explanatory models or insurance modules, explicitly down-weight or flag predictions from temporal regimes not represented in training (seasonality/antecedent climate) and seek incremental label collection campaigns to broaden training diversity.
+
+Overall conclusion
+The corpus of studies is complementary: DWD 1 km weather and long-term records enable robust explanatory and insurance-design work, APSIMx calibration demonstrates reproducible public-data workflows, while high-resolution remote sensing and aerial labels enable operational, parcel-level nowcasting and phenology mapping. The main barriers to integration are scale mismatches, limited accessibility of some training labels/commercial imagery, and inconsistent uncertainty propagation. Addressing these through documented aggregation workflows, uncertainty propagation, public sharing of code/labels, and targeted label-collection will substantially raise the collective data-fitness-for-purpose across these agricultural monitoring, modelling and decision-support applications.
