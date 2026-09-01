@@ -1,0 +1,19 @@
+# Core extraction
+openai>=1.74.0
+pydantic>=2.8
+python-dotenv>=1.0
+requests>=2.31
+
+# Scientific PDF ingestion
+# Install/upgrade Docling so formula/table APIs match the ingestion script.
+docling
+docling-core
+PyMuPDF>=1.24
+pandas>=2.0
+
+# Exports / UI
+openpyxl>=3.1
+streamlit>=1.35
+
+# Tests
+pytest>=8.0

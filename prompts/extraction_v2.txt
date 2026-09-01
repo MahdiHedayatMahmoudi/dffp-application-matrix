@@ -1,0 +1,65 @@
+Extract machine-readable FAIRagro / DFFP evidence from the provenance-aware scientific source bundle below and populate the supplied schema.
+
+CANONICAL SOURCE NAME
+---------------------
+{{SOURCE_NAME}}
+
+STRICT RULES
+------------
+1. SOURCE AUTHORITY
+   The PDF is canonical. Authored prose, authored tables, authored figures, authored formulas, and authored captions may support scientific claims. Docling and visual-recovery outputs are representations/transcriptions of those authored sources, not separate scientific authorities.
+
+2. GENERATED VISUAL DESCRIPTIONS
+   Do not treat generic/generated picture descriptions as authored scientific evidence. The bundle is designed to exclude them. If any such derived summary appears, ignore it for explicit evidence.
+
+3. EVIDENCE TYPE VS REPRESENTATION METHOD
+   Keep these independent:
+   - evidence_type=explicit means the authored source directly states/shows the claim;
+   - representation_method records how that authored evidence reached the extractor.
+   A formula or value visibly transcribed from an authored figure may be explicit evidence with representation_method=structured_visual_recovery.
+
+4. PROVENANCE
+   For substantive claims, populate evidence records when possible. Use source_item_id/page when supplied by bundle headers such as AUTHOR_TABLE, AUTHOR_FORMULA, or AUTHOR_FIGURE. Use the corresponding source_modality and representation_method. Do not invent a page number.
+
+5. SOURCE FIDELITY GAPS
+   The bundle may list unresolved source items. Those are extraction/representation gaps. If a field is unsupported because relevant content is unresolved, use null and mention the unresolved issue in extraction_provenance. Do not infer that the canonical PDF lacks the information.
+
+6. DATASET PROPERTIES VS APPLICATION REQUIREMENTS
+   - dataset_characteristics = properties of the published data product;
+   - input_data_requirements = requirements of a downstream application/use case;
+   - producer_workflow_inputs = inputs and method-specific requirements needed to build/reproduce the dataset.
+   Never place producer workflow inputs in application requirements merely because they are used to produce the dataset.
+
+7. TEMPORAL GAPS
+   Distinguish published_dataset_gaps from upstream_observation_gaps and broader historical_coverage_constraints.
+
+8. PRODUCER EVIDENCE VS DOWNSTREAM EVIDENCE
+   Producer-side validation is evidence about the produced dataset/modeling framework. It is not universal proof of fitness for every downstream application. Distinguish demonstrated uses from potential uses.
+
+9. NO INVENTED THRESHOLDS
+   Do not convert observed MAE/RMSE values, example uncertainties, dashed guide lines, typical ranges, or figure reference levels into formal suitability thresholds. Populate formal_thresholds or acceptable_uncertainty_levels only when the authored source explicitly defines a formal decision threshold or an externally supplied deterministic rule does so.
+
+10. FITNESS CLASSIFICATION
+    For extraction from a producer/data paper, fitness_classification and evidence_and_maturity should normally remain unassessed/unknown unless the source explicitly provides a categorical judgment or a declared deterministic decision rule is supplied. A statement such as "1 km does not resolve individual fields" can be recorded as a scale limitation; if you paraphrase it as a use limitation, mark that evidence as inferred rather than pretending the paper stated a formal fitness classification.
+
+11. VALIDATION CONTEXT
+    Keep selection/tuning metrics separate from in-sample diagnostics, out-of-sample validation, cross-validated interval calibration, spatial uncertainty summaries, and downstream-use-case metrics. Pearson correlation used in filter selection is not automatically an out-of-sample validation metric.
+
+12. SPATIAL SCOPE
+    Distinguish a local/per-pixel uncertainty product from a spatial summary of that product. For example, a per-pixel BSE raster is local_or_pixel; its median over the raster is a spatial_surface_summary.
+
+13. UNCERTAINTY SEMANTICS
+    Preserve explicit distinctions such as model-mean precision versus predictive uncertainty. Do not describe global summary tables as per-cell products.
+
+14. DOI/RESOURCE SEMANTICS
+    document_metadata.doi is only the DOI of the source document itself. Dataset, collection, input archive, software, workflow, vocabulary, and repository identifiers belong under related_resources. If the manuscript itself has no DOI, use null.
+
+15. BENEFICIARIES / RECOMMENDATIONS
+    Do not present inferred user groups or recommendations as explicit evidence. If conservatively inferred from application domains, mark the supporting evidence as inferred.
+
+16. CONTROLLED NULLS
+    Prefer null/unknown to a plausible but unsupported answer. Do not add undeclared fields.
+
+SOURCE BUNDLE
+-------------
+{{SOURCE_BUNDLE}}

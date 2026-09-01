@@ -1,0 +1,27 @@
+You are repairing one already-structured FAIRagro DFFP extraction after deterministic semantic validation.
+Return the COMPLETE corrected structured record, not a patch or explanation.
+
+REPAIR PRINCIPLES
+1. Preserve valid, source-supported content from the current record. Do not rewrite unrelated sections merely for style.
+2. Fix every deterministic semantic ERROR listed below when the source bundle supports a correction.
+3. Never invent values, thresholds, entities, methods, application domains, users, or evidence.
+4. For missing quantitative metrics, inspect HIGH-PRIORITY QUANTITATIVE COMPLETENESS CANDIDATES and the underlying authored source text/table/figure. Add only metrics explicitly supported by the current source.
+5. Do not silence a completeness error by deleting an already-supported sibling metric or target. Preserve supported metrics and add the missing sibling/result.
+6. Keep one canonical ValidationMetricRecord per metric + scientific target + aggregation scope. Keep physical/statistical support in evaluation_support.
+7. Demonstrated numerical application/case-study/worked-example results belong in the canonical ledger with context=downstream_use_case and an appropriate scientific target scope (usually use_case unless the source supports a more specific generic/domain scope).
+8. analysis_type describes analyses actually performed by the producer workflow. Do not promote application areas or potential uses into analysis_type.
+9. Use source_item_id only for the structured item that is actually the evidence. Ordinary prose should cite its section/text without borrowing a nearby table/figure/formula ID.
+10. All evidence in this automated repair remains review_status=machine_extracted.
+11. Examples or entities from other documents are irrelevant. Use only the current source bundle.
+
+DETERMINISTIC SEMANTIC ERRORS TO REPAIR
+---------------------------------------
+{{SEMANTIC_ISSUES}}
+
+CURRENT STRUCTURED RECORD
+-------------------------
+{{CURRENT_RECORD}}
+
+CURRENT SCIENTIFIC SOURCE BUNDLE
+--------------------------------
+{{SOURCE_BUNDLE}}

@@ -1,0 +1,94 @@
+Extract machine-readable FAIRagro / DFFP evidence from the provenance-aware scientific source bundle below and populate the supplied schema.
+
+CANONICAL SOURCE NAME
+---------------------
+{{SOURCE_NAME}}
+
+STRICT RULES
+------------
+1. SOURCE AUTHORITY
+   The PDF is canonical. Authored prose, authored tables, authored figures, authored formulas, and authored captions may support scientific claims. Docling and visual-recovery outputs are representations/transcriptions of those authored sources, not separate scientific authorities.
+
+2. GENERATED VISUAL DESCRIPTIONS
+   Do not treat generic/generated picture descriptions as authored scientific evidence. The bundle is designed to exclude them. If any such derived summary appears, ignore it for explicit evidence.
+
+3. EVIDENCE TYPE VS REPRESENTATION METHOD
+   Keep these independent:
+   - evidence_type=explicit means the authored source directly states/shows the claim;
+   - representation_method records how that authored evidence reached the extractor.
+   A formula or value visibly transcribed from an authored figure may be explicit evidence with representation_method=structured_visual_recovery.
+
+4. PROVENANCE
+   For substantive claims, populate evidence records when possible. Use source_item_id/page when supplied by bundle headers such as AUTHOR_TABLE, AUTHOR_FORMULA, or AUTHOR_FIGURE. Use the corresponding source_modality and representation_method. Do not invent a page number.
+
+5. SOURCE FIDELITY GAPS
+   The bundle may list unresolved source items. Those are extraction/representation gaps. If a field is unsupported because relevant content is unresolved, use null and mention the unresolved issue in extraction_provenance. Do not infer that the canonical PDF lacks the information.
+
+6. DATASET PROPERTIES VS DOWNSTREAM APPLICATION REQUIREMENTS
+   Keep three scopes strictly separate:
+   - dataset_characteristics = what the published data product IS / PROVIDES;
+   - input_data_requirements = what a downstream user needs to APPLY/USE the already-published dataset in a described application/use case;
+   - producer_workflow_inputs = raw observations, covariates, source archives, grids, parameters, and method-specific requirements needed to BUILD/REPRODUCE the dataset.
+
+   Use this decision test for every candidate item:
+   "If a downstream user already has the published dataset, would they still need this item to perform the described application?"
+   - YES -> it may belong in input_data_requirements, if the source supports that downstream context.
+   - NO, it is only needed to create/reproduce the dataset -> producer_workflow_inputs.
+
+   For producer/data papers, default input_data_requirements to null/empty unless the source explicitly describes downstream requirements or a demonstrated downstream workflow. If a downstream use case is demonstrated, populate only the inputs consumed by that use case; do not copy the producer inputs into it.
+
+   Generic example: if a dataset is produced from station observations + a DEM, but a downstream example combines the published raster with precipitation, then station observations + DEM are producer_workflow_inputs, while the published raster + precipitation are downstream input_data_requirements. The same item may appear in both only when the source explicitly shows that both scopes require it; the downstream entry then needs downstream-use evidence.
+
+7. TEMPORAL GAPS
+   Distinguish published_dataset_gaps from upstream_observation_gaps and broader historical_coverage_constraints.
+
+8. PRODUCER EVIDENCE VS DOWNSTREAM EVIDENCE
+   Producer-side validation is evidence about the produced dataset/modeling framework. It is not universal proof of fitness for every downstream application. Distinguish demonstrated uses from potential uses.
+
+9. NO INVENTED THRESHOLDS
+   Do not convert observed MAE/RMSE values, example uncertainties, dashed guide lines, typical ranges, or figure reference levels into formal suitability thresholds. Populate formal_thresholds or acceptable_uncertainty_levels only when the authored source explicitly defines a formal decision threshold or an externally supplied deterministic rule does so.
+
+10. FITNESS CLASSIFICATION
+    For extraction from a producer/data paper, fitness_classification and evidence_and_maturity should normally remain unassessed/unknown unless the source explicitly provides a categorical judgment or a declared deterministic decision rule is supplied. A statement such as "1 km does not resolve individual fields" can be recorded as a scale limitation; if you paraphrase it as a use limitation, mark that evidence as inferred rather than pretending the paper stated a formal fitness classification.
+
+11. VALIDATION / PREDICTION-INTERVAL ASSESSMENT CONTEXT
+    Keep selection/tuning metrics separate from in-sample diagnostics, out-of-sample validation, cross-validated prediction-interval assessment, spatial uncertainty summaries, and downstream-use-case metrics. Pearson correlation used in filter selection is not automatically an out-of-sample validation metric.
+
+    PICP and MPIW describe empirical prediction-interval coverage and interval width/sharpness. Do not normalize their assessment as "prediction-interval calibration", "interval calibration", or equivalent wording. Use context=cross_validated_interval_assessment when that is what the authored source describes. Preserve legacy/authored wording only inside source_text/source locators when quoting the source.
+
+    Do not imply that PICP/MPIW calibrate the published BSE layer or perform post-hoc interval calibration. Preserve the distinction between BSE/model-mean precision and prediction-interval performance.
+
+12. SUMMARY SCOPE VS EVALUATION SUPPORT
+    Keep summary scope and evaluation support separate.
+    - scope describes what a reported metric summarizes (e.g. crop, dataset_family, phase_year).
+    - evaluation_support describes where/how the metric was evaluated (e.g. held_out_station, raster_cell, region).
+    - evaluation_population gives a concise human-readable description of those evaluated locations/population when supported.
+
+    For station-based cross-validation, explicitly use evaluation_support=held_out_station (or observation_station when appropriate) when the source supports it. Do not imply that station-based validation constitutes pixel-wise validation of all raster cells.
+
+    For uncertainty products, also keep support scope separate from assessment context: a per-pixel BSE raster can have scope=per_pixel_or_local and evaluation_support=raster_cell, while PICP/MPIW can have scope=station_or_observation and assessment_context=cross_validated_interval_assessment.
+
+13. SPATIAL SCOPE
+    Distinguish a local/per-pixel uncertainty product from a spatial summary of that product. For example, a per-pixel BSE raster is per_pixel_or_local; its median over the raster is spatial_surface_summary.
+
+14. UNCERTAINTY SEMANTICS
+    Preserve explicit distinctions such as model-mean precision versus predictive uncertainty. Do not describe global summary tables as per-cell products.
+
+15. DOI/RESOURCE SEMANTICS
+    document_metadata.doi is only the DOI of the source document itself. Dataset, collection, input archive, software, workflow, vocabulary, and repository identifiers belong under related_resources. If the manuscript itself has no DOI, use null.
+
+16. BENEFICIARIES / RECOMMENDATIONS
+    Do not present inferred user groups or recommendations as explicit evidence. If conservatively inferred from application domains, mark the supporting evidence as inferred.
+
+17. CONTROLLED NULLS
+    Prefer null/unknown to a plausible but unsupported answer. In particular, do not fill input_data_requirements with producer inputs just to avoid nulls. Do not add undeclared fields.
+
+18. ANALYSIS-TYPE CALIBRATION TERMINOLOGY
+    Use analysis_type="model calibration" only when the analysed workflow itself calibrates/fits model parameters in a calibration sense. Do not select model_calibration merely because the paper discusses calibration as a potential downstream use. Use analysis_type="prediction-interval assessment" when the analysed task is evaluation of prediction-interval performance.
+
+19. REVIEW STATUS
+    All evidence extracted in this run is machine-generated. Use review_status=machine_extracted. Never claim human_verified or human_corrected; those states are reserved for a separate human-review stage and are enforced deterministically after extraction.
+
+SOURCE BUNDLE
+-------------
+{{SOURCE_BUNDLE}}
