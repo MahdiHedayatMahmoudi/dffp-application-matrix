@@ -1,18 +1,18 @@
-# Python
-__pycache__/
-*.pyc
-*.pyo
-
-# Environment
 .env
-
-# Streamlit
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
 .streamlit/
-
-# Temp files
-*.tmp
-*.log
-
-# OS
+scientific_source_packages/
+outputs/
+archive_pre_v*/
+*_backup.py
+*_before_*.py
+*.zip
 .DS_Store
-Thumbs.db
+review_*/
+reviews/
+publication/
+
