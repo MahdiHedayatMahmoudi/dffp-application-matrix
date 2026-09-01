@@ -10,6 +10,19 @@ This project integrates the two workflows into one scientific pipeline:
 6. **JSON / manifest / validation / Excel / HTML exports** and a Streamlit extraction UI.
 7. **LLM-free human review and publication workflow** with immutable machine baselines, stable review IDs, auditable decisions, reviewed-matrix derivation, and a deterministic publication gate.
 
+## Release and pipeline versions
+
+This repository uses separate public release and internal pipeline version identifiers.
+
+- **Software release:** `v1.1.0`
+- **Pipeline architecture:** `v3.3.2`
+- **DFFP schema:** `fairagro-dffp-v3.2.8`
+- **Extraction prompt:** `extraction_v9`
+- **System prompt:** `system_v2`
+- **Repair prompt:** `repair_v1`
+
+The `v3.x` identifiers documented below describe the evolution of the provenance-aware extraction and human-review pipeline. They are internal pipeline revisions and are distinct from the GitHub/Zenodo software release version.
+
 ## Architecture
 
 ```text
