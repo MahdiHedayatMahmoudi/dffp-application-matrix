@@ -1,0 +1,73 @@
+{
+  "@context": "https://w3id.org/ro/crate/1.1/context",
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "about": {
+        "@id": "./"
+      },
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.1"
+      }
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": "Germany-wide 1km time series of interpolated phenological phase-entry dates for eight major crop types, 1993-2025",
+      "hasPart": [
+        {
+          "@id": "application_matrix.json"
+        },
+        {
+          "@id": "application_matrix.schema.json"
+        },
+        {
+          "@id": "extraction_manifest.json"
+        },
+        {
+          "@id": "validation_report.json"
+        }
+      ],
+      "source": {
+        "@id": "urn:sha256:69b6cffd28e8cc6bf8981875259f8c1f325c3aecdeacf3ad0632810b1d34c916"
+      }
+    },
+    {
+      "@id": "application_matrix.json",
+      "@type": "File",
+      "name": "FAIRagro DFFP application matrix",
+      "encodingFormat": "application/json",
+      "sha256": "25737baac6f2632e2a4a1c1aa7d2470acf026e2be148b266f873f83d02f50eb1",
+      "conformsTo": {
+        "@id": "application_matrix.schema.json"
+      },
+      "about": {
+        "@id": "urn:sha256:69b6cffd28e8cc6bf8981875259f8c1f325c3aecdeacf3ad0632810b1d34c916"
+      }
+    },
+    {
+      "@id": "application_matrix.schema.json",
+      "@type": "File",
+      "name": "Application matrix JSON Schema",
+      "encodingFormat": "application/schema+json"
+    },
+    {
+      "@id": "extraction_manifest.json",
+      "@type": "File",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@id": "validation_report.json",
+      "@type": "File",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@id": "urn:sha256:69b6cffd28e8cc6bf8981875259f8c1f325c3aecdeacf3ad0632810b1d34c916",
+      "@type": "ScholarlyArticle",
+      "name": "Germany-wide 1km time series of interpolated phenological phase-entry dates for eight major crop types, 1993-2025",
+      "identifier": "69b6cffd28e8cc6bf8981875259f8c1f325c3aecdeacf3ad0632810b1d34c916",
+      "sha256": "69b6cffd28e8cc6bf8981875259f8c1f325c3aecdeacf3ad0632810b1d34c916"
+    }
+  ]
+}

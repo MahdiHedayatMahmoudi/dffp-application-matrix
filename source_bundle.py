@@ -34,6 +34,7 @@ class SourceBundle:
     source_item_registry: dict[str, dict[str, Any]] = field(default_factory=dict)
     metric_candidate_hints: list[dict[str, Any]] = field(default_factory=list)
     metric_candidate_focus: list[dict[str, Any]] = field(default_factory=list)
+    qualitative_guardrail_hints: list[dict[str, Any]] = field(default_factory=list)
 
     def manifest_dict(self) -> dict[str, Any]:
         data = asdict(self)
@@ -112,6 +113,60 @@ _NON_METRIC_HEADER = re.compile(
 
 def _portable_relpath(value: str | None) -> Path:
     return Path(str(value or "").replace("\\", "/"))
+
+
+_GUARDRAIL_HEADING = re.compile(r"\b(?:limitations?|caveats?|risks?)\b", re.I)
+
+
+def _build_qualitative_guardrail_hints(clean_md: str) -> list[dict[str, Any]]:
+    """Expose authored limitation/risk sections as a compact omission checklist.
+
+    This does not classify or rewrite the prose. It only makes high-value authored
+    guardrails easier for the extractor to review, which reduces the chance that a
+    numerically rich record silently drops conditions on interpretation and reuse.
+    """
+
+    lines = clean_md.splitlines()
+    headings: list[tuple[int, int, str]] = []
+    for position, line in enumerate(lines):
+        match = re.match(r"^(#{1,6})\s+(.+?)\s*$", line)
+        if match:
+            headings.append((position, len(match.group(1)), _clean_heading(match.group(2))))
+
+    hints: list[dict[str, Any]] = []
+    for heading_index, (start, level, title) in enumerate(headings):
+        if not _GUARDRAIL_HEADING.search(title):
+            continue
+        end = len(lines)
+        for next_start, next_level, _ in headings[heading_index + 1:]:
+            if next_level <= level:
+                end = next_start
+                break
+        body_lines = [
+            line.strip()
+            for line in lines[start + 1:end]
+            if line.strip() and not re.fullmatch(r"\d{1,4}", line.strip())
+        ]
+        body = "\n".join(body_lines).strip()
+        if not body:
+            continue
+        numbered_items: list[dict[str, Any]] = []
+        matches = list(re.finditer(r"(?m)^(?P<number>\d+)\.\s+", body))
+        for item_index, match in enumerate(matches):
+            item_end = matches[item_index + 1].start() if item_index + 1 < len(matches) else len(body)
+            item_text = body[match.end():item_end].strip()
+            if item_text:
+                numbered_items.append({
+                    "number": int(match.group("number")),
+                    "excerpt": _trim(item_text, 5000),
+                })
+        hints.append({
+            "candidate_id": hashlib.sha256(f"{title}|{body}".encode("utf-8")).hexdigest()[:16],
+            "source_section": title,
+            "numbered_items": numbered_items,
+            "section_excerpt": _trim(body, 12000),
+        })
+    return hints
 
 
 def _clean_heading(title: str) -> str:
@@ -668,7 +723,7 @@ def build_source_bundle(package_dir: str | Path, settings: Settings | None = Non
     initial_fidelity_status = str(summary.get("overall_status") or "unknown")
 
     clean_rel = (manifest.get("core_exports") or {}).get("clean_markdown", "docling/document.clean.md")
-    clean_path = package / clean_rel
+    clean_path = package / _portable_relpath(clean_rel)
     clean_md = _read_text(clean_path)
     if not clean_md:
         raise FileNotFoundError(f"Clean Docling Markdown not found or empty: {clean_path}")
@@ -676,6 +731,7 @@ def build_source_bundle(package_dir: str | Path, settings: Settings | None = Non
     source_item_registry = _build_source_item_registry(fidelity, clean_md)
     metric_candidate_hints = _build_metric_candidate_hints(package, fidelity, clean_md, source_item_registry)
     metric_candidate_focus = _metric_candidate_focus(metric_candidate_hints)
+    qualitative_guardrail_hints = _build_qualitative_guardrail_hints(clean_md)
 
     queue = fidelity.get("recovery_queue", []) or []
     unresolved = []
@@ -747,6 +803,14 @@ def build_source_bundle(package_dir: str | Path, settings: Settings | None = Non
     )
     parts.append(_json_block(metric_candidate_hints, 45000))
 
+    parts.append("\n=== HIGH-PRIORITY QUALITATIVE GUARDRAIL CANDIDATES ===")
+    parts.append(
+        "These are verbatim/authored limitation, caveat, or risk-section excerpts surfaced deterministically as an "
+        "omission checklist. Preserve each substantively distinct DFFP-relevant condition, uncertainty boundary, "
+        "validation caveat, and misuse risk. Do not convert them into new fitness judgments."
+    )
+    parts.append(_json_block(qualitative_guardrail_hints, 30000))
+
     parts.append("\n=== AUTHORED PROSE: DOCLING CLEAN MARKDOWN ===")
     parts.append(
         "Representation method: docling_clean_markdown. Derived picture descriptions are excluded. "
@@ -814,6 +878,7 @@ def build_source_bundle(package_dir: str | Path, settings: Settings | None = Non
         source_item_registry=source_item_registry,
         metric_candidate_hints=metric_candidate_hints,
         metric_candidate_focus=metric_candidate_focus,
+        qualitative_guardrail_hints=qualitative_guardrail_hints,
     )
 
 

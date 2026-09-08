@@ -1,4 +1,4 @@
-* text=auto
+﻿* text=auto
 
 *.py text eol=lf
 *.md text eol=lf
@@ -10,3 +10,4 @@
 *.cfg text eol=lf
 *.ini text eol=lf
 *.sh text eol=lf
+examples/PHASE_reviewed_v353/*.json -text -diff !eol

@@ -1,0 +1,6 @@
+{{INCLUDE:repair_v3}}
+
+19. Make quantitative kind consistent with the components actually supported by the source: estimate_with_range needs
+    a central numeric_value and both bounds; range needs both bounds; scalar needs numeric_value;
+    estimate_with_uncertainty needs numeric_value plus uncertainty_components; labeled_series needs points. Do not
+    invent a missing component merely to retain a richer kind.

@@ -4,11 +4,33 @@ This file preserves the internal development history of the FAIRagro / DFFP prov
 
 The public software release and internal pipeline identifiers are intentionally separate:
 
-- Public software release: `v1.1.0`
-- Current pipeline architecture: `v3.3.2`
-- Frozen extraction schema: `fairagro-dffp-v3.2.8`
+- Public software release: `v1.2.0`
+- Current pipeline implementation: `v3.5.3`
+- Current DFFP schema: `fairagro-dffp-v3.5.2`
 
 The `v3.x` entries below document internal engineering revisions and should not be interpreted as separate GitHub/Zenodo releases.
+
+## v1.2.0 / pipeline v3.5.3
+
+Public software release `v1.2.0` packages pipeline implementation `v3.5.3`.
+The implementation retains DFFP schema `fairagro-dffp-v3.5.2` and uses
+`system_v2`, `extraction_v12` and `repair_v4`.
+
+Key hardening in the v3.5.x development series includes:
+
+- deterministic repair consolidation that preserves source-supported evidence from the initial extraction;
+- canonical quantitative-metric deduplication;
+- claim/evidence-level deduplication;
+- structured-table semantic enrichment;
+- prevention and cleanup of cross-target evaluation-population contamination;
+- portable, privacy-safe provenance paths with stable relative-path handling;
+- deterministic revalidation of existing outputs without another LLM call;
+- strengthened human-review provenance, conflict checks and publication gating.
+
+The v3.5.3 release candidate passed the complete automated test suite
+(`140 passed`) on Windows/Python 3.12.
+
+See `V3_5_3_CHANGES.md` for implementation-level details.
 
 ## v3.2 semantic refinements
 

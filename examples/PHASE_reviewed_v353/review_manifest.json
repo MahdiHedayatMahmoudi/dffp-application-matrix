@@ -1,0 +1,1582 @@
+{
+  "review_schema_version": "fairagro-dffp-review-v1.2",
+  "created_at_utc": "2026-09-07T22:20:24.281609+00:00",
+  "updated_at_utc": "2026-09-08T07:01:39.977982+00:00",
+  "machine_baseline": {
+    "filename": "application_matrix.json",
+    "sha256": "25737baac6f2632e2a4a1c1aa7d2470acf026e2be148b266f873f83d02f50eb1",
+    "extraction_manifest_sha256": "175c2117635b169384912dbea2ace07ece0de08d405308b39057487f0fdd3a9e",
+    "validation_report_sha256": "36071c52e8fa8f79d98746fc751c4f6652ffdee4eff0618a8be22b1c4daf815d",
+    "machine_contract": {
+      "schema_version": "fairagro-dffp-v3.5.2",
+      "extraction_prompt_version": "extraction_v12",
+      "system_prompt_version": "system_v2",
+      "repair_prompt_version": "repair_v4",
+      "run_purpose": "test"
+    }
+  },
+  "reviewer_default": "Mahmoudi",
+  "decision_history": {
+    "metric_bse_214c46713ebcd4d7": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-07T22:25:04.260956+00:00",
+        "reason": null,
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "946223ef31b75862963a0aca12388b0c422d7d53b8c517a481ab1fb90200885b"
+      }
+    ],
+    "metric_mae-range_156f0b1443a0f6ee": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-07T22:26:05.970955+00:00",
+        "reason": "Table 3 explicitly reports Winter barley MAE range 3.3–6.9 days and defines the range as spanning per-phase median MAEs.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "72ee5ad06f8e03fd698941b6d51fecf26e3c1171c433c555fa54161cf4434d88"
+      }
+    ],
+    "metric_mae-range_1ca41968d63602ed": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-07T22:26:39.108529+00:00",
+        "reason": "Table 3 explicitly reports Spring barley MAE range 4.2–5.9 days and defines the range as spanning per-phase median MAEs.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "485bd5d9321e51388990bcd587fdaa552c7abe78190b8b9f7ced18a69ee40e53"
+      }
+    ],
+    "metric_mae-range_2a738a84d9370b3d": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-07T22:27:09.588371+00:00",
+        "reason": "Table 3 explicitly reports Winter wheat MAE range 3.9–7.5 days and defines the range as spanning per-phase median MAEs.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "b9ad9814949429405abb83a99c83797c450bdf66d16dab45a1d5c4815aaab5c8"
+      }
+    ],
+    "metric_mae-range_38beb8a5421c1406": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-07T22:27:39.196002+00:00",
+        "reason": "Table 3 explicitly reports Sugar beet MAE range 3.9–9.4 days and defines the range as spanning per-phase median MAEs.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "e3b64bfbf8596dc0321edb61e94938d8ee1cd954460554a141cb495a24b79792"
+      }
+    ],
+    "metric_mae-range_87a69d1d5978e491": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-07T22:28:09.312357+00:00",
+        "reason": "Table 3 explicitly reports Oats MAE range 3.6–5.8 days and defines the range as spanning per-phase median MAEs.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "9b781d4b9f58a85a0f0f22a6cb9f8dd917f709125b408f4baeccb71eb2fe78d0"
+      }
+    ],
+    "metric_mae-range_87aec9ef0e859bb6": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-07T22:28:40.667210+00:00",
+        "reason": "Table 3 explicitly reports Maize MAE range 3.1–7.5 days and defines the range as spanning per-phase median MAEs.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "e6e98ac42d1b36429eb4f692b0d4a3f728b2b0ec05549251df1630e753f6f511"
+      }
+    ],
+    "metric_mae-range_d6980b7e2554fa34": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:47:11.152217+00:00",
+        "reason": "Table 3 explicitly reports the all-crops MAE range as 3.1–9.4 days over 1684 produced surfaces; the caption defines the range as spanning per-phase median MAEs.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "d0c04d778867408a7b2d209381f82dfb3e260c6bd30623d270e6c874602d58a9"
+      }
+    ],
+    "metric_mae-range_f50e331dfae25334": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:47:42.913290+00:00",
+        "reason": "Table 3 explicitly reports Winter rye MAE range 3.8–7.5 days and defines the range as spanning per-phase median MAEs.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "818f1de186c263e5c01dd6c32683355fabc7a460aab95e4fd4a0b62885b9c117"
+      }
+    ],
+    "metric_mae-range_f88f925efb334ec5": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:48:11.493844+00:00",
+        "reason": "Table 3 explicitly reports Winter rapeseed MAE range 3.5–8.5 days and defines the range as spanning per-phase median MAEs.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "82e800fb56d20a5e7946c0d870f680621dd80b9be80adb9f4f60883afbc05f69"
+      }
+    ],
+    "metric_mae_137af5e411fdc6e8": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:48:34.811038+00:00",
+        "reason": "Table 3 explicitly reports a family-wide median MAE of 5.2 days over 1684 produced surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "1dc5a415ed42fba8436533ce797885bd232e060c29f8d06270d694dcd867acc2"
+      }
+    ],
+    "metric_mae_1e89bb483f477e60": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:48:59.407807+00:00",
+        "reason": "Table 3 explicitly reports Spring barley median MAE of 5.3 days over 72 produced surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "a001dbe8b6cf356b1b8bd55d7b3e8e07d0a054629727db8a9c509550efebdae2"
+      }
+    ],
+    "metric_mae_25d9ce7b254dc5a9": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:49:37.784310+00:00",
+        "reason": "Sect. 3.3.2 explicitly reports winter wheat heading (phase 18) MAE of 2.8–5.1 days with median 3.9 days from out-of-sample validation.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "e32ec61d69003b7485b6c2569ff9490ac2418ee73e9a6075ee22dda11554ed90"
+      }
+    ],
+    "metric_mae_45730a6442278203": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:50:00.452671+00:00",
+        "reason": "Table 3 explicitly reports Oats median MAE of 5.1 days over 231 produced surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "b78679e60b8f5b37517054d84fa74e889e23f449ce7625659efa8bb5291fa875"
+      }
+    ],
+    "metric_mae_5139da429a7b0dff": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:50:23.767833+00:00",
+        "reason": "Table 3 explicitly reports Maize median MAE of 5.2 days over 297 produced surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "efef518c9eb5d72e04f92523c0f4de69c866969c00000eb8a3ebb19c4f32adeb"
+      }
+    ],
+    "metric_mae_6c1dfbed9d4aec2b": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:50:51.830518+00:00",
+        "reason": "Table 3 explicitly reports Winter rapeseed median MAE of 5.3 days over 262 produced surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "b32b2f0684052bdea8eebc8175b9c26bfa5886fd027ef9cc0fef7d79bc2a7e5d"
+      }
+    ],
+    "metric_mae_7f1cfba8eb39409a": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:51:23.496268+00:00",
+        "reason": "Table 3 explicitly reports Winter barley median MAE of 4.6 days over 198 produced surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "551d192bc9d2c47f0246fbced6060c1eb6186e477c2d97aa8612bc7ae77f05b4"
+      }
+    ],
+    "metric_mae_bb8fe89b428cf0b3": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:51:52.251007+00:00",
+        "reason": "Table 3 explicitly reports Winter wheat median MAE of 5.7 days over 231 produced phase-year surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "03794932d1c45cf328d56de6e5fa877c051eda0c8a89fe33f628b0b6b92d7d5d"
+      }
+    ],
+    "metric_mae_ce090931277364ee": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:52:22.287907+00:00",
+        "reason": "Table 3 explicitly reports Winter rye median MAE of 5.4 days over 263 produced surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "2df4d0fa0165e04c7772223a89d495da9c3bc4caf763f3261008fa1cf0c7c4ff"
+      }
+    ],
+    "metric_mae_e5e0c7d4250b143c": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:52:45.988820+00:00",
+        "reason": "Table 3 explicitly reports Sugar beet median MAE of 4.6 days over 130 produced surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "a2f52de5c1a748f34aab5247658f5cbccbc0aca9badb4e0c035801c5715f4726"
+      }
+    ],
+    "metric_mpiw_485d407fd37d9397": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:53:10.511002+00:00",
+        "reason": "Table 3 explicitly reports Winter rye median MPIW of 22.6 days for nominal 90% prediction intervals.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "f1ebf2e665f3b50a4b7f7c893ff1efaa8b60c3cb30119a5bd14e6865d6e21009"
+      }
+    ],
+    "metric_mpiw_508654231e1ea40d": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:53:38.966584+00:00",
+        "reason": "Sect. 3.3.4 explicitly reports winter-wheat heading mean MPIW of 16.0 days, range 12.6–21.4 days across years, from separate five-fold cross-validation at nominal 90% coverage.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "422b95421f6a18e36a6d1b0c1f362968bc391af7a1f8544fcbb0ca4c452dc685"
+      }
+    ],
+    "metric_mpiw_65104e10c63e3e1c": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:54:02.947531+00:00",
+        "reason": "Table 3 explicitly reports Maize median MPIW of 21.1 days for nominal 90% prediction intervals.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "469a043cb0f81cd92809c17b6c95080ffd11afc1f38e9828cc53876aa9bec27e"
+      }
+    ],
+    "metric_mpiw_70a0fd8c65c91dab": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:54:28.270824+00:00",
+        "reason": "Table 3 explicitly reports Winter barley median MPIW of 19.3 days for nominal 90% prediction intervals.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "1f578d9bb99133ccb4b15030f7349ba62bb78df861b8c01de3153ed7a393c0e9"
+      }
+    ],
+    "metric_mpiw_8e28bdad8a39b579": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:54:49.486296+00:00",
+        "reason": "Table 3 explicitly reports Oats median MPIW of 20.6 days for nominal 90% prediction intervals.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "695577beee000caf4a899287ec397b4906c27cd4235c7e73f912efbc97bc1a4c"
+      }
+    ],
+    "metric_mpiw_9b56cde4f8bf6704": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:55:14.692760+00:00",
+        "reason": "Table 3 explicitly reports all-crops MPIW of 21.3 days over 1684 produced surfaces, summarized as the median width of nominal 90% prediction intervals.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "1a70daba06c894447e72427e1734260b640f3a57ba94486394fa68caaacca020"
+      }
+    ],
+    "metric_mpiw_da249802fea7b5ca": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:55:39.433864+00:00",
+        "reason": "Table 3 explicitly reports Sugar beet median MPIW of 18.7 days for nominal 90% prediction intervals.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "f8a6d7bc8a39379289dbee89aa8c6e47f8cd1bf55fe237c4919123619679331c"
+      }
+    ],
+    "metric_mpiw_e24d31af2aea6013": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:56:06.276129+00:00",
+        "reason": "Table 3 explicitly reports Winter wheat median MPIW of 23.5 days for nominal 90% prediction intervals.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "4587af1a8c4858345d028b938b73946c82ea83d251d099969c378045c80227e9"
+      }
+    ],
+    "metric_mpiw_f1f3506b6b2a6ccb": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:56:28.647956+00:00",
+        "reason": "Table 3 explicitly reports Winter rapeseed median MPIW of 22.2 days for nominal 90% prediction intervals.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "a51e66faaa2963ae9eb931a76d713fdb5a299ec233ddaeae495411ab0ff05f3a"
+      }
+    ],
+    "metric_mpiw_f2a191048d8fc567": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:56:51.448622+00:00",
+        "reason": "Table 3 explicitly reports Spring barley median MPIW of 21.6 days for nominal 90% prediction intervals.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "056aeeeb7a49d012e451be98e92ad496307741b169580c8b9c13b8cfbf51a58f"
+      }
+    ],
+    "metric_picp_5940c85a3342c6b3": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:57:13.128410+00:00",
+        "reason": "Table 3 explicitly reports all-crops median PICP of 0.898 for nominal 90% prediction intervals across 1684 produced surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "28fe8ca70edcccad1cd6694762a2e694cbe4c2e2bcd45893f90abd227381890a"
+      }
+    ],
+    "metric_picp_6b68c18a113255a2": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:57:37.210688+00:00",
+        "reason": "Table 3 explicitly reports Maize median PICP of 0.897 for nominal 90% prediction intervals.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "f1f4ee9a6a7ea421acd35f411e7c32fc3874cb7dbabba10bf282be1c127f60c4"
+      }
+    ],
+    "metric_picp_6d536701ed04ffd8": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:58:01.123866+00:00",
+        "reason": "Table 3 explicitly reports Sugar beet median PICP of 0.901 for nominal 90% prediction intervals.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "8273e1cbf32985f4406924616958ffa927d179ab0c7a52d8c29552646038c5cc"
+      }
+    ],
+    "metric_picp_73978ed1b64e29cd": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:58:30.849433+00:00",
+        "reason": "Table 3 explicitly reports Winter rapeseed median PICP of 0.898 for nominal 90% prediction intervals.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "cf5c8beaf2754cc6905150fb8a359ca4b11e74ae3e040303299eba2f1eb73f09"
+      }
+    ],
+    "metric_picp_7a7141d0daf29b72": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:58:56.588113+00:00",
+        "reason": "Table 3 explicitly reports Winter barley median PICP of 0.896 for nominal 90% prediction intervals.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "09bd5943f03f8a60629433e8b7ed266a1cd4b5fd23cf2a1b3b3de6c8f6de8b74"
+      }
+    ],
+    "metric_picp_7e03a6ecd8b0b343": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:59:22.879200+00:00",
+        "reason": "Table 3 explicitly reports Winter wheat median PICP of 0.898 for nominal 90% prediction intervals.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "e3bb54a783f46598200486e33bf4daaee8ee0d82be71157c583041f05c04bd67"
+      }
+    ],
+    "metric_picp_8c5b87383b396018": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T05:59:48.034097+00:00",
+        "reason": "Table 3 explicitly reports Oats median PICP of 0.899 for nominal 90% prediction intervals.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "6e8bd1c4bc931fa638e3921870b8c9fa7190629a17d02630897f620647e8be0e"
+      }
+    ],
+    "metric_picp_a517fbf85627ce22": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:00:26.595899+00:00",
+        "reason": "Table 3 explicitly reports Winter rye median PICP of 0.896 for nominal 90% prediction intervals.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "766b7b40f3dc616f57673a7f553b3de8894f26554866f341115eb3a490ee9b5b"
+      }
+    ],
+    "metric_picp_ee7a23c40f29cbe6": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:00:55.988964+00:00",
+        "reason": "Table 3 explicitly reports Spring barley median PICP of 0.901 for nominal 90% prediction intervals.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "54a234d2064bb601f698fa48e220cafc0755d384a773cc7834b0d6fafa896ddc"
+      }
+    ],
+    "metric_picp_f1f83fb9b2229cab": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:01:35.463849+00:00",
+        "reason": "Sect. 3.3.4 explicitly reports winter-wheat heading mean PICP of 0.900, range 0.888–0.920 across years, from separate five-fold cross-validation at nominal 90% coverage.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "18660958f0ae6b6cd1ca85bbf6b7b48e049dcfdf220bfdb707413bc71c99b9b4"
+      }
+    ],
+    "metric_rmse_013f87f8a184750b": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:02:03.239387+00:00",
+        "reason": "Table 3 explicitly reports an all-crops median RMSE of 6.5 days over 1684 produced surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "41e2459bec895beacdb0be9d10675c13952e17ad47d7f527c983642388585f5c"
+      }
+    ],
+    "metric_rmse_02ac05350a3c870f": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:03:18.613820+00:00",
+        "reason": "Table 3 explicitly reports Winter rapeseed median RMSE of 6.7 days over 262 produced surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "ab67ced6bc7fef4abc2cef77c5545de7a54c5a98ea381381dd9d63f9e5543fde"
+      }
+    ],
+    "metric_rmse_0752c4aa0c698172": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:03:41.715315+00:00",
+        "reason": "Table 3 explicitly reports Spring barley median RMSE of 6.5 days over 72 produced surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "9f003db56e8e7271fec704baeae7d7e410a4ee7072278ab707850fc2a8f8aab8"
+      }
+    ],
+    "metric_rmse_0c692f2863ee3b27": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:04:04.131998+00:00",
+        "reason": "Table 3 explicitly reports Winter rye median RMSE of 6.8 days over 263 produced surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "9c2a8448f3a1a3fdbc60968a73a944d46ab8e60d0002e585b3337fce037ed34d"
+      }
+    ],
+    "metric_rmse_245091576782659c": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:05:32.146351+00:00",
+        "reason": "Table 3 explicitly reports Oats median RMSE of 6.4 days over 231 produced surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "f1df9763025569fe9a98e01effaf2bbd52195732c54e48e24053862825a8f03b"
+      }
+    ],
+    "metric_rmse_3daa893d3ff39725": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:05:59.668112+00:00",
+        "reason": "Table 3 explicitly reports Winter barley median RMSE of 5.9 days over 198 produced surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "adebfb5f3a1b5663cb22c10de45f069bee653c7878886fda4885be06fb601754"
+      }
+    ],
+    "metric_rmse_5e39caf3d0fb9d9b": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:06:28.548954+00:00",
+        "reason": "Table 3 explicitly reports Maize median RMSE of 6.4 days over 297 produced surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "e0c1027662118295adae3b23e6261c22d45f2c7691bad27b0facdde667f195d3"
+      }
+    ],
+    "metric_rmse_7e3ddfd1b18e905c": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:06:49.927626+00:00",
+        "reason": "Table 3 explicitly reports Sugar beet median RMSE of 5.6 days over 130 produced surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "1457ea680776f18d27ada5c8548af0127f97cb8412d85c35ff090534f22c9659"
+      }
+    ],
+    "metric_rmse_dc03934d7e129e5b": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:07:14.487842+00:00",
+        "reason": "Table 3 explicitly reports Winter wheat median RMSE of 7.1 days over 231 produced phase-year surfaces.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "322062178715b0d60b12730c34358db57bd6dfbdce08a207ae97e877d3507d27"
+      }
+    ],
+    "metric_wi_da0b2ae5870e4124": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:07:58.017272+00:00",
+        "reason": "Figure 7 explicitly reports WI = 16.3 ± 2.3 mm for the 2018 Uckermark winter-wheat shooting–heading window; ±2.3 mm is the 1σ precipitation component derived from accumulated E-OBS ensemble spread.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "24ad9c34711ca17615e8418846396dd016c3a771ed5dbbcf6a048724bf01f522"
+      }
+    ],
+    "evidence_for-the-uckermark-winter-wheat-shooting-head_79574d6e7a98ee18": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:09:03.545698+00:00",
+        "reason": "Corrected section assignment from 3.3.5 to 3.3.6 and replaced abbreviated source excerpt with the explicit Figure 7 caption sentence.",
+        "source_checked": true,
+        "patch": {
+          "source_section": "3.3.6 Use case: propagation into a weather-based indicator",
+          "source_text": "For 2018 the window spans DOY 113 ± 1.5 to DOY 143 ± 1.0, yielding WI = 16.3 ± 2.3 mm (precipitation component)."
+        },
+        "baseline_snapshot_sha256": "33e3089e9a48e772da0afaac90ef7f5b650ecfe3dc227adee62686f570c8b816"
+      }
+    ],
+    "evidence_maize-median-mae-is-5-2-days_0d2f71f0e7f5a1d6": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:09:28.325551+00:00",
+        "reason": "Table 3 explicitly reports Maize (215) MAE = 5.2 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "d2d3c25dcaf6c23366d914db25d122f8bc5b96147b97dc546fd7b66746487d87"
+      }
+    ],
+    "evidence_maize-median-mpiw-is-21-1-days_8f0e083b04eb7ff5": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:09:49.676502+00:00",
+        "reason": "Table 3 explicitly reports Maize (215) MPIW = 21.1 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "89a7e94b4cd9bedb6aea2f0b5616c8e76888d8311db019b9184adae6db8d1605"
+      }
+    ],
+    "evidence_maize-median-picp-is-0-897_b9b868deef009f13": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:10:18.685078+00:00",
+        "reason": "Table 3 explicitly reports Maize (215) PICP = 0.897; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "0beb5be639492fc045ca989291096cdb303476aa81e106b3af73a68f4381e557"
+      }
+    ],
+    "evidence_maize-median-rmse-is-6-4-days_e5db9ea5a5cd4853": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:10:46.297754+00:00",
+        "reason": "Table 3 explicitly reports Maize (215) RMSE = 6.4 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "3f7036d98de082e62e01b23a3ac3045f2f224348bbc741afed0a8e65dd5e2a4b"
+      }
+    ],
+    "evidence_maize-per-phase-median-mae-ranges-from-3-1-t_895d889ccd0fc79c": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:11:15.960390+00:00",
+        "reason": "Table 3 explicitly reports Maize (215) MAE range 3.1–7.5 days, defined as the span of per-phase median MAEs; provenance is correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "7457a0954f2ba34371b5d22f3e0b7bb1ab663972dab4b383276023cefa2105ee"
+      }
+    ],
+    "evidence_median-per-pixel-bse-for-winter-wheat-headin_ee4b7035f24bf94a": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:12:15.423938+00:00",
+        "reason": "Corrected provenance from Figure 4 caption/page 19 to the explicit authored-prose statement in Sect. 3.3.4, page 20; Figure 4c is referenced by the prose.",
+        "source_checked": true,
+        "patch": {
+          "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+          "source_location": "Sect. 3.3.4; Figure 4c",
+          "source_text": "For the heading phase, the median per-pixel BSE rises from 0.76 days in 1993 to 1.38 days in 2025 (Fig. 4c), tracking the decline of the observation network shown in Fig. 4b and illustrating how the layer flags the years and regions in which the interpolated surface is least constrained.",
+          "source_page": 20,
+          "source_item_id": null,
+          "source_modality": "authored_prose"
+        },
+        "baseline_snapshot_sha256": "9f2163381fc20456b5368505d8c688b63408a62d3b8cb198968ad3336689a2bf"
+      }
+    ],
+    "evidence_oats-median-mae-is-5-1-days_9a0b6170f7f9aec7": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:12:40.392047+00:00",
+        "reason": "Table 3 explicitly reports Oats (208) MAE = 5.1 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "1b6a7b2de1ea17cebf2119ad54750c5142f072948c9e649f0446c2a8f2ba4990"
+      }
+    ],
+    "evidence_oats-median-mpiw-is-20-6-days_b590283230053c39": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:13:03.538959+00:00",
+        "reason": "Table 3 explicitly reports Oats (208) MPIW = 20.6 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "414b8c56dd395ca186bf572d8e013dbf8e5d8885be25fb665e25cc62d1f3c8b8"
+      }
+    ],
+    "evidence_oats-median-picp-is-0-899_b60b4fd5b5c1ffb1": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:13:29.355342+00:00",
+        "reason": "Table 3 explicitly reports Oats (208) PICP = 0.899; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "02db28f409bd47bac2f0730891b4586bb219052d6b927be42bbed08211b3efb6"
+      }
+    ],
+    "evidence_oats-median-rmse-is-6-4-days_44a5540b61854a0e": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:13:52.809430+00:00",
+        "reason": "Table 3 explicitly reports Oats (208) RMSE = 6.4 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "21045e32759c432c562b618ef0ecae2f66ad1b94cc00fcb44a83735ff3b19bd9"
+      }
+    ],
+    "evidence_oats-per-phase-median-mae-ranges-from-3-6-to_6c79bdaa589ceffb": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:14:20.485098+00:00",
+        "reason": "Table 3 explicitly reports Oats (208) MAE range 3.6–5.8 days, defined as the span of per-phase median MAEs; provenance is correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "2ec004b947fedfda64ca6ddba5ea67fae8f4498d8ce052c9513a44da5512dad6"
+      }
+    ],
+    "evidence_spring-barley-median-mae-is-5-3-days_e2666ba7f8b2e3ec": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:14:44.327118+00:00",
+        "reason": "Table 3 explicitly reports Spring barley (207) MAE = 5.3 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "80ce1aabcad2ad182050ae31b3d3eb259213fa23100e55ac132b1a060b74cc02"
+      }
+    ],
+    "evidence_spring-barley-median-mpiw-is-21-6-days_55a2b8eecc6a2f01": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:15:06.861076+00:00",
+        "reason": "Table 3 explicitly reports Spring barley (207) MPIW = 21.6 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "43f866faa3df99aa32c04aa3b10ce9df9037589656f84ad5e997b745384a2c40"
+      }
+    ],
+    "evidence_spring-barley-median-picp-is-0-901_9eac70aca8cd15e7": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:15:29.152893+00:00",
+        "reason": "Table 3 explicitly reports Spring barley (207) PICP = 0.901; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "aff3d0a3a75dc3bbe8a992eefecf3b55a4219a1393ac6afb9a9d8ef7e9e88227"
+      }
+    ],
+    "evidence_spring-barley-median-rmse-is-6-5-days_f7bcac7aaec38907": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:15:52.592396+00:00",
+        "reason": "Table 3 explicitly reports Spring barley (207) RMSE = 6.5 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "a8b7e262cf2034e0525bd9f11ddbda06716587738d34a7b14b94e04245e7d9a4"
+      }
+    ],
+    "evidence_spring-barley-per-phase-median-mae-ranges-fr_43e9a013f72c86e3": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:16:19.818932+00:00",
+        "reason": "Table 3 explicitly reports Spring barley (207) MAE range 4.2–5.9 days, defined as the span of per-phase median MAEs; provenance is correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "ffaf1886ebcba20fc2e884bf578cdd12290d374b8eddb936a1f61b5a955aad68"
+      }
+    ],
+    "evidence_sugar-beet-median-mae-is-4-6-days_c5d4915899a877cf": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:16:43.426136+00:00",
+        "reason": "Table 3 explicitly reports Sugar beet (253) MAE = 4.6 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "b5713f19d57c46074e8d72e5ae0687c4ce97a574970e14682a45647b0befcd9a"
+      }
+    ],
+    "evidence_sugar-beet-median-mpiw-is-18-7-days_c106ba97be4fe35e": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:17:07.779223+00:00",
+        "reason": "Table 3 explicitly reports Sugar beet (253) MPIW = 18.7 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "f588c92deb40c5a0f700ccd0c79a1565acdc7f5fdc15ba890a8739ee949cca58"
+      }
+    ],
+    "evidence_sugar-beet-median-picp-is-0-901_87dc8a01ef084ff5": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:17:27.888533+00:00",
+        "reason": "Table 3 explicitly reports Sugar beet (253) PICP = 0.901; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "967f37c7f0b44b5214070c9a7c4bcbc63c18c00e75b15aa3287a7b9689f9c17f"
+      }
+    ],
+    "evidence_sugar-beet-median-rmse-is-5-6-days_161c61c3a88caa77": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:17:53.011585+00:00",
+        "reason": "Table 3 explicitly reports Sugar beet (253) RMSE = 5.6 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "18e99f79a2e5c41fd51752f6f96420e7295fac019f1e9c96a8174660f4482073"
+      }
+    ],
+    "evidence_sugar-beet-per-phase-median-mae-ranges-from_c6e1157f36a20443": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:18:16.662350+00:00",
+        "reason": "Table 3 explicitly reports Sugar beet (253) MAE range 3.9–9.4 days, defined as the span of per-phase median MAEs; provenance is correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "88ef8687df9073367a7e9c7de080c54f1f444906855ccbcd10020ac1fd14c3b2"
+      }
+    ],
+    "evidence_the-all-crop-mae-range-is-3-1-9-4-days_b4869bcf3cb8d853": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:18:41.040676+00:00",
+        "reason": "Table 3 explicitly reports the All crops MAE range as 3.1–9.4 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "641c7362bdaae56617c767e98fe6485391bdf612df9005910db0afdc43df3a3d"
+      }
+    ],
+    "evidence_the-all-crop-median-mpiw-is-21-3-days_6d15cdd52d82182a": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:19:08.896693+00:00",
+        "reason": "Table 3 explicitly reports the All crops median MPIW as 21.3 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "6ac600efac5b73b48eee07b4d937f27c3c74ab0157d0f33c6c730d4d69a04599"
+      }
+    ],
+    "evidence_the-all-crop-median-picp-is-0-898_cae11058f7199d21": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:19:36.164803+00:00",
+        "reason": "Table 3 explicitly reports the All crops median PICP as 0.898; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "4d59d0ae8f19b6921527e16afa1b6074c1d652ea5f00cf12d402ece1c6aad36c"
+      }
+    ],
+    "evidence_the-family-wide-median-mae-is-5-2-days-over_af137e7fbf718974": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:20:00.801466+00:00",
+        "reason": "Table 3 explicitly reports an all-crop median MAE of 5.2 days across 1684 produced surfaces; provenance is correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "64583257f93e5b8264bc1d181db924bc9f7f7cd19fedf8b05b32afcfe1ac68d3"
+      }
+    ],
+    "evidence_the-family-wide-median-rmse-is-6-5-days-over_c29384c7c7e91c53": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:20:25.128735+00:00",
+        "reason": "Table 3 explicitly reports an all-crop median RMSE of 6.5 days across 1684 produced surfaces; provenance is correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "cbf202b596468e88f486a82525f35353ffb1b8c4a46cafb92a409e29b3221077"
+      }
+    ],
+    "evidence_the-paper-identifies-spatial-support-bse-sem_e5d88123c0f3d2c6": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:21:10.120131+00:00",
+        "reason": "I would not force a source_page value here: the evidence deliberately spans limitations 1–5 across pages 27–28, so null is preferable to falsely implying a single page.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "131767edee6ba2a7d37ba6f4eb68dd16072f9afb4b23071c6035a81ee3c75f4f"
+      }
+    ],
+    "evidence_the-paper-lists-five-application-domains-for_a4b2f5c4e3934bd3": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:22:21.506937+00:00",
+        "reason": "Claim verified; corrected composite provenance so the supporting text aligns with the Introduction’s five-domain list and the explicit Sect. 3.3.6 weather-indicator demonstration.",
+        "source_checked": true,
+        "patch": {
+          "source_location": "Introduction application-domain list; Sect. 3.3.6 downstream weather-indicator use case",
+          "source_text": "The applications can be grouped into five main thematic domains ... To demonstrate this carry-through, we compute the raster-based weather indicator (WI) of Möller et al. (2019) – the cumulative precipitation during the shooting-heading window of winter wheat (DWD phases 15→18) – for every year of the record and propagate the per-pixel BSE of both bounding phase-entry surfaces as a phenological sensitivity component of the result."
+        },
+        "baseline_snapshot_sha256": "f08b6a86f4ddd4c072bb1f990891b7d24412459bedf80514316d9831dc1844d2"
+      }
+    ],
+    "evidence_the-source-explicitly-distinguishes-bse-from_d78067193f6eb415": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:23:27.713287+00:00",
+        "reason": "Claim and provenance are correct; added source page 27 for the explicit limitation-2 statement distinguishing BSE from total predictive uncertainty.",
+        "source_checked": true,
+        "patch": {
+          "source_page": 27
+        },
+        "baseline_snapshot_sha256": "b9d498765854e842cb2ce6674debf116fa9d36412615d15ab1dcfda35e61411d"
+      }
+    ],
+    "evidence_the-source-explicitly-warns-that-gridded-pre_fa600e9d4d92f92b": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:24:08.520503+00:00",
+        "reason": "Expanded source text to cover both parts of the claim and added page 27; Sect. 4.4 limitation 1 explicitly states that raster values are conditional phase-entry dates and do not indicate crop occurrence or cultivation suitability.",
+        "source_checked": true,
+        "patch": {
+          "source_text": "The raster values should therefore be interpreted as conditional phase-entry dates, i.e. the dates predicted if the respective crop were present at a grid cell. They do not indicate crop occurrence or cultivation suitability.",
+          "source_page": 27
+        },
+        "baseline_snapshot_sha256": "29822f2b45bdedd6027a5227f9eb34ada8eae23d21c4c1f2df8d679c6432c8d8"
+      }
+    ],
+    "evidence_the-source-states-that-the-15-and-25-lines-a_34750586073c1ee7": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:24:37.062003+00:00",
+        "reason": "Figure 9 caption explicitly states that the 15% and 25% dashed lines are illustrative visual reference levels and are not formal suitability thresholds for a specific application.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "5d55daa1cce1eed693cf5b8e50c267b46fc5e56f58498c1b81155e888b656bd5"
+      }
+    ],
+    "evidence_the-validation-metrics-are-conditional-on-fi_6f9e6c9e1ac31d2f": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:25:07.489587+00:00",
+        "reason": "Expanded source text to support both parts of the claim and added page 28; limitation 3 explicitly states that validation is conditional on prior filtering/selection and may be optimistic relative to the unfiltered volunteer record.",
+        "source_checked": true,
+        "patch": {
+          "source_text": "The 75/25 validation is conditional on the preceding filtering and thermal-time quantile selection. The reported errors therefore describe the performance for the retained observations and may be optimistic compared with the unfiltered volunteer record.",
+          "source_page": 28
+        },
+        "baseline_snapshot_sha256": "93a152b4844a54ae1169d75a570288b105680c28adb4f30073c822f5f762f776"
+      }
+    ],
+    "evidence_winter-barley-median-mae-is-4-6-days_c7ae7c8e2a770993": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:25:32.065682+00:00",
+        "reason": "Table 3 explicitly reports Winter barley (204) MAE = 4.6 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "ac0944acdccd43df7669f9240e4996201edcca4c8a08dac1b39c591e47de911d"
+      }
+    ],
+    "evidence_winter-barley-median-mpiw-is-19-3-days_4a942b7bf545c17c": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:25:57.484102+00:00",
+        "reason": "Table 3 explicitly reports Winter barley (204) MPIW = 19.3 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "9d6433fd3ab20bb902ed358094c216ea5d1e32247b4043cdb052ae4a3f23e598"
+      }
+    ],
+    "evidence_winter-barley-median-picp-is-0-896_8aefa4e02fed6d7b": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:26:22.447451+00:00",
+        "reason": "Table 3 explicitly reports Winter barley (204) PICP = 0.896; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "d898dd0b58ff94f52e0f65968a4c0c25f650c3eb54255b9b85b4ac0321987111"
+      }
+    ],
+    "evidence_winter-barley-median-rmse-is-5-9-days_7202d631e8cbd73d": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:26:47.857482+00:00",
+        "reason": "Table 3 explicitly reports Winter barley (204) RMSE = 5.9 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "39adb881d716bc4dd079b43eefc9f36d7859ec03a0b697d8f6552856cf858ec8"
+      }
+    ],
+    "evidence_winter-barley-per-phase-median-mae-ranges-fr_05250b22bcc97c5d": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:27:18.640209+00:00",
+        "reason": "Table 3 explicitly reports Winter barley (204) MAE range 3.3–6.9 days, defined as the span of per-phase median MAEs; provenance is correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "917b875b2cec54be2118b8d48f74f08295ffa01d3740cc32dceff6396bb9d8a3"
+      }
+    ],
+    "evidence_winter-rapeseed-median-mae-is-5-3-days_a37634ab333b0482": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:27:42.708439+00:00",
+        "reason": "Table 3 explicitly reports Winter rapeseed (205) MAE = 5.3 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "92b4ac3006e57e92295617d2efa183c895b2408c7edc55cb9bc563677a6a4313"
+      }
+    ],
+    "evidence_winter-rapeseed-median-mpiw-is-22-2-days_ee3cbc91993aba8b": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:28:08.373061+00:00",
+        "reason": "Table 3 explicitly reports Winter rapeseed (205) MPIW = 22.2 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "92a9c02cd1a939a8f634401fd166aa0329b0f76db2fc0e50b246a05afd61a4cd"
+      }
+    ],
+    "evidence_winter-rapeseed-median-picp-is-0-898_ef00f15e312ef5ca": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:28:31.106068+00:00",
+        "reason": "Table 3 explicitly reports Winter rapeseed (205) PICP = 0.898; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "e456de78af6f4cf899a8a26b1337d7243a172835f18c534606bc6a2a6ab64375"
+      }
+    ],
+    "evidence_winter-rapeseed-median-rmse-is-6-7-days_81feaa73235ddc34": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:28:54.586330+00:00",
+        "reason": "Table 3 explicitly reports Winter rapeseed (205) RMSE = 6.7 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "7cd34a4aafcc8fd554f18ade4420574119596a51b7a1ad1e764d3023c04a1920"
+      }
+    ],
+    "evidence_winter-rapeseed-per-phase-median-mae-ranges_e34e607ae7b4b58b": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:29:20.158818+00:00",
+        "reason": "Table 3 explicitly reports Winter rapeseed (205) MAE range 3.5–8.5 days, defined as the span of per-phase median MAEs; provenance is correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "77b4c25bc75e696622142246c08f0c808efc4c50beceef8636db4e342d65c99a"
+      }
+    ],
+    "evidence_winter-rye-median-mae-is-5-4-days_208f5248e9a17701": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:29:44.859893+00:00",
+        "reason": "Table 3 explicitly reports Winter rye (203) MAE = 5.4 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "47dee5a54cdbcf5ad45aff6508f6284a6455ddf23a9aef5dd6fad2426fac0e27"
+      }
+    ],
+    "evidence_winter-rye-median-mpiw-is-22-6-days_e5da95025c921b55": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:30:08.028990+00:00",
+        "reason": "Table 3 explicitly reports Winter rye (203) MPIW = 22.6 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "e222a578fc7c56ef95dbdadc68c31f5cbbe46d10c3773e2afa8de07646ee4b13"
+      }
+    ],
+    "evidence_winter-rye-median-picp-is-0-896_0c7f340f3eea969c": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:30:31.168701+00:00",
+        "reason": "Table 3 explicitly reports Winter rye (203) PICP = 0.896; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "472a74a96bae807e50a6347e4efdc90c6964f7c4c9f36c2d7b1095934072a9a6"
+      }
+    ],
+    "evidence_winter-rye-median-rmse-is-6-8-days_339eb1c7b9222d91": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:30:53.389614+00:00",
+        "reason": "Table 3 explicitly reports Winter rye (203) RMSE = 6.8 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "f5cb299fae8deb6c5e0c0c3f8c4e9ac3c8714484e2832a6266a1c5c91384d324"
+      }
+    ],
+    "evidence_winter-rye-per-phase-median-mae-ranges-from_cf55ad0a02c4fbc7": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:31:19.929546+00:00",
+        "reason": "Table 3 explicitly reports Winter rye (203) MAE range 3.8–7.5 days, defined as the span of per-phase median MAEs; provenance is correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "84b4fa65fba757ff8429e0ac36ff7b579098b68cca99090cab22a553cd6c8efc"
+      }
+    ],
+    "evidence_winter-wheat-heading-has-an-mae-of-2-8-5-1-d_1c192e7d57bd5d5a": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:31:54.182470+00:00",
+        "reason": "Claim verified; added precise locator to Sect. 3.3.2, page 18, where the heading-phase MAE range 2.8–5.1 days and median 3.9 days are explicitly stated.",
+        "source_checked": true,
+        "patch": {
+          "source_location": "Sect. 3.3.2",
+          "source_page": 18
+        },
+        "baseline_snapshot_sha256": "2da567304be5dace69fcf927eb247b001add90143f6de01cb2a84dc96f603119"
+      }
+    ],
+    "evidence_winter-wheat-heading-has-mean-mpiw-16-0-days_158ac24e694a5ddd": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:32:35.180200+00:00",
+        "reason": "Corrected provenance from Figure 4 caption/page 19 to the explicit Sect. 3.3.4 prose on page 20; Figure 4d is referenced by the text.",
+        "source_checked": true,
+        "patch": {
+          "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+          "source_location": "Sect. 3.3.4; Figure 4d",
+          "source_text": "For the heading phase, the observed coverage is close to nominal throughout, with a mean PICP of 0.900 (range 0.888–0.920 across years) and a mean interval width of 16.0 days (range 12.6–21.4 days; Fig. 4d).",
+          "source_page": 20,
+          "source_item_id": null,
+          "source_modality": "authored_prose"
+        },
+        "baseline_snapshot_sha256": "18a2dc39d25279f62cb24b08e9c5fa8699b379ddbfdb2ec313860b7481e6aace"
+      }
+    ],
+    "evidence_winter-wheat-heading-has-mean-picp-0-900-wit_d03644e52212d7f3": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:33:08.589023+00:00",
+        "reason": "Corrected provenance from Figure 4 caption/page 19 to the explicit Sect. 3.3.4 prose on page 20; Figure 4d is referenced by the text.",
+        "source_checked": true,
+        "patch": {
+          "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+          "source_location": "Sect. 3.3.4; Figure 4d",
+          "source_text": "For the heading phase, the observed coverage is close to nominal throughout, with a mean PICP of 0.900 (range 0.888–0.920 across years) and a mean interval width of 16.0 days (range 12.6–21.4 days; Fig. 4d).",
+          "source_page": 20,
+          "source_item_id": null,
+          "source_modality": "authored_prose"
+        },
+        "baseline_snapshot_sha256": "4f8501875a68aa3709370d7bbc7f7a89c7ca96ee55d2ad1e79c674c00948eed1"
+      }
+    ],
+    "evidence_winter-wheat-median-mpiw-is-23-5-days_93bc0aaae9e4968f": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:33:39.461647+00:00",
+        "reason": "Table 3 explicitly reports Winter wheat (202) MPIW = 23.5 days; provenance is correct, and the duplicate pointer reflects legitimate reuse of the same evidence record.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "a976216c050b554174c6de118b9354b42d29c9e528018413dc8c624e9bb5d6aa"
+      }
+    ],
+    "evidence_winter-wheat-median-out-of-sample-mae-is-5-7_784c0cc8eb839bbe": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:34:02.579574+00:00",
+        "reason": "Table 3 explicitly reports Winter wheat (202) median out-of-sample MAE = 5.7 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "1d8d9284f93db5731198cf4e65c370c3ff9eaf6381177cbd68efe5e062fffed2"
+      }
+    ],
+    "evidence_winter-wheat-median-out-of-sample-rmse-is-7_20abb0ed2d57df98": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:34:25.731681+00:00",
+        "reason": "Table 3 explicitly reports Winter wheat (202) median out-of-sample RMSE = 7.1 days; source locator and structured-table provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "94afb3713a82ae4fbd2da509b354473703b50ea463c61431b026fe7d89b75182"
+      }
+    ],
+    "evidence_winter-wheat-median-picp-is-0-898-for-nomina_3c69d16212466451": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:34:53.037690+00:00",
+        "reason": "Table 3 explicitly reports Winter wheat (202) median PICP = 0.898 for nominal 90% prediction intervals; provenance is correct, and duplicate reuse is legitimate.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "74177d768bbc1bc0f6d610791780f769accab266a06dc7e87a516c6a5b01c3f1"
+      }
+    ],
+    "evidence_winter-wheat-per-phase-median-mae-ranges-fro_4122b05fc9ad6f8a": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:35:20.875804+00:00",
+        "reason": "Table 3 explicitly reports Winter wheat (202) MAE range 3.9–7.5 days, defined as the span of per-phase median MAEs; provenance is correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "2fc48c55ea37fdff75853b138e616ab2c2ec070fe4a176f03e60b4f1b09da05b"
+      }
+    ],
+    "resource_input-data-collection-for-the-phenophaser-mo_d5f8b6cff0b3512a": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:37:52.296566+00:00",
+        "reason": "Corrected relation from wasGeneratedBy to isDerivedFrom; the DOI identifies source input data from which the published dataset is derived, not a generating activity.",
+        "source_checked": true,
+        "patch": {
+          "relation": "isDerivedFrom"
+        },
+        "baseline_snapshot_sha256": "2f11052d075f5ad35f6e757ec8d23d4748a22b6bfc93bdaa6f58207a2aa908a9"
+      }
+    ],
+    "resource_phase-interpolated-phenological-phase-entry_a393e7b914fc26ad": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:38:29.338580+00:00",
+        "reason": "Sect. 5 explicitly identifies DOI 10.5281/zenodo.21294103 as the concept DOI for the single citable PHASE collection aggregating the per-crop deposits; title, collection type, concept-identifier status, and describes relation are appropriate.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "fccf6167a8aa44d0659cdb88f1166be8370571cb06fd32a0215f4edc612541d6"
+      }
+    ],
+    "resource_phase-winter-wheat-deposit_5c85aa5cd5d87906": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:38:59.745078+00:00",
+        "reason": "Sect. 5 explicitly identifies 10.5281/zenodo.19571847 as the concept DOI for the winter-wheat PHASE dataset and states that the manuscript describes version v1.9.0; dataset type, version, concept-identifier status, and describes relation are appropriate.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "196fa5ab688b00f30a0d4adcefc5ca8046b671f1f38d2eeecadcdc57da29f666"
+      }
+    ],
+    "resource_phenophaser_fb803bba9d3e54af": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:39:32.355962+00:00",
+        "reason": "Sect. 5 explicitly identifies PhenoPhaseR as the open-source processing workflow archived at concept DOI 10.5281/zenodo.18743008 and states that the described deposits were built with version v1.9.0; software type, version, concept-identifier status, and provenance relation are appropriate.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "d702e2af543f5815d59d7295a23cd4f42b27617618b132af3a41e4d256f921f0"
+      }
+    ],
+    "resource_weatherindicator_00c37e284010dc79": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:40:13.762137+00:00",
+        "reason": "Sect. 5 explicitly identifies WeatherIndicatoR as the open-source workflow supporting the weather-indicator use case, archived at concept DOI 10.5281/zenodo.19631197; the demonstrated use case used version v0.3.0.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "ba9c6cdef1398cdb67f10d4512652a1ac6fe90335ae2e3ccd64225b0308821b9"
+      }
+    ],
+    "evidence_the-deposits-include-machine-actionable-prov_4a139d2f2aea7272": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:41:17.188916+00:00",
+        "reason": "Claim verified; expanded the evidence text to explicitly support cataloguing, quality metadata, and provenance, and added the precise Sect. 2.4/page 14 locator.",
+        "source_checked": true,
+        "patch": {
+          "source_location": "Sect. 2.4",
+          "source_text": "Each deposit is a self-contained Research Object Crate (RO-Crate 1.2). DCAT and Dublin Core Terms add cataloguing properties; the W3C Data Quality Vocabulary (DQV) encodes the per-year VAM/CAL/GEM/PIC metrics as first-class quality measurements; and PROV-O records the software → filter-variant → phase-product chain as a connected provenance graph spanning all records.",
+          "source_page": 14
+        },
+        "baseline_snapshot_sha256": "5d1faad254110769b860399f512c79865f45f0cfb6dd79a0f0cf537593d817e3"
+      }
+    ],
+    "evidence_the-dwd-phenological-station-network-1-km-we_c7272e9f211791ba": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:42:03.638400+00:00",
+        "reason": "Claim verified; expanded the evidence text to include all three explicitly named input datasets and added the precise Sect. 5/page 28 locator.",
+        "source_checked": true,
+        "patch": {
+          "source_location": "Sect. 5",
+          "source_text": "The input data required to reproduce the dataset – the DWD phenological station network, the 1 km weather grid with interpolated daily mean temperatures, and the digital elevation model – are archived at https://doi.org/10.5281/zenodo.18594963 (concept DOI, citing all versions; DWD and JKI, 2026).",
+          "source_page": 28
+        },
+        "baseline_snapshot_sha256": "c027d1d5554fb8e24da3fb67d70a4ec41465ec3bd7b2fb35b62834f8c8ec209f"
+      }
+    ],
+    "evidence_the-per-crop-deposits-are-aggregated-into-a_2e6e8c7f798994bb": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:42:42.081683+00:00",
+        "reason": "Claim verified; added the precise Sect. 5/page 28 locator and replaced the abbreviated evidence text with the full supporting sentence.",
+        "source_checked": true,
+        "patch": {
+          "source_location": "Sect. 5",
+          "source_text": "The per-crop deposits are aggregated into a single citable collection (Möller et al., 2026a) at https://doi.org/10.5281/zenodo.21294103 (concept DOI, resolving to the most recent version).",
+          "source_page": 28
+        },
+        "baseline_snapshot_sha256": "6b174a77c235ddcf1d5c046af4e198a0de11e89cb31830c2c133d1c7fde4bfc2"
+      }
+    ],
+    "evidence_the-phenophaser-processing-workflow-is-open_74ecb97f3e2cc741": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:43:17.780603+00:00",
+        "reason": "Claim verified; added the precise Sect. 5/page 29 locator and replaced the abbreviated evidence text with the full supporting sentence.",
+        "source_checked": true,
+        "patch": {
+          "source_location": "Sect. 5",
+          "source_text": "The processing workflow, PhenoPhaseR, is open-source (MIT licence) and archived at https://doi.org/10.5281/zenodo.18743008 (concept DOI; the deposits described here were built with version v1.9.0; Möller and Gerstmann, 2026), with development at https://github.com/JKI-GDM/PhenoPhaseR.",
+          "source_page": 29
+        },
+        "baseline_snapshot_sha256": "228ebf87184cc5093687a1cb0fcd57fe47bb034ba98c048d2d0996c51e41c7de"
+      }
+    ],
+    "evidence_the-weatherindicator-workflow-used-for-the-d_a517765451af9a1e": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:43:49.281101+00:00",
+        "reason": "Claim verified; added the precise Sect. 5/page 29 locator and replaced the abbreviated evidence text with the full supporting sentence.",
+        "source_checked": true,
+        "patch": {
+          "source_location": "Sect. 5",
+          "source_text": "The WeatherIndicatoR workflow that performs the aggregation, the two-source propagation, and the figure generation is open-source (MIT licence) and archived at https://doi.org/10.5281/zenodo.19631197 (concept DOI; the use case presented here was computed with version v0.3.0; Möller, 2026b), with development at https://github.com/JKI-GDM/WeatherIndicatoR.",
+          "source_page": 29
+        },
+        "baseline_snapshot_sha256": "1b35993bb1c2a3d26912c6ea5114719a72533ec527c0004d7f8c7bbb053d6dc4"
+      }
+    ],
+    "evidence_the-winter-wheat-phase-entry-surfaces-uncert_3c787b76f4d61baf": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:44:34.061204+00:00",
+        "reason": "Claim verified; added the precise Sect. 5/page 28 locator and replaced the abbreviated evidence text with the full supporting sentence.",
+        "source_checked": true,
+        "patch": {
+          "source_location": "Sect. 5",
+          "source_text": "The interpolated phase-entry surfaces and their uncertainty and quality tables for winter wheat (Triticum aestivum, DWD Plant ID 202), used as the worked example throughout this paper, are archived at https://doi.org/10.5281/zenodo.19571847 (concept DOI; this paper describes version v1.9.0, a metadata-only revision of v1.8.0 with unchanged raster contents; Möller et al., 2026b).",
+          "source_page": 28
+        },
+        "baseline_snapshot_sha256": "325309597d9c24c5ec7691541686f7b7463201ac5af87e879b45c7f351e0a7d5"
+      }
+    ],
+    "evidence_each-interpolated-surface-is-assessed-agains_683e2899fa8e2c29": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:45:22.272212+00:00",
+        "reason": "Claim verified; added the precise Sect. 2.3.4/page 12 locator and expanded the evidence text to explicitly document the held-out test observations and DOY accuracy metrics.",
+        "source_checked": true,
+        "patch": {
+          "source_location": "Sect. 2.3.4",
+          "source_text": "For all three methods, observations are randomly split into a training set (75 %) and a held-out test set (25 %) using stratified sampling via the caret package (Kuhn, 2008). DOY is predicted at held-out test station coordinates by extracting from the resulting raster, and accuracy is assessed using RMSE, MAE, MSE, and R2 (Eq. 7, 8 and 9).",
+          "source_page": 12
+        },
+        "baseline_snapshot_sha256": "619a9bc8321b7ad7d959b26505507a2ccdba3b48b964f1a77a67dba818b17e8a"
+      }
+    ],
+    "evidence_phenophaser-consists-of-seven-sequential-pro_9de323866b749110": [
+      {
+        "action": "verify",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:50:15.705413+00:00",
+        "reason": "Figure 3 explicitly presents seven sequential PhenoPhaseR processing steps spanning input-data preparation through spatial interpolation and uncertainty quantification; figure locator and structured-visual provenance are correct.",
+        "source_checked": true,
+        "patch": null,
+        "baseline_snapshot_sha256": "58744e25b2fc12423ca2c02237005eed45b8aa40eb729895bef9aa76cc76de12"
+      }
+    ],
+    "evidence_the-dataset-contains-1684-produced-surfaces_ec5b10248786fc8d": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:51:37.394927+00:00",
+        "reason": "Claim verified against Table 2 totals; corrected source text so it explicitly supports all three quantities—1689 possible, 1684 produced, and 5 missing—and matches the table provenance.",
+        "source_checked": true,
+        "patch": {
+          "source_text": "Table 2 totals: maximum possible interpolated phase-entry surfaces = 1689; produced surfaces (N_I) = 1684; missing surfaces (N_M) = 5."
+        },
+        "baseline_snapshot_sha256": "6257ffc25e034950bb03d260ac4ed475535cae0901c05dc393375aa477ea296b"
+      }
+    ],
+    "evidence_the-dataset-excludes-crop-phase-combinations_7988c2e62384d733": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:52:22.499616+00:00",
+        "reason": "Claim verified, but it spans two source locations: Sect. 4.4/page 27 supports the inclusion criterion, while Table 2/page 16 documents the five missing surfaces. Corrected the composite provenance accordingly.",
+        "source_checked": true,
+        "patch": {
+          "source_section": "3.1 Dataset scope and completeness; 4.4 Limitations",
+          "source_location": "Table 2; Sect. 4.4",
+          "source_text": "Only DWD crop-phase combinations that can be modelled with a sufficient number of suitable observations are included in the dataset (Table 2). The five missing surfaces are winter rye phase 15 (2022), winter rapeseed phases 17 and 67 (2022), and sugar beet phases 10 and 13 (2024).",
+          "source_page": null,
+          "source_item_id": null,
+          "source_modality": "authored_prose"
+        },
+        "baseline_snapshot_sha256": "153d156dd28ae823ccb1ab57c76ae52b5ac94b4a6222efbaf13c9e55dcb940e8"
+      }
+    ],
+    "evidence_the-dataset-provides-1-km-etrs89-utm-zone-32_38ac2c20ae209bd5": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:53:06.711315+00:00",
+        "reason": "Claim verified; expanded the Abstract evidence to explicitly support both the DOY and matching BSE layers, and added the precise page 1 locator.",
+        "source_checked": true,
+        "patch": {
+          "source_location": "Abstract",
+          "source_text": "The data are provided at 1 km resolution in ETRS89/UTM zone 32N (EPSG:25832) for 1993–2025; spring barley is available for 2014–2025. For each crop and phase, the phase-entry day-of-year (DOY) is stored as a multi-band Cloud-Optimised GeoTIFF with one band per year. A matching Bayesian posterior standard error (BSE) layer describes the model-internal precision of the fitted mean.",
+          "source_page": 1
+        },
+        "baseline_snapshot_sha256": "4ef94e9f518e10c6bf3a87dd2bec58fd402e8301d1552eba57d4edfb187b8bde"
+      }
+    ],
+    "evidence_the-dataset-provides-doy-and-bse-layers-and_8918c78f40a8144b": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:53:52.923131+00:00",
+        "reason": "Claim verified; corrected composite provenance to cover both the DOY/BSE/quality-table description and the Sect. 3.3.6 downstream BSE-propagation use case.",
+        "source_checked": true,
+        "patch": {
+          "source_section": "3.3 Winter wheat example; 3.3.6 Use case: propagation into a weather-based indicator",
+          "source_location": "Sect. 3.3; Sect. 3.3.6",
+          "source_text": "Each phase is distributed as one multi-band Cloud-Optimised GeoTIFF of the entry DOY (one band per year) and a matching per-pixel uncertainty layer (BSE), accompanied by the four quality tables introduced in Sect. 2.3 (VAM, CAL, GEM, PIC). The BSE layer can be carried through downstream processing as a spatially explicit model-precision component instead of using only a single global accuracy figure, and the use case propagates the per-pixel BSE of both bounding phase-entry surfaces as a phenological sensitivity component of the result.",
+          "source_page": null
+        },
+        "baseline_snapshot_sha256": "91dcae6a733bc8592a12f4146aa97c441848deaf1060e98f8b5b7571ccd85d36"
+      }
+    ],
+    "evidence_the-demonstrated-weather-indicator-use-case_8762435878d68cce": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:54:49.565777+00:00",
+        "reason": "Claim verified; corrected composite provenance because the phase-entry/BSE and E-OBS details are in Sect. 3.3.6, while Sect. 5 explicitly identifies the published winter-wheat deposit and E-OBS v33.0e as the combined use-case inputs.",
+        "source_checked": true,
+        "patch": {
+          "source_section": "3.3.6 Use case: propagation into a weather-based indicator; 5 Code and data availability",
+          "source_location": "Sect. 3.3.6; Sect. 5",
+          "source_text": "The 1 km phase-entry and BSE surfaces are aggregated to the coarser precipitation grid. E-OBS provides the daily precipitation best estimate and ensemble spread as a per-pixel uncertainty estimate. The weather-indicator use case combines the winter wheat deposit with the E-OBS v33.0e ensemble dataset.",
+          "source_page": null
+        },
+        "baseline_snapshot_sha256": "907e2271b99cec97b4312a4f8133c0de721f3ea20956cbf93f2fa5c9ab01fc46"
+      }
+    ],
+    "evidence_the-paper-addresses-input-observation-plausi_b363b6910ec47e88": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:55:41.991029+00:00",
+        "reason": "Claim verified; added the precise Introduction/page 5 locator and expanded the evidence text to explicitly cover all complementary quality dimensions, including prediction-interval coverage and width.",
+        "source_checked": true,
+        "patch": {
+          "source_location": "Sect. 1; DFFP quality-dimensions list",
+          "source_text": "From a Data-Fitness-For-Purpose (DFFP) perspective, three complementary quality dimensions are addressed: (1) the plausibility of the input VGI observations; (2) producer’s accuracy, quantified by train-test cross-validation metrics such as RMSE and MAE; and (3) spatially explicit uncertainty surfaces, complemented by a separate assessment of prediction-interval reliability (coverage) and width.",
+          "source_page": 5
+        },
+        "baseline_snapshot_sha256": "0895a6f85152e70d2e361f13453a400a6ca793820af0552bc5410b741d91583a"
+      }
+    ],
+    "evidence_the-producer-workflow-performs-spatial-inter_e6320b8a53534fb2": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:56:53.660621+00:00",
+        "reason": "Claim verified; added composite Sect. 2.3/2.3.5 provenance and expanded the evidence text to explicitly support both spatial interpolation and the separate PICP/MPIW coverage-and-width assessment.",
+        "source_checked": true,
+        "patch": {
+          "source_location": "Sect. 2.3; Sect. 2.3.5",
+          "source_text": "The function spatial_interpolation() maps the optimal station-level DOY predictions to the full 1 km grid of Germany using one of three methods. Prediction-interval coverage is evaluated separately from the production BSE using five-fold cross-validation. Prediction-interval coverage probability (PICP) describes empirical coverage, while mean prediction-interval width (MPIW) describes mean interval width.",
+          "source_page": null
+        },
+        "baseline_snapshot_sha256": "51e281cc3fc2a109b44c04e18cc6a9aa6b3c49f43407b4e24a370a901ebbfe53"
+      }
+    ],
+    "evidence_the-workflow-combines-dwd-phenological-obser_8d860474f5418a59": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:57:30.894316+00:00",
+        "reason": "Claim verified; added the precise Sect. 2/page 6 locator and replaced the abbreviated evidence text with the full supporting sentence.",
+        "source_checked": true,
+        "patch": {
+          "source_location": "Sect. 2 Methods",
+          "source_text": "The workflow ingests point-scale phenological observations provided by the German Meteorological Service (Deutscher Wetterdienst, DWD) and combines them with gridded daily mean temperatures and a digital elevation model (DEM) to produce time series of interpolated DOY grids for eight main agricultural crop types and their associated phenological phases.",
+          "source_page": 6
+        },
+        "baseline_snapshot_sha256": "f6c7dcffc450389aacb04bcda1726d60fcb31b9df9f0f3c2e33a4da9f47880d1"
+      }
+    ],
+    "evidence_the-workflow-is-designed-for-annual-extensio_7c85693a2cd7a199": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:58:10.163885+00:00",
+        "reason": "Claim verified; corrected the composite provenance to the two passages that directly support annual extension and integrated automated publication, removing the unnecessary Sect. 5 reference.",
+        "source_checked": true,
+        "patch": {
+          "source_section": "1 Introduction; 2.4 Data publication and FAIR packaging",
+          "source_location": "Sect. 1; Sect. 2.4",
+          "source_text": "The dataset is extended annually as soon as the DWD has released the quality-checked observations of the completed vegetation period. Since PhenoPhaseR version 1.2, publication is not a separate manual step but an integral part of each processing run; two publish hooks are executed at the end of the pipeline.",
+          "source_page": null
+        },
+        "baseline_snapshot_sha256": "5ed532307587643fbdf898eaa280ea7c5891b94f19b3ac7982c7a6e17359e470"
+      }
+    ],
+    "evidence_validation-and-uncertainty-depend-on-station_95aa13e841300a8d": [
+      {
+        "action": "correct",
+        "reviewer": "Mahmoudi",
+        "reviewed_at_utc": "2026-09-08T06:59:11.828844+00:00",
+        "reason": "Claim verified; narrowed the provenance to limitations 1 and 5, which explicitly support station-density/spatial-support sensitivity and the aggregation-scale limitation.",
+        "source_checked": true,
+        "patch": {
+          "source_location": "Sect. 4.4, limitations 1 and 5",
+          "source_text": "Station density varies considerably over space and time, and predictions in sparsely observed regions should be treated with greater caution, particularly where they extend beyond the main support of the observation network. The validation and the PICP/MPIW assessment are based on phenological observation locations and therefore assess model performance where observations are available, not across all cells of the Germany-wide prediction grid. In the weather-indicator uncertainty propagation, aggregation of the 1 km BSE to the coarser E-OBS grid does not explicitly account for spatial covariance.",
+          "source_page": null
+        },
+        "baseline_snapshot_sha256": "cb42a2769b5f71ef8c987d377c99a95e28355ebd8b4f38d8fea792ded9f4244a"
+      }
+    ]
+  },
+  "source_publication_state": {
+    "manuscript_frozen": false,
+    "source_document_doi": null,
+    "source_document_identifier_checked": false
+  },
+  "reviewed_matrix": {
+    "filename": "application_matrix.reviewed.json",
+    "sha256": "d55544804b2b5a048a743ddd814ea4aac6d70c6a8ffbd22500ae51338535b264",
+    "derived_at_utc": "2026-09-08T07:01:39.977982+00:00",
+    "baseline_sha256": "25737baac6f2632e2a4a1c1aa7d2470acf026e2be148b266f873f83d02f50eb1",
+    "review_summary": {
+      "total": 129,
+      "pending": 0,
+      "verified": 102,
+      "corrected": 27,
+      "rejected": 0,
+      "deferred": 0,
+      "not_applicable": 0,
+      "required_remaining": 0,
+      "publication_review_complete": true
+    },
+    "evidence_status_counts": {
+      "verified": 48,
+      "corrected": 26,
+      "rejected": 0,
+      "deferred": 0,
+      "unreviewed": 0
+    }
+  },
+  "publication": null
+}

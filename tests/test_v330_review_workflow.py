@@ -207,3 +207,19 @@ def test_publication_gate_requires_review_freeze_and_identifier(tmp_path):
     published = json.loads(target.read_text())
     assert published[0]["document_metadata"]["doi"] == "10.1234/final.paper"
     assert published[0]["extraction_provenance"]["review_status"] == "human_verified"
+
+
+def test_publication_gate_blocks_a_machine_run_marked_test(tmp_path):
+    matrix, manifest, report = _write_baseline(tmp_path)
+    manifest.write_text(json.dumps({"release_config": {
+        "schema_version": "fairagro-dffp-v3.4.0",
+        "extraction_prompt_version": "extraction_v10",
+        "run_purpose": "test",
+    }}), encoding="utf-8")
+    review_dir = tmp_path / "review"
+    initialize_review_workspace(
+        matrix, review_dir=review_dir, extraction_manifest_path=manifest, validation_report_path=report
+    )
+    gate = publication_gate(review_dir)
+    purpose = next(x for x in gate["checks"] if x["id"] == "run_not_marked_test")
+    assert purpose["passed"] is False

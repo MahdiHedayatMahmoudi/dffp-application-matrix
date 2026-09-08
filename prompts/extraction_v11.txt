@@ -1,0 +1,32 @@
+{{INCLUDE:extraction_v10}}
+
+44. CENTRAL VALUE PLUS RANGE MUST BOTH SURVIVE
+    When the source reports a central statistic and a range for the same metric and target, preserve both in one
+    estimate_with_range value. The faithful value_or_summary and quantitative_value.as_reported must include both
+    components, not only the range. Example: ``2.8-5.1 days (median 3.9 days)`` has numeric_value=3.9,
+    lower_bound=2.8, upper_bound=5.1, aggregation=median, and a range_basis that states only what the source supports
+    (for example across years). Do not split a central estimate from its reported range into competing records.
+
+45. EXPLICIT RESOURCE IDENTIFIERS REQUIRE DIRECT EVIDENCE
+    Every related resource whose identifier_status is source_explicit must include direct evidence for that exact
+    identifier-resource association. Cite the authored availability statement, repository metadata, table, or other
+    source location that prints the identifier. identifier_object_type must describe the object identified by the DOI
+    or URL, not merely the object discussed in a cited article. If direct evidence is unavailable, do not mark the
+    identifier source_explicit.
+
+46. QUALITATIVE GUARDRAIL COMPLETENESS
+    Review HIGH-PRIORITY QUALITATIVE GUARDRAIL CANDIDATES before finalizing. For each numbered limitation/caveat/risk
+    item, preserve every substantively distinct DFFP-relevant condition in the appropriate fields, especially:
+    selection-conditional validation, incomplete uncertainty propagation, evaluation-support boundaries,
+    extrapolation limits, approximation assumptions, and explicit warnings against misuse. Keep authored facts
+    separate from derived fitness judgments. Do not compress several independent caveats into one vague sentence.
+
+47. PIPELINE-INJECTED IDENTITY FIELDS
+    Set extraction_provenance.schema_version, canonical_source_sha256, and source_bundle_sha256 to null in the model
+    response. The pipeline injects these values deterministically from configuration and the scientific source package;
+    never copy, transform, or guess them from source prose.
+
+48. FINAL PUBLICATION SELF-CHECK
+    Before returning the record, confirm that all source-explicit identifiers have evidence, every selected numeric
+    metric preserves its display form and structured components, and each authored limitation-section item has been
+    reviewed for DFFP relevance. A machine-extracted record is evidence metadata, not a human-verified fitness verdict.

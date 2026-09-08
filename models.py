@@ -4,10 +4,18 @@
 
 from __future__ import annotations
 
+from decimal import Decimal
 from enum import Enum
-from typing import List, Optional
+from typing import Annotated, List, Optional
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    PlainSerializer,
+    WithJsonSchema,
+    model_validator,
+)
 
 
 # -----------------------------------------------------------------------------
@@ -27,6 +35,31 @@ class StrictModel(BaseModel):
         populate_by_name=True,
         use_enum_values=False,
     )
+
+
+# Pydantic's default JSON Schema for Decimal accepts either a JSON number or a
+# numeric string.  The numeric-string branch uses a regex negative lookahead,
+# which is not supported by OpenAI Structured Outputs.  These annotations keep
+# Decimal as the in-memory validation type while exposing only JSON numbers to
+# the API schema.  ``as_reported`` separately preserves source precision and
+# formatting exactly as printed in the paper.
+JsonNumberDecimal = Annotated[
+    Decimal,
+    PlainSerializer(float, return_type=float, when_used="json"),
+    WithJsonSchema({"type": "number"}),
+]
+NonNegativeJsonNumberDecimal = Annotated[
+    Decimal,
+    Field(ge=0),
+    PlainSerializer(float, return_type=float, when_used="json"),
+    WithJsonSchema({"type": "number", "minimum": 0}),
+]
+UnitIntervalJsonNumberDecimal = Annotated[
+    Decimal,
+    Field(ge=0, le=1),
+    PlainSerializer(float, return_type=float, when_used="json"),
+    WithJsonSchema({"type": "number", "minimum": 0, "maximum": 1}),
+]
 
 
 # -----------------------------------------------------------------------------
@@ -70,6 +103,7 @@ class RepresentationMethod(str, Enum):
 class EvidenceRecord(StrictModel):
     claim: str = Field(
         ...,
+        min_length=1,
         description="The normalized machine-readable claim supported by the source document.",
     )
     evidence_type: EvidenceType = Field(
@@ -98,6 +132,7 @@ class EvidenceRecord(StrictModel):
     )
     source_page: Optional[int] = Field(
         None,
+        ge=1,
         description="1-based PDF page number only when the source bundle provides it reliably.",
     )
     source_item_id: Optional[str] = Field(
@@ -117,10 +152,13 @@ class EvidenceRecord(StrictModel):
     )
     source_asset_sha256: Optional[str] = Field(
         None,
+        pattern=r"^[0-9a-fA-F]{64}$",
         description="SHA-256 of the table/figure/formula recovery asset when supplied by the source bundle.",
     )
     representation_confidence: Optional[float] = Field(
         None,
+        ge=0.0,
+        le=1.0,
         description="Confidence of a derived transcription/representation (expected 0-1), not scientific quality of the source.",
     )
     confidence_note: Optional[str] = Field(
@@ -148,6 +186,25 @@ class RelatedResourceType(str, Enum):
     other = "other"
 
 
+class IdentifierObjectType(str, Enum):
+    dataset = "dataset"
+    collection = "collection"
+    software = "software"
+    workflow = "workflow"
+    input_data = "input_data"
+    repository = "repository"
+    vocabulary = "vocabulary"
+    article = "article"
+    unknown = "unknown"
+
+
+class IdentifierStatus(str, Enum):
+    source_explicit = "source_explicit"
+    inferred = "inferred"
+    verification_required = "verification_required"
+    unresolved = "unresolved"
+
+
 class RelatedResource(StrictModel):
     name: Optional[str] = None
     identifier: Optional[str] = Field(
@@ -164,7 +221,30 @@ class RelatedResource(StrictModel):
         None,
         description="True only when the source explicitly identifies the DOI/identifier as a concept identifier.",
     )
+    identifier_object_type: IdentifierObjectType = Field(
+        IdentifierObjectType.unknown,
+        description=(
+            "Type of object actually identified by identifier. Keep this separate from resource_type so an "
+            "article DOI accidentally attached to a dataset can be detected."
+        ),
+    )
+    identifier_status: IdentifierStatus = Field(
+        IdentifierStatus.unresolved,
+        description="Whether the source states the identifier directly or it still needs verification.",
+    )
+    identifier_note: Optional[str] = Field(
+        None,
+        description="Concise reason for uncertainty or mismatch; do not guess an identifier.",
+    )
     evidence: Optional[List[EvidenceRecord]] = None
+
+
+class DocumentStatus(str, Enum):
+    draft = "draft"
+    preprint = "preprint"
+    published = "published"
+    report = "report"
+    unknown = "unknown"
 
 
 class DocumentMetadata(StrictModel):
@@ -183,6 +263,14 @@ class DocumentMetadata(StrictModel):
     document_type: Optional[str] = Field(
         None,
         description="For example: data paper, application paper, technical report, methods paper.",
+    )
+    document_status: DocumentStatus = Field(
+        DocumentStatus.unknown,
+        description="Publication state supported by the source package; do not infer published from formatting alone.",
+    )
+    generated_subject_terms: Optional[List[str]] = Field(
+        None,
+        description="Normalized subject terms generated during extraction. Keep source-authored keywords in keywords.",
     )
     related_resources: Optional[List[RelatedResource]] = Field(
         None,
@@ -593,12 +681,163 @@ class MetricScope(str, Enum):
     unknown = "unknown"
 
 
+class MetricValueKind(str, Enum):
+    scalar = "scalar"
+    range = "range"
+    estimate_with_range = "estimate_with_range"
+    estimate_with_uncertainty = "estimate_with_uncertainty"
+    labeled_series = "labeled_series"
+    text_summary = "text_summary"
+
+
+class AggregationStatistic(str, Enum):
+    raw = "raw"
+    mean = "mean"
+    median = "median"
+    minimum = "minimum"
+    maximum = "maximum"
+    count = "count"
+    proportion = "proportion"
+    other = "other"
+    unspecified = "unspecified"
+
+
+class NumericPointRole(str, Enum):
+    start = "start"
+    end = "end"
+    observation = "observation"
+    other = "other"
+
+
+class UncertaintyScale(str, Enum):
+    one_sigma = "one_sigma"
+    standard_error = "standard_error"
+    confidence_interval = "confidence_interval"
+    prediction_interval = "prediction_interval"
+    component_only = "component_only"
+    unknown = "unknown"
+
+
+class NumericPoint(StrictModel):
+    label: str = Field(..., min_length=1)
+    value: JsonNumberDecimal
+    role: NumericPointRole = NumericPointRole.observation
+
+
+class UncertaintyComponent(StrictModel):
+    name: str = Field(..., min_length=1)
+    value: NonNegativeJsonNumberDecimal
+    unit_code: Optional[str] = None
+    scale: UncertaintyScale = UncertaintyScale.unknown
+    note: Optional[str] = None
+
+
+class QuantitativeMetricValue(StrictModel):
+    """Machine-comparable quantitative value while preserving the source rendering."""
+
+    kind: MetricValueKind
+    as_reported: str = Field(..., min_length=1)
+    numeric_value: Optional[JsonNumberDecimal] = None
+    lower_bound: Optional[JsonNumberDecimal] = None
+    upper_bound: Optional[JsonNumberDecimal] = None
+    nominal_level: Optional[UnitIntervalJsonNumberDecimal] = None
+    unit_code: Optional[str] = Field(
+        None,
+        description="Canonical unit code, preferably UCUM; retain the source wording in the parent unit field.",
+    )
+    aggregation: AggregationStatistic = AggregationStatistic.unspecified
+    range_basis: Optional[str] = Field(
+        None,
+        description="Meaning of bounds, e.g. min-max, confidence interval, prediction interval, or across-target range.",
+    )
+    points: Optional[List[NumericPoint]] = None
+    uncertainty_components: Optional[List[UncertaintyComponent]] = None
+
+    @model_validator(mode="before")
+    @classmethod
+    def normalize_incomplete_shape(cls, value):
+        """Choose the strongest shape supported by fields actually returned.
+
+        Structured Outputs enforces the JSON Schema, but relationships such as
+        "estimate_with_range requires a central value and two bounds" are Pydantic
+        cross-field rules. A model can therefore return schema-valid JSON that the
+        SDK rejects during ``responses.parse``. This pre-validator never invents a
+        number: it only corrects ``kind`` from the fields that are present, and
+        clears a lone unusable bound so the authored ``as_reported`` text can be
+        reparsed or sent through semantic repair later.
+        """
+
+        if not isinstance(value, dict):
+            return value
+        data = dict(value)
+        kind_value = data.get("kind")
+        kind = getattr(kind_value, "value", kind_value)
+        numeric = data.get("numeric_value")
+        lower = data.get("lower_bound")
+        upper = data.get("upper_bound")
+        points = data.get("points") or []
+        components = data.get("uncertainty_components") or []
+        complete_bounds = lower is not None and upper is not None
+        partial_bounds = (lower is None) != (upper is None)
+
+        if partial_bounds:
+            data["lower_bound"] = None
+            data["upper_bound"] = None
+            complete_bounds = False
+
+        if numeric is not None and complete_bounds:
+            data["kind"] = MetricValueKind.estimate_with_range.value
+        elif numeric is not None and components:
+            data["kind"] = MetricValueKind.estimate_with_uncertainty.value
+        elif numeric is not None:
+            data["kind"] = MetricValueKind.scalar.value
+        elif complete_bounds:
+            data["kind"] = MetricValueKind.range.value
+        elif points:
+            data["kind"] = MetricValueKind.labeled_series.value
+        elif kind in {
+            MetricValueKind.scalar.value,
+            MetricValueKind.range.value,
+            MetricValueKind.estimate_with_range.value,
+            MetricValueKind.estimate_with_uncertainty.value,
+            MetricValueKind.labeled_series.value,
+        }:
+            data["kind"] = MetricValueKind.text_summary.value
+        return data
+
+    @model_validator(mode="after")
+    def validate_shape(self) -> "QuantitativeMetricValue":
+        if self.lower_bound is not None and self.upper_bound is not None and self.lower_bound > self.upper_bound:
+            raise ValueError("lower_bound must be less than or equal to upper_bound")
+        if (self.lower_bound is None) != (self.upper_bound is None):
+            raise ValueError("lower_bound and upper_bound must be supplied together")
+        if self.kind == MetricValueKind.scalar and self.numeric_value is None:
+            raise ValueError("scalar values require numeric_value")
+        if self.kind == MetricValueKind.range and self.lower_bound is None:
+            raise ValueError("range values require lower_bound and upper_bound")
+        if self.kind == MetricValueKind.estimate_with_range and (
+            self.numeric_value is None or self.lower_bound is None
+        ):
+            raise ValueError("estimate_with_range requires numeric_value and both bounds")
+        if self.kind == MetricValueKind.estimate_with_uncertainty and (
+            self.numeric_value is None or not self.uncertainty_components
+        ):
+            raise ValueError("estimate_with_uncertainty requires numeric_value and uncertainty_components")
+        if self.kind == MetricValueKind.labeled_series and not self.points:
+            raise ValueError("labeled_series requires points")
+        return self
+
+
 class TuningParameterRecord(StrictModel):
     """Quantitative model/workflow setting, kept separate from validation metrics."""
 
     name: str
     value_or_summary: Optional[str] = None
     unit: Optional[str] = None
+    quantitative_value: Optional[QuantitativeMetricValue] = Field(
+        None,
+        description="Structured numeric representation for validation and comparison; value_or_summary remains the display value.",
+    )
     scope: MetricScope = MetricScope.unknown
     scope_label: Optional[str] = None
     interpretation: Optional[str] = None
@@ -612,6 +851,10 @@ class ValidationMetricRecord(StrictModel):
     name: str
     value_or_summary: Optional[str] = None
     unit: Optional[str] = None
+    quantitative_value: Optional[QuantitativeMetricValue] = Field(
+        None,
+        description="Structured numeric representation for validation and comparison; value_or_summary remains the display value.",
+    )
     context: MetricContext
     scope: MetricScope = Field(
         MetricScope.unknown,
@@ -865,7 +1108,34 @@ class ExtractionScope(str, Enum):
     other = "other"
 
 
+class RunPurpose(str, Enum):
+    test = "test"
+    evaluation = "evaluation"
+    publication = "publication"
+
+
 class ExtractionProvenance(StrictModel):
+    schema_version: Optional[str] = Field(
+        None,
+        description="DFFP application-matrix schema version injected by the pipeline.",
+    )
+    canonical_source_sha256: Optional[str] = Field(
+        None,
+        pattern=r"^[0-9a-fA-F]{64}$",
+        description=(
+            "SHA-256 of the canonical PDF injected from the scientific source package. "
+            "This is the primary identity check when filenames differ."
+        ),
+    )
+    source_bundle_sha256: Optional[str] = Field(
+        None,
+        pattern=r"^[0-9a-fA-F]{64}$",
+        description="SHA-256 of the exact provenance-aware source bundle used for extraction.",
+    )
+    run_purpose: RunPurpose = Field(
+        RunPurpose.evaluation,
+        description="Declared intent of this run. The configured extractor injects this value; test output must not pass the publication gate.",
+    )
     extraction_scope: Optional[ExtractionScope] = None
     source_fidelity_status: Optional[str] = Field(
         None, description="Effective deterministic source-package fidelity status after any configured recovery."

@@ -1,0 +1,9 @@
+{{INCLUDE:repair_v1}}
+
+12. Preserve or repair quantitative_value together with value_or_summary. Never change the source display string merely to
+    simplify parsing, and never invent interval meaning or nominal confidence. Deterministic post-processing will backfill
+    conservative numeric shapes when this field is absent.
+13. If a completeness error identifies an omitted target row in a selected structured results table, restore every supported
+    metric-like sibling cell for that target rather than adding only one familiar statistic.
+14. A related-resource identifier must identify the declared object type. Mark uncertain or mismatched object identifiers for
+    verification; do not reuse an article DOI as a dataset, software, or vocabulary identifier.

@@ -1,0 +1,3767 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FAIRagro DFFP application matrix",
+  "description": "One or more source-grounded FAIRagro DFFP evidence records.",
+  "type": "array",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "document_metadata": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/DocumentMetadata"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "dataset_characteristics": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/DatasetCharacteristics"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "application_profile": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/ApplicationProfile"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "analysis_characteristics": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/AnalysisCharacteristics"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "input_data_requirements": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/InputDataRequirements"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "description": "DOWNSTREAM application requirements only: what a user needs to apply/use the already-published dataset. Inputs required only to build or reproduce the dataset belong in producer_workflow_inputs."
+      },
+      "producer_workflow_inputs": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/ProducerWorkflowInputs"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "processing_pipeline": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/ProcessingPipeline"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "data_quality_dependencies": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/DataQualityDependencies"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "validation_and_diagnostics": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/ValidationAndDiagnostics"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "outputs_and_fitness_indicators": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/OutputsAndFitnessIndicators"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "limitations_and_risks": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/LimitationsAndRisks"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "reproducibility_and_fairness": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/ReproducibilityAndFairness"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "scalability_and_operational_aspects": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/ScalabilityAndOperationalAspects"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "decision_risk_profile": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/DecisionRiskProfile"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "fitness_classification": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/FitnessClassification"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "evidence_and_maturity": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/EvidenceAndMaturity"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "extraction_provenance": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/ExtractionProvenance"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "title": "FAIRagroApplicationDataFitnessModel",
+    "type": "object"
+  },
+  "$defs": {
+    "AccuracyRequirements": {
+      "additionalProperties": false,
+      "properties": {
+        "measurement_accuracy": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Measurement Accuracy"
+        },
+        "classification_accuracy": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Classification Accuracy"
+        },
+        "temporal_accuracy": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Temporal Accuracy"
+        },
+        "spatial_accuracy": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Spatial Accuracy"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "AccuracyRequirements",
+      "type": "object"
+    },
+    "AggregationStatistic": {
+      "enum": [
+        "raw",
+        "mean",
+        "median",
+        "minimum",
+        "maximum",
+        "count",
+        "proportion",
+        "other",
+        "unspecified"
+      ],
+      "title": "AggregationStatistic",
+      "type": "string"
+    },
+    "AnalysisCharacteristics": {
+      "additionalProperties": false,
+      "properties": {
+        "analysis_type": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/AnalysisType"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Analysis Type"
+        },
+        "modeling_approach": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Modeling Approach"
+        },
+        "assumptions": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assumptions"
+        },
+        "sensitivity_factors": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sensitivity Factors"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "AnalysisCharacteristics",
+      "type": "object"
+    },
+    "AnalysisType": {
+      "enum": [
+        "classification",
+        "regression",
+        "descriptive statistics",
+        "comparative analysis",
+        "hypothesis testing",
+        "clustering",
+        "dimensionality reduction",
+        "time-series analysis",
+        "simulation",
+        "optimization",
+        "causal inference",
+        "machine learning",
+        "remote-sensing analysis",
+        "phenology-aware indices",
+        "uncertainty estimation",
+        "spatial interpolation",
+        "model calibration",
+        "prediction-interval assessment",
+        "other"
+      ],
+      "title": "AnalysisType",
+      "type": "string"
+    },
+    "ApplicationProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "application_area": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Application Area"
+        },
+        "intended_use": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Intended Use"
+        },
+        "use_case_problem": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Use Case Problem"
+        },
+        "beneficiaries": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Beneficiary/user groups only when explicitly named or directly identified by the source document. Do not infer beneficiary groups merely from application domains; leave null instead.",
+          "title": "Beneficiaries"
+        },
+        "demonstrated_uses": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Uses actually demonstrated in the source document.",
+          "title": "Demonstrated Uses"
+        },
+        "potential_uses": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Uses discussed as possible/potential, but not demonstrated in the source document.",
+          "title": "Potential Uses"
+        },
+        "recommended_context": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Only contexts explicitly recommended or clearly supported by the source.",
+          "title": "Recommended Context"
+        },
+        "not_suitable_for": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Populate only when the source explicitly states a limitation/incompatibility, or when a declared deterministic decision rule supports it. Do not invent prohibitions.",
+          "title": "Not Suitable For"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "ApplicationProfile",
+      "type": "object"
+    },
+    "CompletenessRequirements": {
+      "additionalProperties": false,
+      "properties": {
+        "missing_data_tolerance": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Missing Data Tolerance"
+        },
+        "coverage_requirements": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Coverage Requirements"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "CompletenessRequirements",
+      "type": "object"
+    },
+    "DataQualityDependencies": {
+      "additionalProperties": false,
+      "properties": {
+        "accuracy_requirements": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AccuracyRequirements"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "completeness": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CompletenessRequirements"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "consistency": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Consistency"
+        },
+        "uncertainty_handling": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/UncertaintyHandling"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "outlier_sensitivity": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Outlier Sensitivity"
+        },
+        "scale_sensitivity": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ScaleSensitivity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "quality_dimensions": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Quality Dimensions"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "DataQualityDependencies",
+      "type": "object"
+    },
+    "DatasetCharacteristics": {
+      "additionalProperties": false,
+      "properties": {
+        "dataset_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Dataset Name"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "geographic_scope": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Geographic Scope"
+        },
+        "spatial": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DatasetSpatialCharacteristics"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "temporal": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DatasetTemporalCharacteristics"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "variables_or_layers": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Variables Or Layers"
+        },
+        "formats": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Formats"
+        },
+        "access_and_packaging": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Access And Packaging"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "DatasetCharacteristics",
+      "type": "object"
+    },
+    "DatasetSpatialCharacteristics": {
+      "additionalProperties": false,
+      "properties": {
+        "native_resolution": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Native spatial resolution/support of the published dataset, if stated.",
+          "title": "Native Resolution"
+        },
+        "spatial_reference": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Spatial Reference"
+        },
+        "geographic_extent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Geographic Extent"
+        },
+        "support_or_unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Spatial support/unit represented by a datum, when relevant.",
+          "title": "Support Or Unit"
+        },
+        "known_scale_limitations": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Known Scale Limitations"
+        }
+      },
+      "title": "DatasetSpatialCharacteristics",
+      "type": "object"
+    },
+    "DatasetTemporalCharacteristics": {
+      "additionalProperties": false,
+      "properties": {
+        "temporal_extent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Temporal Extent"
+        },
+        "temporal_resolution_or_sampling": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Temporal Resolution Or Sampling"
+        },
+        "update_frequency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Update Frequency"
+        },
+        "published_dataset_gaps": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Missing periods/surfaces in the published data product itself.",
+          "title": "Published Dataset Gaps"
+        },
+        "upstream_observation_gaps": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Gaps in source observations used to construct the dataset; do not conflate with published-data gaps.",
+          "title": "Upstream Observation Gaps"
+        },
+        "historical_coverage_constraints": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Historical Coverage Constraints"
+        },
+        "known_temporal_gaps": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Legacy combined field; prefer the more specific gap fields above.",
+          "title": "Known Temporal Gaps"
+        }
+      },
+      "title": "DatasetTemporalCharacteristics",
+      "type": "object"
+    },
+    "DecisionRiskProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "critical_quality_dimensions": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Critical Quality Dimensions"
+        },
+        "failure_modes": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Failure Modes"
+        },
+        "consequences_of_misuse": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Consequences Of Misuse"
+        },
+        "acceptable_uncertainty_levels": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Populate ONLY if the source explicitly defines an acceptable uncertainty threshold or a declared external decision rule supplies one. Do NOT convert illustrative values or typical observed errors into acceptability thresholds. Otherwise null.",
+          "title": "Acceptable Uncertainty Levels"
+        },
+        "acceptable_uncertainty_is_formal": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "True only when the threshold is explicitly formal/decision-relevant in the source or declared rule.",
+          "title": "Acceptable Uncertainty Is Formal"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "DecisionRiskProfile",
+      "type": "object"
+    },
+    "DocumentMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Title"
+        },
+        "authors": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Authors"
+        },
+        "doi": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "DOI of the SOURCE DOCUMENT ONLY. Do not place dataset, collection, software, or workflow DOIs here. If the manuscript has no DOI yet, use null.",
+          "title": "Doi"
+        },
+        "publication_year": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Publication Year"
+        },
+        "source": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source"
+        },
+        "keywords": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Keywords"
+        },
+        "document_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "For example: data paper, application paper, technical report, methods paper.",
+          "title": "Document Type"
+        },
+        "document_status": {
+          "$ref": "#/$defs/DocumentStatus",
+          "default": "unknown",
+          "description": "Publication state supported by the source package; do not infer published from formatting alone."
+        },
+        "generated_subject_terms": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Normalized subject terms generated during extraction. Keep source-authored keywords in keywords.",
+          "title": "Generated Subject Terms"
+        },
+        "related_resources": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/RelatedResource"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Datasets, collections, software, workflows, vocabularies, and repositories linked to the document.",
+          "title": "Related Resources"
+        }
+      },
+      "title": "DocumentMetadata",
+      "type": "object"
+    },
+    "DocumentStatus": {
+      "enum": [
+        "draft",
+        "preprint",
+        "published",
+        "report",
+        "unknown"
+      ],
+      "title": "DocumentStatus",
+      "type": "string"
+    },
+    "EvaluationSupport": {
+      "enum": [
+        "held_out_station",
+        "observation_station",
+        "raster_cell",
+        "spatial_surface",
+        "region",
+        "use_case",
+        "unknown"
+      ],
+      "title": "EvaluationSupport",
+      "type": "string"
+    },
+    "EvidenceAndMaturity": {
+      "additionalProperties": false,
+      "properties": {
+        "validation_strength": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStrength"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Do not assign high/medium/low from general impression. Populate only when source explicit, a declared rubric is supplied, or human-reviewed; otherwise 'unknown' or null."
+        },
+        "operational_readiness": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/OperationalReadiness"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Do not infer operational readiness from data availability alone; use unknown/null unless supported by criteria."
+        },
+        "transferability_risk": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TransferabilityRisk"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Use unknown/null unless supported by explicit source evidence, a declared rubric, or human review."
+        },
+        "assessment_basis": {
+          "$ref": "#/$defs/FitnessAssessmentBasis",
+          "default": "unassessed"
+        },
+        "evidence_notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence Notes"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "EvidenceAndMaturity",
+      "type": "object"
+    },
+    "EvidenceRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "claim": {
+          "description": "The normalized machine-readable claim supported by the source document.",
+          "minLength": 1,
+          "title": "Claim",
+          "type": "string"
+        },
+        "evidence_type": {
+          "$ref": "#/$defs/EvidenceType",
+          "description": "Use 'explicit' only when the source directly states the claim; 'inferred' for a conservative interpretation; 'derived' only when a declared deterministic rule/calculation was applied; 'assumed' for an unstated assumption; otherwise 'unknown'."
+        },
+        "source_section": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Section/heading in the source, if reliably identifiable; otherwise null.",
+          "title": "Source Section"
+        },
+        "source_location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Human-readable source locator such as 'Sect. 4.4, limitation 2'. Do not invent page numbers when the input text does not preserve them.",
+          "title": "Source Location"
+        },
+        "source_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Short supporting source fragment or close paraphrase. Keep concise.",
+          "title": "Source Text"
+        },
+        "source_page": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "1-based PDF page number only when the source bundle provides it reliably.",
+          "title": "Source Page"
+        },
+        "source_item_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Stable source-package item ID such as tbl_003, formula_005, or fig_004 when applicable.",
+          "title": "Source Item Id"
+        },
+        "source_modality": {
+          "$ref": "#/$defs/SourceModality",
+          "default": "unknown",
+          "description": "Authored scientific modality supporting the claim."
+        },
+        "representation_method": {
+          "$ref": "#/$defs/RepresentationMethod",
+          "default": "unknown",
+          "description": "How the authored source was represented for extraction. This is separate from evidence_type: an explicit claim can be transcribed through structured_visual_recovery."
+        },
+        "source_asset_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-fA-F]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "SHA-256 of the table/figure/formula recovery asset when supplied by the source bundle.",
+          "title": "Source Asset Sha256"
+        },
+        "representation_confidence": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Confidence of a derived transcription/representation (expected 0-1), not scientific quality of the source.",
+          "title": "Representation Confidence"
+        },
+        "confidence_note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Brief note about ambiguity or extraction uncertainty; null if unnecessary.",
+          "title": "Confidence Note"
+        },
+        "review_status": {
+          "$ref": "#/$defs/ReviewStatus",
+          "default": "machine_extracted",
+          "description": "Human-review state of this extracted claim."
+        }
+      },
+      "required": [
+        "claim",
+        "evidence_type"
+      ],
+      "title": "EvidenceRecord",
+      "type": "object"
+    },
+    "EvidenceType": {
+      "enum": [
+        "explicit",
+        "inferred",
+        "derived",
+        "assumed",
+        "unknown"
+      ],
+      "title": "EvidenceType",
+      "type": "string"
+    },
+    "ExtractionProvenance": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "DFFP application-matrix schema version injected by the pipeline.",
+          "title": "Schema Version"
+        },
+        "canonical_source_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-fA-F]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "SHA-256 of the canonical PDF injected from the scientific source package. This is the primary identity check when filenames differ.",
+          "title": "Canonical Source Sha256"
+        },
+        "source_bundle_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-fA-F]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "SHA-256 of the exact provenance-aware source bundle used for extraction.",
+          "title": "Source Bundle Sha256"
+        },
+        "run_purpose": {
+          "$ref": "#/$defs/RunPurpose",
+          "default": "evaluation",
+          "description": "Declared intent of this run. The configured extractor injects this value; test output must not pass the publication gate."
+        },
+        "extraction_scope": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ExtractionScope"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source_fidelity_status": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Effective deterministic source-package fidelity status after any configured recovery.",
+          "title": "Source Fidelity Status"
+        },
+        "source_fidelity_initial_status": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Initial deterministic source-fidelity audit status before multimodal recovery.",
+          "title": "Source Fidelity Initial Status"
+        },
+        "unresolved_source_items": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Known conversion/recovery gaps. Their absence from extracted evidence must not be interpreted as absence from the PDF.",
+          "title": "Unresolved Source Items"
+        },
+        "explicitly_stated": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Explicitly Stated"
+        },
+        "inferred": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Inferred"
+        },
+        "derived": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Derived"
+        },
+        "assumed": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Assumed"
+        },
+        "unresolved_or_missing": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unresolved Or Missing"
+        },
+        "evidence_records": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence Records"
+        },
+        "review_status": {
+          "$ref": "#/$defs/ReviewStatus",
+          "default": "machine_extracted"
+        }
+      },
+      "title": "ExtractionProvenance",
+      "type": "object"
+    },
+    "ExtractionScope": {
+      "enum": [
+        "producer_data_document",
+        "downstream_application_paper",
+        "methods_document",
+        "repository_documentation",
+        "other"
+      ],
+      "title": "ExtractionScope",
+      "type": "string"
+    },
+    "FAIRCompliance": {
+      "additionalProperties": false,
+      "properties": {
+        "findable": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Findable"
+        },
+        "accessible": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Accessible"
+        },
+        "interoperable": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Interoperable"
+        },
+        "reusable": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reusable"
+        }
+      },
+      "title": "FAIRCompliance",
+      "type": "object"
+    },
+    "FitnessAssessmentBasis": {
+      "enum": [
+        "unassessed",
+        "source_explicit",
+        "declared_rule",
+        "human_review"
+      ],
+      "title": "FitnessAssessmentBasis",
+      "type": "string"
+    },
+    "FitnessClassification": {
+      "additionalProperties": false,
+      "properties": {
+        "suitable_for": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Populate only when suitability is explicitly stated by the source, follows a declared deterministic rule, or has been human-reviewed. Otherwise null.",
+          "title": "Suitable For"
+        },
+        "conditionally_suitable_for": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Same rule as suitable_for; include the required conditions explicitly.",
+          "title": "Conditionally Suitable For"
+        },
+        "not_recommended_for": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Populate only when directly supported by source evidence/rule/human review; otherwise null.",
+          "title": "Not Recommended For"
+        },
+        "assessment_basis": {
+          "$ref": "#/$defs/FitnessAssessmentBasis",
+          "default": "unassessed"
+        },
+        "decision_rule": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Formal rule used to derive the classification, if any. Null for pure extraction.",
+          "title": "Decision Rule"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "FitnessClassification",
+      "type": "object"
+    },
+    "FitnessForUseMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "producer_side_metrics": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/ValidationMetricRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Derived deterministically by the pipeline from validation_and_diagnostics.validation_metrics. The extraction model should leave this null rather than independently re-generating duplicate metric values.",
+          "title": "Producer Side Metrics"
+        },
+        "application_specific_metrics": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/ValidationMetricRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Derived deterministically by the pipeline from canonical validation metrics whose context is downstream_use_case. The extraction model should leave this null rather than independently duplicating values.",
+          "title": "Application Specific Metrics"
+        },
+        "formal_thresholds": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Only thresholds explicitly defined by the source as formal acceptability/suitability criteria. Illustrative reference levels must not be placed here.",
+          "title": "Formal Thresholds"
+        }
+      },
+      "title": "FitnessForUseMetrics",
+      "type": "object"
+    },
+    "IdentifierObjectType": {
+      "enum": [
+        "dataset",
+        "collection",
+        "software",
+        "workflow",
+        "input_data",
+        "repository",
+        "vocabulary",
+        "article",
+        "unknown"
+      ],
+      "title": "IdentifierObjectType",
+      "type": "string"
+    },
+    "IdentifierStatus": {
+      "enum": [
+        "source_explicit",
+        "inferred",
+        "verification_required",
+        "unresolved"
+      ],
+      "title": "IdentifierStatus",
+      "type": "string"
+    },
+    "InputDataRequirements": {
+      "additionalProperties": false,
+      "description": "Requirements of a downstream application that uses the published dataset.\n\nThese fields describe what a downstream user needs *after the published data product\nalready exists*. Raw observations, covariates, grids, or parameters needed only to\nbuild/reproduce the dataset belong in ``producer_workflow_inputs`` instead.",
+      "properties": {
+        "data_types": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Data/product types required by a downstream application using the published dataset. Include published dataset layers when they are application inputs. Exclude raw observations, covariates, or intermediate producer inputs used only to build/reproduce the dataset.",
+          "title": "Data Types"
+        },
+        "required_sources": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Named data sources a downstream user must obtain for the described application/use case. Do not list producer-side source archives merely because they were used to create the published dataset.",
+          "title": "Required Sources"
+        },
+        "spatial_resolution": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SpatialRequirement"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Spatial requirements or aggregation steps of the downstream application. Do not copy the dataset's native resolution here unless the source explicitly makes it an application requirement or the demonstrated use case consumes it at that support."
+        },
+        "temporal_resolution": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TemporalRequirement"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Temporal requirements of the downstream application/use case, not the temporal inputs used solely by the producer workflow."
+        },
+        "spectral_or_variable_requirements": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Variables/layers that the downstream application consumes, such as published output layers or additional external variables. Exclude producer covariates unless the source explicitly says the downstream application also requires them.",
+          "title": "Spectral Or Variable Requirements"
+        },
+        "minimum_sample_size": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Only state a sample-size requirement when the source explicitly associates it with the downstream application. Method-specific producer sample-size requirements belong in producer_workflow_inputs.method_specific_requirements.",
+          "title": "Minimum Sample Size"
+        },
+        "dependency_on_multiple_inputs": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "True only when the downstream application itself combines multiple inputs. Do not set true merely because the producer workflow uses multiple inputs.",
+          "title": "Dependency On Multiple Inputs"
+        },
+        "other_requirements": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Other explicit downstream-use requirements. Keep producer processing requirements, model parameters, and reproduction dependencies out of this section.",
+          "title": "Other Requirements"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Evidence should point to application/use-case context. Evidence that only documents dataset production is not sufficient to justify a downstream requirement.",
+          "title": "Evidence"
+        }
+      },
+      "title": "InputDataRequirements",
+      "type": "object"
+    },
+    "LimitationsAndRisks": {
+      "additionalProperties": false,
+      "properties": {
+        "known_limitations": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Known Limitations"
+        },
+        "risk_of_misuse": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Risk Of Misuse"
+        },
+        "bias_sources": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bias Sources"
+        },
+        "extrapolation_limits": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Extrapolation Limits"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "LimitationsAndRisks",
+      "type": "object"
+    },
+    "MetricContext": {
+      "enum": [
+        "selection_or_tuning",
+        "in_sample_diagnostic",
+        "out_of_sample_validation",
+        "cross_validated_interval_assessment",
+        "spatial_uncertainty_summary",
+        "downstream_use_case",
+        "other"
+      ],
+      "title": "MetricContext",
+      "type": "string"
+    },
+    "MetricScope": {
+      "enum": [
+        "dataset",
+        "dataset_family",
+        "subgroup",
+        "variable_or_layer",
+        "study_or_site",
+        "experiment_or_treatment",
+        "model_or_method",
+        "spatial_subset",
+        "temporal_subset",
+        "spatiotemporal_subset",
+        "use_case",
+        "crop",
+        "crop_phase",
+        "phase_year",
+        "local_or_pixel",
+        "spatial_surface_summary",
+        "station_or_observation",
+        "unknown"
+      ],
+      "title": "MetricScope",
+      "type": "string"
+    },
+    "MetricValueKind": {
+      "enum": [
+        "scalar",
+        "range",
+        "estimate_with_range",
+        "estimate_with_uncertainty",
+        "labeled_series",
+        "text_summary"
+      ],
+      "title": "MetricValueKind",
+      "type": "string"
+    },
+    "NumericPoint": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "minLength": 1,
+          "title": "Label",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        },
+        "role": {
+          "$ref": "#/$defs/NumericPointRole",
+          "default": "observation"
+        }
+      },
+      "required": [
+        "label",
+        "value"
+      ],
+      "title": "NumericPoint",
+      "type": "object"
+    },
+    "NumericPointRole": {
+      "enum": [
+        "start",
+        "end",
+        "observation",
+        "other"
+      ],
+      "title": "NumericPointRole",
+      "type": "string"
+    },
+    "OperationalReadiness": {
+      "enum": [
+        "research",
+        "pilot",
+        "operational",
+        "unknown"
+      ],
+      "title": "OperationalReadiness",
+      "type": "string"
+    },
+    "OutputsAndFitnessIndicators": {
+      "additionalProperties": false,
+      "properties": {
+        "primary_outputs": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Primary Outputs"
+        },
+        "secondary_outputs": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Secondary Outputs"
+        },
+        "fitness_for_use_metrics": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FitnessForUseMetrics"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "interpretability": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Interpretability"
+        },
+        "transferability": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Transferability"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "OutputsAndFitnessIndicators",
+      "type": "object"
+    },
+    "ProcessingPipeline": {
+      "additionalProperties": false,
+      "properties": {
+        "preprocessing_steps": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Preprocessing Steps"
+        },
+        "feature_extraction_or_index_definition": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Feature Extraction Or Index Definition"
+        },
+        "aggregation_methods": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Aggregation Methods"
+        },
+        "model_fitting": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model Fitting"
+        },
+        "postprocessing": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Postprocessing"
+        },
+        "selection_or_tuning_steps": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Model/filter/parameter selection steps; keep distinct from independent validation.",
+          "title": "Selection Or Tuning Steps"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "ProcessingPipeline",
+      "type": "object"
+    },
+    "ProducerWorkflowInputs": {
+      "additionalProperties": false,
+      "description": "Inputs/requirements needed to reproduce or build the dataset itself.\n\nThese are producer-side workflow dependencies, not downstream application requirements.",
+      "properties": {
+        "data_types": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Data Types"
+        },
+        "sources": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sources"
+        },
+        "variables_or_covariates": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Variables Or Covariates"
+        },
+        "temporal_requirements": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Temporal Requirements"
+        },
+        "spatial_requirements": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Spatial Requirements"
+        },
+        "method_specific_requirements": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Method Specific Requirements"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "ProducerWorkflowInputs",
+      "type": "object"
+    },
+    "QuantitativeMetricValue": {
+      "additionalProperties": false,
+      "description": "Machine-comparable quantitative value while preserving the source rendering.",
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/MetricValueKind"
+        },
+        "as_reported": {
+          "minLength": 1,
+          "title": "As Reported",
+          "type": "string"
+        },
+        "numeric_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Numeric Value"
+        },
+        "lower_bound": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lower Bound"
+        },
+        "upper_bound": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Upper Bound"
+        },
+        "nominal_level": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Nominal Level"
+        },
+        "unit_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Canonical unit code, preferably UCUM; retain the source wording in the parent unit field.",
+          "title": "Unit Code"
+        },
+        "aggregation": {
+          "$ref": "#/$defs/AggregationStatistic",
+          "default": "unspecified"
+        },
+        "range_basis": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Meaning of bounds, e.g. min-max, confidence interval, prediction interval, or across-target range.",
+          "title": "Range Basis"
+        },
+        "points": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/NumericPoint"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Points"
+        },
+        "uncertainty_components": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/UncertaintyComponent"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Uncertainty Components"
+        }
+      },
+      "required": [
+        "kind",
+        "as_reported"
+      ],
+      "title": "QuantitativeMetricValue",
+      "type": "object"
+    },
+    "RelatedResource": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "identifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "DOI, URL, accession, repository identifier, or other persistent identifier.",
+          "title": "Identifier"
+        },
+        "resource_type": {
+          "$ref": "#/$defs/RelatedResourceType",
+          "default": "other"
+        },
+        "relation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Relationship to the source document, e.g. 'describes', 'uses', 'isSupplementedBy'.",
+          "title": "Relation"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Version"
+        },
+        "is_concept_identifier": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "True only when the source explicitly identifies the DOI/identifier as a concept identifier.",
+          "title": "Is Concept Identifier"
+        },
+        "identifier_object_type": {
+          "$ref": "#/$defs/IdentifierObjectType",
+          "default": "unknown",
+          "description": "Type of object actually identified by identifier. Keep this separate from resource_type so an article DOI accidentally attached to a dataset can be detected."
+        },
+        "identifier_status": {
+          "$ref": "#/$defs/IdentifierStatus",
+          "default": "unresolved",
+          "description": "Whether the source states the identifier directly or it still needs verification."
+        },
+        "identifier_note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Concise reason for uncertainty or mismatch; do not guess an identifier.",
+          "title": "Identifier Note"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "RelatedResource",
+      "type": "object"
+    },
+    "RelatedResourceType": {
+      "enum": [
+        "dataset",
+        "collection",
+        "software",
+        "workflow",
+        "input_data",
+        "repository",
+        "vocabulary",
+        "other"
+      ],
+      "title": "RelatedResourceType",
+      "type": "string"
+    },
+    "RepresentationMethod": {
+      "enum": [
+        "docling_clean_markdown",
+        "docling_structured",
+        "native_pdf_text",
+        "structured_visual_recovery",
+        "deterministic_metadata",
+        "unknown"
+      ],
+      "title": "RepresentationMethod",
+      "type": "string"
+    },
+    "ReproducibilityAndFairness": {
+      "additionalProperties": false,
+      "properties": {
+        "data_availability": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Data Availability"
+        },
+        "software_tools": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Software Tools"
+        },
+        "workflow_transparency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Workflow Transparency"
+        },
+        "fair_compliance": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FAIRCompliance"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "machine_actionable_metadata": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Machine Actionable Metadata"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "ReproducibilityAndFairness",
+      "type": "object"
+    },
+    "ReviewStatus": {
+      "enum": [
+        "not_reviewed",
+        "machine_extracted",
+        "human_verified",
+        "human_corrected"
+      ],
+      "title": "ReviewStatus",
+      "type": "string"
+    },
+    "RunPurpose": {
+      "enum": [
+        "test",
+        "evaluation",
+        "publication"
+      ],
+      "title": "RunPurpose",
+      "type": "string"
+    },
+    "ScalabilityAndOperationalAspects": {
+      "additionalProperties": false,
+      "properties": {
+        "data_volume": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Data Volume"
+        },
+        "computational_scalability": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Computational Scalability"
+        },
+        "automation_potential": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Automation Potential"
+        },
+        "update_or_maintenance_model": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Update Or Maintenance Model"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "ScalabilityAndOperationalAspects",
+      "type": "object"
+    },
+    "ScaleSensitivity": {
+      "additionalProperties": false,
+      "properties": {
+        "spatial": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Spatial"
+        },
+        "temporal": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Temporal"
+        },
+        "aggregation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Aggregation"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "ScaleSensitivity",
+      "type": "object"
+    },
+    "SourceModality": {
+      "enum": [
+        "authored_prose",
+        "author_table",
+        "author_figure",
+        "author_formula",
+        "author_caption",
+        "repository_metadata",
+        "unknown"
+      ],
+      "title": "SourceModality",
+      "type": "string"
+    },
+    "SpatialRequirement": {
+      "additionalProperties": false,
+      "properties": {
+        "minimum": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Minimum spatial requirement of the downstream application, only if explicitly stated.",
+          "title": "Minimum"
+        },
+        "recommended": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Recommended spatial requirement of the downstream application, only if explicitly stated.",
+          "title": "Recommended"
+        },
+        "aggregation_levels": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Spatial supports/resolutions used or required by the downstream application, including explicit aggregation steps.",
+          "title": "Aggregation Levels"
+        }
+      },
+      "title": "SpatialRequirement",
+      "type": "object"
+    },
+    "TemporalRequirement": {
+      "additionalProperties": false,
+      "properties": {
+        "sampling_frequency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Sampling/frequency required by the downstream application, not producer-only input frequency.",
+          "title": "Sampling Frequency"
+        },
+        "temporal_extent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Temporal extent required/used by the downstream application, when explicitly supported.",
+          "title": "Temporal Extent"
+        },
+        "latency_or_timeliness": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Downstream latency/timeliness requirement, only when stated or demonstrated.",
+          "title": "Latency Or Timeliness"
+        },
+        "phenology_dependency": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Whether the downstream application explicitly depends on phenology-timed inputs/windows.",
+          "title": "Phenology Dependency"
+        }
+      },
+      "title": "TemporalRequirement",
+      "type": "object"
+    },
+    "TransferabilityRisk": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "unknown"
+      ],
+      "title": "TransferabilityRisk",
+      "type": "string"
+    },
+    "TuningParameterRecord": {
+      "additionalProperties": false,
+      "description": "Quantitative model/workflow setting, kept separate from validation metrics.",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "value_or_summary": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value Or Summary"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit"
+        },
+        "quantitative_value": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/QuantitativeMetricValue"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Structured numeric representation for validation and comparison; value_or_summary remains the display value."
+        },
+        "scope": {
+          "$ref": "#/$defs/MetricScope",
+          "default": "unknown"
+        },
+        "scope_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Scope Label"
+        },
+        "interpretation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Interpretation"
+        },
+        "evidence": {
+          "description": "At least one source-grounded evidence record for the reported tuning parameter or setting.",
+          "items": {
+            "$ref": "#/$defs/EvidenceRecord"
+          },
+          "minItems": 1,
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "evidence"
+      ],
+      "title": "TuningParameterRecord",
+      "type": "object"
+    },
+    "UncertaintyComponent": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "value": {
+          "minimum": 0,
+          "title": "Value",
+          "type": "number"
+        },
+        "unit_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit Code"
+        },
+        "scale": {
+          "$ref": "#/$defs/UncertaintyScale",
+          "default": "unknown"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        }
+      },
+      "required": [
+        "name",
+        "value"
+      ],
+      "title": "UncertaintyComponent",
+      "type": "object"
+    },
+    "UncertaintyEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "#/$defs/UncertaintyScope",
+          "default": "unknown"
+        },
+        "assessment_context": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MetricContext"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Assessment context when this uncertainty evidence is an evaluated diagnostic, for example cross-validated prediction-interval assessment. Keep separate from spatial/support scope."
+        },
+        "evaluation_support": {
+          "$ref": "#/$defs/EvaluationSupport",
+          "default": "unknown",
+          "description": "Where the quantity is evaluated or represented, e.g. held-out stations or raster cells. Do not use dataset/crop summary scope as a substitute for evaluation support."
+        },
+        "evaluation_population": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Human-readable description of the evaluated population/locations, when stated by the source.",
+          "title": "Evaluation Population"
+        },
+        "representation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Raster, table, scalar summary, interval metric, etc.",
+          "title": "Representation"
+        },
+        "interpretation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Interpretation"
+        },
+        "not_equivalent_to": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Important non-equivalences explicitly stated by the source, e.g. BSE is not a predictive interval.",
+          "title": "Not Equivalent To"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "UncertaintyEvidence",
+      "type": "object"
+    },
+    "UncertaintyHandling": {
+      "additionalProperties": false,
+      "properties": {
+        "global": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Legacy/global uncertainty summary. Do not place local raster products here.",
+          "title": "Global"
+        },
+        "local": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Legacy/local uncertainty summary. Prefer products_or_measures with an explicit scope.",
+          "title": "Local"
+        },
+        "products_or_measures": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/UncertaintyEvidence"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Products Or Measures"
+        },
+        "propagation_methods": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Propagation Methods"
+        },
+        "unpropagated_sources": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unpropagated Sources"
+        }
+      },
+      "title": "UncertaintyHandling",
+      "type": "object"
+    },
+    "UncertaintyScale": {
+      "enum": [
+        "one_sigma",
+        "standard_error",
+        "confidence_interval",
+        "prediction_interval",
+        "component_only",
+        "unknown"
+      ],
+      "title": "UncertaintyScale",
+      "type": "string"
+    },
+    "UncertaintyScope": {
+      "enum": [
+        "per_pixel_or_local",
+        "spatial_surface_summary",
+        "station_or_observation",
+        "dataset_summary",
+        "propagated_use_case",
+        "unknown"
+      ],
+      "title": "UncertaintyScope",
+      "type": "string"
+    },
+    "ValidationAndDiagnostics": {
+      "additionalProperties": false,
+      "properties": {
+        "validation_method": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Validation Method"
+        },
+        "validation_metrics": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/ValidationMetricRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Canonical quantitative metric ledger for the record. Use one metric record per metric, target, and aggregation scope. Include producer validation metrics, spatial uncertainty summaries, cross-validated interval diagnostics, and demonstrated downstream quantitative metrics here. Do not combine crop-level and dataset-family values in one record.",
+          "title": "Validation Metrics"
+        },
+        "tuning_parameters": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/TuningParameterRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Quantitative tuning parameters/settings used or evaluated by the workflow. Keep these separate from validation/performance metrics even when they occur in selection tables.",
+          "title": "Tuning Parameters"
+        },
+        "model_fit_diagnostics": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model Fit Diagnostics"
+        },
+        "plausibility_checks": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Plausibility Checks"
+        },
+        "validation_limitations": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Limitations of validation design, e.g. conditioning on prior filtering or spatial dependence.",
+          "title": "Validation Limitations"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/EvidenceRecord"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence"
+        }
+      },
+      "title": "ValidationAndDiagnostics",
+      "type": "object"
+    },
+    "ValidationMetricRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "value_or_summary": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value Or Summary"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit"
+        },
+        "quantitative_value": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/QuantitativeMetricValue"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Structured numeric representation for validation and comparison; value_or_summary remains the display value."
+        },
+        "context": {
+          "$ref": "#/$defs/MetricContext"
+        },
+        "scope": {
+          "$ref": "#/$defs/MetricScope",
+          "default": "unknown",
+          "description": "Summary/aggregation scope of the reported metric, not the locations where it was evaluated."
+        },
+        "scope_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Exactly one scientific target label corresponding to this record's summary scope. Do not combine multiple targets in one label. Use the most specific domain-appropriate scope (dataset, dataset_family, subgroup, variable_or_layer, study_or_site, experiment_or_treatment, model_or_method, spatial/temporal subset, use_case, or an available domain-specific scope). Keep physical/statistical evaluation support separate.",
+          "title": "Scope Label"
+        },
+        "evaluation_support": {
+          "$ref": "#/$defs/EvaluationSupport",
+          "default": "unknown",
+          "description": "Where the metric was evaluated, e.g. held-out observations, sites, raster cells, regions, or another support. Do not generalize performance from the observed/evaluated support to unevaluated supports unless the source demonstrates it."
+        },
+        "evaluation_population": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Human-readable population/locations used to evaluate the metric, when supported by the source.",
+          "title": "Evaluation Population"
+        },
+        "interpretation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Interpretation"
+        },
+        "evidence": {
+          "description": "At least one source-grounded evidence record is required for every canonical quantitative metric. If the source supports a numerical metric, do not emit the metric without its evidence.",
+          "items": {
+            "$ref": "#/$defs/EvidenceRecord"
+          },
+          "minItems": 1,
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "context",
+        "evidence"
+      ],
+      "title": "ValidationMetricRecord",
+      "type": "object"
+    },
+    "ValidationStrength": {
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ],
+      "title": "ValidationStrength",
+      "type": "string"
+    }
+  }
+}

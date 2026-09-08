@@ -4,11 +4,13 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+import re
 from typing import Any, Optional
 
 from llm_service import DFFPExtractor
-from models import FAIRagroApplicationDataFitnessModel
+from models import ExtractionProvenance, FAIRagroApplicationDataFitnessModel, RunPurpose
 from multimodal_recovery import EndpointConfig, RecoveryConfig, run_recovery
+from openai_schema import OpenAISchemaCompatibilityError, validate_openai_schema_compatibility
 from prompts import PromptError, validate_prompt_configuration, validate_repair_prompt_configuration
 from semantic_checks import CheckIssue, validate_record
 from settings import ConfigurationError, Settings, get_settings
@@ -29,6 +31,10 @@ class PipelineResult:
 
 
 class FullDFFPPipeline:
+    _REPAIRABLE_WARNING_CODES = {
+        "QUALITATIVE_GUARDRAIL_CANDIDATE_UNCOVERED",
+    }
+
     def __init__(self, settings: Settings | None = None, extractor: DFFPExtractor | None = None):
         self.settings = settings or get_settings()
         # Lazy extractor creation allows ingestion/audit-only workflows without an API key.
@@ -44,8 +50,28 @@ class FullDFFPPipeline:
             )
             if self.settings.semantic_repair_enabled and self.settings.semantic_repair_max_attempts > 0:
                 validate_repair_prompt_configuration(repair_version=self.settings.semantic_repair_prompt_version)
-        except PromptError as exc:
+            validate_openai_schema_compatibility(FAIRagroApplicationDataFitnessModel)
+        except (PromptError, OpenAISchemaCompatibilityError) as exc:
             raise ConfigurationError(str(exc)) from exc
+
+    def _bind_source_identity(
+        self,
+        record: FAIRagroApplicationDataFitnessModel,
+        bundle: SourceBundle,
+    ) -> None:
+        """Inject non-interpretive release/source identity independently of the LLM adapter."""
+
+        if record.document_metadata is not None:
+            record.document_metadata.source = bundle.source_filename
+        if record.extraction_provenance is None:
+            record.extraction_provenance = ExtractionProvenance()
+        provenance = record.extraction_provenance
+        provenance.schema_version = self.settings.schema_version
+        source_sha = bundle.source_sha256.lower()
+        bundle_sha = bundle.bundle_sha256.lower()
+        provenance.canonical_source_sha256 = source_sha if re.fullmatch(r"[0-9a-f]{64}", source_sha) else None
+        provenance.source_bundle_sha256 = bundle_sha if re.fullmatch(r"[0-9a-f]{64}", bundle_sha) else None
+        provenance.run_purpose = RunPurpose(self.settings.run_purpose)
 
     def ingest(self, pdf_path: str | Path, *, overwrite: bool = False) -> dict[str, Any]:
         # Lazy import keeps extraction-from-existing-package usable even in a lightweight
@@ -90,6 +116,7 @@ class FullDFFPPipeline:
         bundle_path = save_source_bundle(bundle)
         extractor = self.extractor or DFFPExtractor(self.settings)
         extraction = extractor.extract(bundle)
+        self._bind_source_identity(extraction.record, bundle)
         initial_metadata = extraction.run_metadata
         issues = validate_record(extraction.record, bundle)
 
@@ -105,10 +132,15 @@ class FullDFFPPipeline:
         ):
             for attempt in range(self.settings.semantic_repair_max_attempts):
                 errors = [x for x in issues if x.severity == "error"]
-                if not errors:
+                repairable_warnings = [
+                    x for x in issues
+                    if x.severity == "warning" and x.code in self._REPAIRABLE_WARNING_CODES
+                ]
+                repair_targets = errors + repairable_warnings
+                if not repair_targets:
                     break
                 try:
-                    repaired = repair_method(bundle, extraction.record, errors)
+                    repaired = repair_method(bundle, extraction.record, repair_targets)
                 except Exception as exc:  # keep the first extraction available for strict/non-strict diagnostics
                     repair_failure = f"{type(exc).__name__}: {exc}"
                     break
@@ -116,6 +148,7 @@ class FullDFFPPipeline:
                 consolidated_record = postprocess_semantics(consolidated_record)
                 consolidated_record = normalize_evidence_locators(consolidated_record, bundle.source_item_registry)
                 derive_fitness_metrics_from_canonical_ledger(consolidated_record)
+                self._bind_source_identity(consolidated_record, bundle)
                 extraction = type(repaired)(record=consolidated_record, run_metadata=repaired.run_metadata)
                 repair_runs.append(repaired.run_metadata.to_dict())
                 repair_consolidations.append(consolidation_report.to_dict())
@@ -127,6 +160,7 @@ class FullDFFPPipeline:
                 "extraction_prompt_version": self.settings.extraction_prompt_version,
                 "schema_version": self.settings.schema_version,
                 "repair_prompt_version": self.settings.semantic_repair_prompt_version,
+                "run_purpose": self.settings.run_purpose,
                 "override_allowed": self.settings.release_config_override_allowed,
                 "ignored_stale_environment_overrides": self.settings.ignored_release_config_overrides,
             },

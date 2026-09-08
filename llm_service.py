@@ -11,13 +11,14 @@ SDKs/endpoints.  The fallback uses :func:`strict_schema_from_pydantic`.
 from __future__ import annotations
 
 import json
+import re
 import time
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from typing import Any, Optional
 
 from openai import OpenAI
-from models import ExtractionProvenance, FAIRagroApplicationDataFitnessModel
+from models import ExtractionProvenance, FAIRagroApplicationDataFitnessModel, RunPurpose
 from openai_schema import strict_schema_from_pydantic
 from prompts import PromptBundle, build_prompt_bundle, build_repair_prompt_bundle
 from settings import Settings, get_settings
@@ -164,6 +165,16 @@ class DFFPExtractor:
             record.document_metadata.source = bundle.source_filename
         if record.extraction_provenance is None:
             record.extraction_provenance = ExtractionProvenance()
+        record.extraction_provenance.schema_version = self.settings.schema_version
+        source_sha = bundle.source_sha256.lower()
+        bundle_sha = bundle.bundle_sha256.lower()
+        record.extraction_provenance.canonical_source_sha256 = (
+            source_sha if re.fullmatch(r"[0-9a-f]{64}", source_sha) else None
+        )
+        record.extraction_provenance.source_bundle_sha256 = (
+            bundle_sha if re.fullmatch(r"[0-9a-f]{64}", bundle_sha) else None
+        )
+        record.extraction_provenance.run_purpose = RunPurpose(self.settings.run_purpose)
         record.extraction_provenance.source_fidelity_status = bundle.source_fidelity_status
         record.extraction_provenance.source_fidelity_initial_status = bundle.source_fidelity_initial_status
         record.extraction_provenance.unresolved_source_items = [
@@ -221,4 +232,3 @@ class DFFPExtractor:
             repair_version=self.settings.semantic_repair_prompt_version,
         )
         return self._execute_prompt_bundle(bundle, prompts)
-

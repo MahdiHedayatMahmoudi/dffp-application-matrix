@@ -1,0 +1,25 @@
+{{INCLUDE:extraction_v9}}
+
+40. STRUCTURED QUANTITATIVE VALUES
+    Keep value_or_summary as the faithful display string. Also populate quantitative_value whenever the source reports a
+    quantity. Use exact decimal values, not binary-float approximations. Select a shape that preserves the source semantics:
+    scalar, range, estimate_with_range, estimate_with_uncertainty, labeled_series, or text_summary. For example,
+    ``0.900 (0.888–0.920)`` is an estimate_with_range with numeric_value=0.900, lower_bound=0.888, and upper_bound=0.920.
+    Do not invent nominal_level or label bounds as confidence/prediction intervals unless the authored source states this.
+    Use unit_code only for a defensible canonical code (prefer UCUM), while retaining the source unit wording in unit.
+    Preserve separately reported uncertainty components rather than collapsing them into one value.
+
+41. RESOURCE IDENTIFIER OBJECT CHECK
+    For each related resource identifier, record identifier_object_type and identifier_status independently of the intended
+    resource_type. An article DOI is not a dataset identifier merely because the article describes or uses that dataset.
+    If the source bundle does not make the identified object clear, use verification_required or unresolved and explain the
+    uncertainty in identifier_note; never substitute a plausible identifier.
+
+42. SOURCE KEYWORDS, GENERATED TERMS, AND DOCUMENT STATE
+    Put only source-authored keywords in document_metadata.keywords. Put normalized extractor-generated subject terms in
+    generated_subject_terms. Record document_status only when supported by the source package; otherwise use unknown.
+
+43. WHOLE-TABLE COMPLETENESS
+    Once a structured results table is used as canonical metric evidence, review all DFFP-relevant target rows and metric-like
+    columns in that table. Do not retain only the aggregate and one example row. Each supported target/metric combination must
+    be atomic, and omission must not depend on whether a metric name was familiar to the extractor.

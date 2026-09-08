@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+from collections import Counter
 import re
 from typing import Any
 
 from models import FAIRagroApplicationDataFitnessModel
+from quantitative_values import parse_quantitative_value
 from source_bundle import SourceBundle
 from semantic_postprocess import _ANALYSIS_WORKFLOW_GUARDS, _producer_workflow_text
 
@@ -380,6 +382,18 @@ def _section_compatible(a: str | None, b: str | None) -> bool:
         return sa == sb or sa.startswith(sb + ".") or sb.startswith(sa + ".")
     return False
 
+
+def _prose_candidate_value_signature(hint: dict[str, Any]) -> tuple[tuple[str, str], ...]:
+    """Identify duplicate prose discoveries independently of noisy target hints."""
+
+    pairs: list[tuple[str, str]] = []
+    for pair in hint.get("quantitative_pairs") or []:
+        key = str(pair.get("metric_key") or _canonical_metric_key(pair.get("metric_name")))
+        value = re.sub(r"\s+", "", str(pair.get("value") or "").lower())
+        if key and value:
+            pairs.append((key, value))
+    return tuple(sorted(pairs))
+
 def _source_metric_completeness_issues(
     record: FAIRagroApplicationDataFitnessModel,
     bundle: SourceBundle,
@@ -433,9 +447,58 @@ def _source_metric_completeness_issues(
                 "validation_and_diagnostics.validation_metrics",
             ))
 
+    # Once a multi-target, multi-metric result table is selected, an aggregate row
+    # and one example row are not a lossless representation of that table. Require
+    # all candidate target rows when at least two recognized outcome metric columns
+    # establish that the table is a quantitative evaluation table.
+    represented_table_ids = {iid for iid, _target in represented}
+    groups_by_table: dict[str, dict[str, set[str]]] = {}
+    recognized_by_table: dict[str, set[str]] = {}
+    for hint in hints:
+        if hint.get("kind") != "structured_table_metric":
+            continue
+        iid = str(hint.get("source_item_id") or "")
+        target = _normalize_candidate_target(hint.get("target"))
+        key = _structured_metric_key(hint.get("metric_name") or hint.get("metric_key"))
+        if not iid or not target or not key:
+            continue
+        groups_by_table.setdefault(iid, {}).setdefault(target, set()).add(key)
+        if hint.get("metric_family"):
+            recognized_by_table.setdefault(iid, set()).add(_canonical_metric_key(hint.get("metric_family")))
+
+    for iid in sorted(represented_table_ids):
+        target_rows = groups_by_table.get(iid, {})
+        if len(target_rows) < 2 or len(recognized_by_table.get(iid, set())) < 2:
+            continue
+        missing_targets = sorted(target for target in target_rows if (iid, target) not in represented)
+        if missing_targets:
+            preview = ", ".join(repr(x) for x in missing_targets[:8])
+            suffix = "" if len(missing_targets) <= 8 else f" and {len(missing_targets) - 8} more"
+            issues.append(CheckIssue(
+                "error", "STRUCTURED_TABLE_TARGET_ROWS_MISSING",
+                f"Structured result table {iid} is already used as canonical metric evidence but omits supported target row(s): "
+                f"{preview}{suffix}. Preserve all DFFP-relevant target/metric combinations or explicitly remove the table as evidence.",
+                "validation_and_diagnostics.validation_metrics",
+            ))
+
     # Prose/captions: summary-level quantitative claims in quality/evaluation sections
     # are high-value DFFP candidates. Match by section and, when available, target hint.
     emitted_prose_errors: set[tuple[str, str, str, tuple[str, ...]]] = set()
+    # Sliding prose windows often discover the same numerical statement several
+    # times. One window may mistake a procedural phrase (for example "for every
+    # phase and year") for the scientific target, while a shorter window captures
+    # the actual target. Group exact section + metric/value duplicates and allow a
+    # represented peer target to resolve that discovery noise.
+    prose_peer_targets: dict[tuple[str, tuple[tuple[str, str], ...]], set[str]] = {}
+    for prose_hint in hints:
+        if prose_hint.get("kind") != "prose_metric_candidate":
+            continue
+        signature = _prose_candidate_value_signature(prose_hint)
+        section_key = re.sub(r"\s+", " ", str(prose_hint.get("source_section") or "").strip().lower())
+        peer_target = str(prose_hint.get("target_hint") or "").strip()
+        if signature and section_key and peer_target:
+            prose_peer_targets.setdefault((section_key, signature), set()).add(peer_target)
+
     for hint in hints:
         if hint.get("kind") != "prose_metric_candidate":
             continue
@@ -452,7 +515,14 @@ def _source_metric_completeness_issues(
         # A target-bearing prose candidate may be represented elsewhere in the same
         # subsection hierarchy (e.g. a figure caption under a parent example section).
         # Match the scientific target first; section equality is only a fallback anchor.
-        target_metrics = [m for m in metrics if target_hint and _target_compatible(target_hint, m.scope_label)]
+        target_aliases = {target_hint} if target_hint else set()
+        signature = _prose_candidate_value_signature(hint)
+        section_key = re.sub(r"\s+", " ", section.strip().lower())
+        target_aliases.update(prose_peer_targets.get((section_key, signature), set()))
+        target_metrics = [
+            m for m in metrics
+            if target_aliases and any(_target_compatible(alias, m.scope_label) for alias in target_aliases if alias)
+        ]
         section_metrics = [
             m for m in metrics
             if any(_section_compatible(section, (ev.source_section or "")) for ev in (m.evidence or []))
@@ -522,8 +592,29 @@ def _source_item_locator_issues(
     def walk(value: Any, path: str = "$") -> None:
         if isinstance(value, dict):
             iid = value.get("source_item_id")
+            if iid and iid not in registry and "claim" in value and "evidence_type" in value:
+                issues.append(CheckIssue(
+                    "error", "SOURCE_ITEM_ID_UNKNOWN",
+                    f"Evidence cites source_item_id={iid!r}, which is absent from the deterministic source-item registry.",
+                    path + ".source_item_id",
+                ))
             if iid and iid in registry and "claim" in value and "evidence_type" in value:
                 meta = registry[iid]
+                expected_modalities = {
+                    "table": {"author_table"},
+                    "figure": {"author_figure", "author_caption"},
+                    "formula": {"author_formula"},
+                }.get(str(meta.get("item_type") or ""), set())
+                modality = str(value.get("source_modality") or "unknown")
+                representation = str(value.get("representation_method") or "unknown")
+                if modality not in expected_modalities and not (
+                    modality == "unknown" and representation in {"docling_structured", "structured_visual_recovery"}
+                ):
+                    issues.append(CheckIssue(
+                        "error", "SOURCE_ITEM_MODALITY_MISMATCH",
+                        f"Evidence for {iid} uses source_modality={modality!r}, incompatible with registry item_type={meta.get('item_type')!r}.",
+                        path + ".source_modality",
+                    ))
                 if meta.get("source_page") is not None and value.get("source_page") != meta.get("source_page"):
                     issues.append(CheckIssue(
                         "error", "SOURCE_ITEM_PAGE_MISMATCH",
@@ -549,6 +640,83 @@ def _source_item_locator_issues(
                 walk(child, f"{path}[{i}]")
 
     walk(payload)
+    return issues
+
+
+def _quantitative_value_issues(record: FAIRagroApplicationDataFitnessModel) -> list[CheckIssue]:
+    issues: list[CheckIssue] = []
+    vad = record.validation_and_diagnostics
+    groups = [] if vad is None else [
+        ("validation_metrics", list(vad.validation_metrics or [])),
+        ("tuning_parameters", list(vad.tuning_parameters or [])),
+    ]
+    for group_name, rows in groups:
+        for index, row in enumerate(rows):
+            base = f"validation_and_diagnostics.{group_name}[{index}]"
+            structured = row.quantitative_value
+            display = (row.value_or_summary or "").strip()
+            if structured is None:
+                if display:
+                    issues.append(CheckIssue(
+                        "warning", "QUANTITATIVE_VALUE_NOT_STRUCTURED",
+                        f"{row.name!r} has a display value but no quantitative_value representation.",
+                        base + ".quantitative_value",
+                    ))
+                continue
+            if display and structured.as_reported.strip() != display:
+                issues.append(CheckIssue(
+                    "error", "QUANTITATIVE_AS_REPORTED_MISMATCH",
+                    "quantitative_value.as_reported must exactly preserve value_or_summary.",
+                    base + ".quantitative_value.as_reported",
+                ))
+                continue
+            if not display:
+                continue
+            parsed = parse_quantitative_value(display, metric_name=row.name, unit=row.unit)
+            if parsed.kind.value == "text_summary":
+                continue
+            comparable = ("numeric_value", "lower_bound", "upper_bound")
+            mismatches = [
+                name for name in comparable
+                if getattr(parsed, name) is not None and getattr(structured, name) != getattr(parsed, name)
+            ]
+            if mismatches:
+                issues.append(CheckIssue(
+                    "error", "QUANTITATIVE_VALUE_DISPLAY_CONFLICT",
+                    f"Structured field(s) {', '.join(mismatches)} conflict with the conservatively parsed display value {display!r}.",
+                    base + ".quantitative_value",
+                ))
+    return issues
+
+
+def _related_resource_identifier_issues(record: FAIRagroApplicationDataFitnessModel) -> list[CheckIssue]:
+    issues: list[CheckIssue] = []
+    resources = list(record.document_metadata.related_resources or []) if record.document_metadata else []
+    for index, resource in enumerate(resources):
+        if not resource.identifier:
+            continue
+        base = f"document_metadata.related_resources[{index}]"
+        intended = _enum_value(resource.resource_type) or "other"
+        actual = _enum_value(resource.identifier_object_type) or "unknown"
+        status = _enum_value(resource.identifier_status) or "unresolved"
+        if actual == "article" or (actual not in {"unknown", intended} and intended != "other"):
+            issues.append(CheckIssue(
+                "error", "RELATED_RESOURCE_IDENTIFIER_OBJECT_MISMATCH",
+                f"Identifier for related resource {resource.name!r} resolves to object type {actual!r}, not declared resource type {intended!r}.",
+                base + ".identifier_object_type",
+            ))
+        elif actual == "unknown" or status in {"verification_required", "unresolved"}:
+            issues.append(CheckIssue(
+                "warning", "RELATED_RESOURCE_IDENTIFIER_REQUIRES_VERIFICATION",
+                f"Identifier for related resource {resource.name!r} has not been verified against its identified object type.",
+                base + ".identifier_status",
+            ))
+        if status == "source_explicit" and not resource.evidence:
+            issues.append(CheckIssue(
+                "error", "EXPLICIT_RESOURCE_IDENTIFIER_LACKS_EVIDENCE",
+                f"Related resource {resource.name!r} marks its identifier source_explicit but provides no evidence record.",
+                base + ".evidence",
+            ))
     return issues
 
 
@@ -696,6 +864,122 @@ def _composite_metric_record_issues(record: FAIRagroApplicationDataFitnessModel)
             ))
     return issues
 
+
+def _provenance_identity_issues(
+    record: FAIRagroApplicationDataFitnessModel,
+    bundle: SourceBundle,
+) -> list[CheckIssue]:
+    """Require the standalone record to identify the exact PDF and source bundle."""
+
+    issues: list[CheckIssue] = []
+    provenance = record.extraction_provenance
+    if provenance is None:
+        return [CheckIssue(
+            "error",
+            "EXTRACTION_PROVENANCE_MISSING",
+            "The record lacks extraction_provenance and cannot be bound to its canonical PDF.",
+            "extraction_provenance",
+        )]
+    expected_source = (bundle.source_sha256 or "").lower()
+    actual_source = (provenance.canonical_source_sha256 or "").lower()
+    expected_source_is_sha = bool(re.fullmatch(r"[0-9a-f]{64}", expected_source))
+    if expected_source_is_sha and not actual_source:
+        issues.append(CheckIssue(
+            "error",
+            "CANONICAL_SOURCE_HASH_MISSING",
+            "canonical_source_sha256 is required to prove which PDF produced this record.",
+            "extraction_provenance.canonical_source_sha256",
+        ))
+    elif expected_source_is_sha and actual_source != expected_source:
+        issues.append(CheckIssue(
+            "error",
+            "CANONICAL_SOURCE_HASH_MISMATCH",
+            "The record canonical_source_sha256 does not match the scientific source package.",
+            "extraction_provenance.canonical_source_sha256",
+        ))
+
+    expected_bundle = (bundle.bundle_sha256 or "").lower()
+    actual_bundle = (provenance.source_bundle_sha256 or "").lower()
+    expected_bundle_is_sha = bool(re.fullmatch(r"[0-9a-f]{64}", expected_bundle))
+    if expected_bundle_is_sha and not actual_bundle:
+        issues.append(CheckIssue(
+            "error",
+            "SOURCE_BUNDLE_HASH_MISSING",
+            "source_bundle_sha256 is required to identify the exact extraction input representation.",
+            "extraction_provenance.source_bundle_sha256",
+        ))
+    elif expected_bundle_is_sha and actual_bundle != expected_bundle:
+        issues.append(CheckIssue(
+            "error",
+            "SOURCE_BUNDLE_HASH_MISMATCH",
+            "The record source_bundle_sha256 does not match the bundle used for deterministic checks.",
+            "extraction_provenance.source_bundle_sha256",
+        ))
+    return issues
+
+
+def _qualitative_guardrail_coverage_issues(
+    record: FAIRagroApplicationDataFitnessModel,
+    bundle: SourceBundle,
+) -> list[CheckIssue]:
+    """Flag authored numbered limitations that lack even conservative lexical coverage.
+
+    This is deliberately a warning heuristic: it drives a focused repair/review pass,
+    but never invents a limitation or claims semantic equivalence by itself.
+    """
+
+    hints = list(getattr(bundle, "qualitative_guardrail_hints", []) or [])
+    if not hints:
+        return []
+    guardrail_values: list[str] = []
+    if record.limitations_and_risks is not None:
+        limitations = record.limitations_and_risks
+        guardrail_values.extend(limitations.known_limitations or [])
+        guardrail_values.extend(limitations.risk_of_misuse or [])
+        guardrail_values.extend(limitations.bias_sources or [])
+        guardrail_values.extend(limitations.extrapolation_limits or [])
+    if record.validation_and_diagnostics is not None:
+        guardrail_values.extend(record.validation_and_diagnostics.validation_limitations or [])
+    if record.decision_risk_profile is not None:
+        guardrail_values.extend(record.decision_risk_profile.failure_modes or [])
+        guardrail_values.extend(record.decision_risk_profile.consequences_of_misuse or [])
+
+    def stems(text: str) -> set[str]:
+        # Light stemming handles common inflection differences without claiming
+        # semantic equivalence. Short/common words are excluded from the signal.
+        return {token[:7] for token in _semantic_tokens(text) if len(token) >= 5}
+
+    extracted_tokens = stems(" ".join(guardrail_values))
+    all_items: list[dict[str, Any]] = []
+    for section_index, hint in enumerate(hints):
+        items = list(hint.get("numbered_items") or [])
+        if not items and hint.get("section_excerpt"):
+            items = [{"number": None, "excerpt": hint["section_excerpt"]}]
+        all_items.extend({"section_index": section_index, "hint": hint, "item": item} for item in items)
+    candidate_token_sets = [stems(str(x["item"].get("excerpt") or "")) for x in all_items]
+    document_frequency = Counter(token for tokens in candidate_token_sets for token in tokens)
+
+    issues: list[CheckIssue] = []
+    for candidate, candidate_tokens in zip(all_items, candidate_token_sets):
+        distinctive_tokens = {token for token in candidate_tokens if document_frequency[token] == 1}
+        signal_tokens = distinctive_tokens if len(distinctive_tokens) >= 2 else candidate_tokens
+        if len(signal_tokens & extracted_tokens) >= 2:
+            continue
+        item = candidate["item"]
+        hint = candidate["hint"]
+        section_index = candidate["section_index"]
+        number = item.get("number")
+        label = f" item {number}" if number is not None else ""
+        issues.append(CheckIssue(
+            "warning",
+            "QUALITATIVE_GUARDRAIL_CANDIDATE_UNCOVERED",
+            f"Authored guardrail section {hint.get('source_section')!r}{label} has low distinctive-term coverage in "
+            "limitations/risks/validation limitations. Inspect the source excerpt and preserve every distinct "
+            "DFFP-relevant caveat; do not invent a fitness judgment.",
+            f"source_bundle.qualitative_guardrail_hints[{section_index}]",
+        ))
+    return issues
+
 def validate_record(record: FAIRagroApplicationDataFitnessModel, bundle: SourceBundle) -> list[CheckIssue]:
     issues: list[CheckIssue] = []
 
@@ -771,6 +1055,10 @@ def validate_record(record: FAIRagroApplicationDataFitnessModel, bundle: SourceB
     issues.extend(_quantitative_metric_evidence_issues(record))
     issues.extend(_composite_metric_record_issues(record))
     issues.extend(_metric_sibling_split_issues(record))
+    issues.extend(_quantitative_value_issues(record))
+    issues.extend(_related_resource_identifier_issues(record))
+    issues.extend(_provenance_identity_issues(record, bundle))
+    issues.extend(_qualitative_guardrail_coverage_issues(record, bundle))
     issues.extend(_source_metric_completeness_issues(record, bundle))
     issues.extend(_source_item_locator_issues(record, bundle))
     issues.extend(_guarded_analysis_type_issues(record))

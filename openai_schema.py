@@ -22,6 +22,13 @@ from copy import deepcopy
 from typing import Any
 
 
+UNSUPPORTED_REGEX_LOOKAROUND_TOKENS = ("(?=", "(?!", "(?<=", "(?<!")
+
+
+class OpenAISchemaCompatibilityError(ValueError):
+    """Raised when the generated schema contains a known unsupported feature."""
+
+
 def _normalize(node: Any) -> Any:
     if isinstance(node, list):
         return [_normalize(x) for x in node]
@@ -62,4 +69,50 @@ def strict_schema_from_pydantic(model_cls) -> dict[str, Any]:
     schema = model_cls.model_json_schema(by_alias=True)
     schema = _normalize(deepcopy(schema))
     schema.pop("title", None)
+    return schema
+
+
+def _find_unsupported_regex_lookarounds(
+    node: Any,
+    *,
+    path: str = "$",
+) -> list[tuple[str, str]]:
+    """Return ``(schema_path, pattern)`` pairs containing regex lookaround."""
+
+    offenders: list[tuple[str, str]] = []
+    if isinstance(node, dict):
+        pattern = node.get("pattern")
+        if isinstance(pattern, str) and any(
+            token in pattern for token in UNSUPPORTED_REGEX_LOOKAROUND_TOKENS
+        ):
+            offenders.append((f"{path}.pattern", pattern))
+        for key, value in node.items():
+            offenders.extend(
+                _find_unsupported_regex_lookarounds(value, path=f"{path}.{key}")
+            )
+    elif isinstance(node, list):
+        for index, value in enumerate(node):
+            offenders.extend(
+                _find_unsupported_regex_lookarounds(value, path=f"{path}[{index}]")
+            )
+    return offenders
+
+
+def validate_openai_schema_compatibility(model_cls) -> dict[str, Any]:
+    """Build and validate the API schema before ingestion or an API request.
+
+    OpenAI Structured Outputs rejects regular-expression lookaround.  Pydantic
+    can introduce it indirectly (for example in its default ``Decimal``
+    schema), so this check protects future model changes from failing only
+    after the expensive PDF-ingestion and visual-recovery stages.
+    """
+
+    schema = strict_schema_from_pydantic(model_cls)
+    offenders = _find_unsupported_regex_lookarounds(schema)
+    if offenders:
+        details = "; ".join(f"{path}: {pattern!r}" for path, pattern in offenders)
+        raise OpenAISchemaCompatibilityError(
+            "OpenAI Structured Outputs does not support regex lookaround in "
+            f"the generated JSON schema. Replace the affected field schema: {details}"
+        )
     return schema

@@ -74,7 +74,10 @@ def main() -> None:
 
     errors = [x for x in result.validation_issues if x.severity == "error"]
     warnings = [x for x in result.validation_issues if x.severity == "warning"]
-    strict_failed = bool(a.strict and errors)
+    publication_run = result.record.extraction_provenance is not None and (
+        result.record.extraction_provenance.run_purpose.value == "publication"
+    )
+    strict_failed = bool((a.strict or publication_run) and errors)
     json_filename = "application_matrix.unvalidated.json" if strict_failed else "application_matrix.json"
     exports = export_results(
         [result.record],
@@ -85,6 +88,9 @@ def main() -> None:
     print(f"DFFP JSON: {exports.json_path}")
     print(f"Manifest: {exports.manifest_path}")
     print(f"Validation report: {exports.validation_report_path}")
+    print(f"JSON Schema: {exports.schema_path}")
+    if exports.ro_crate_metadata_path:
+        print(f"RO-Crate metadata: {exports.ro_crate_metadata_path}")
     repair_runs = result.manifest.get("semantic_repair_runs") or []
     if repair_runs:
         print(f"Semantic repair runs: {len(repair_runs)}")
@@ -105,7 +111,7 @@ def main() -> None:
         print(f"Semantic repair failure: {result.manifest['semantic_repair_failure']}")
     print(f"Semantic checks: {len(errors)} error(s), {len(warnings)} warning(s)")
     if strict_failed:
-        print("Strict validation failed: no validated application_matrix.json was emitted.")
+        print("Publication/strict validation failed: no validated application_matrix.json or RO-Crate descriptor was emitted.")
         raise SystemExit(2)
 
 

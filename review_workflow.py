@@ -5,9 +5,8 @@ machine extraction as an immutable baseline, creates deterministic review IDs,
 records auditable human decisions in a sidecar manifest, and derives a reviewed
 matrix without editing the machine artifact in place.
 
-The extraction schema remains the frozen v3.2.8 contract.  Review provenance is
-stored outside that schema so reviewed publication artifacts remain compatible
-with the same FAIRagroApplicationDataFitnessModel.
+Review provenance is stored outside the extraction schema so reviewed publication
+artifacts remain auditable and compatible with their declared machine contract.
 """
 
 from __future__ import annotations
@@ -24,13 +23,35 @@ from typing import Any, Iterable
 from pydantic import ValidationError
 
 from metric_postprocess import derive_fitness_metrics_from_canonical_ledger
-from models import FAIRagroApplicationDataFitnessModel, ReviewStatus
+from models import (
+    EvidenceRecord,
+    FAIRagroApplicationDataFitnessModel,
+    RelatedResource,
+    ReviewStatus,
+    TuningParameterRecord,
+    ValidationMetricRecord,
+)
+from quantitative_values import enrich_quantitative_values
 
 
 REVIEW_SCHEMA_VERSION = "fairagro-dffp-review-v1.2"
 COMPATIBLE_REVIEW_SCHEMA_VERSIONS = {"fairagro-dffp-review-v1", "fairagro-dffp-review-v1.1"}
-MACHINE_SCHEMA_VERSION = "fairagro-dffp-v3.2.8"
-MACHINE_EXTRACTION_PROMPT_VERSION = "extraction_v9"
+MACHINE_SCHEMA_VERSION = "fairagro-dffp-v3.5.2"
+COMPATIBLE_MACHINE_SCHEMA_VERSIONS = {
+    "fairagro-dffp-v3.2.8",
+    "fairagro-dffp-v3.4.0",
+    "fairagro-dffp-v3.4.1",
+    "fairagro-dffp-v3.5.0",
+    "fairagro-dffp-v3.5.1",
+    MACHINE_SCHEMA_VERSION,
+}
+MACHINE_EXTRACTION_PROMPT_VERSION = "extraction_v12"
+COMPATIBLE_MACHINE_EXTRACTION_PROMPT_VERSIONS = {
+    "extraction_v9",
+    "extraction_v10",
+    "extraction_v11",
+    MACHINE_EXTRACTION_PROMPT_VERSION,
+}
 VALID_ACTIONS = {"verify", "correct", "reject", "defer"}
 
 
@@ -106,7 +127,7 @@ def _load_single_record(matrix_path: Path) -> tuple[list[dict[str, Any]], dict[s
         raise ReviewWorkflowError("The application matrix must be a non-empty JSON list of record objects.")
     if len(payload) != 1:
         raise ReviewWorkflowError(
-            "v3.3.2 human review currently expects exactly one matrix record per review workspace. "
+            "Human review currently expects exactly one matrix record per review workspace. "
             "Split multi-record matrices before review."
         )
     # Validate the immutable baseline against the frozen extraction model.
@@ -463,14 +484,16 @@ def initialize_review_workspace(
             "system_prompt_version": release_config.get("system_prompt_version") or final_run.get("system_prompt_version"),
             "repair_prompt_version": release_config.get("repair_prompt_version"),
         }
-        if schema_version and schema_version != MACHINE_SCHEMA_VERSION:
+        run_purpose = release_config.get("run_purpose") or "legacy_unknown"
+        machine_contract["run_purpose"] = run_purpose
+        if schema_version and schema_version not in COMPATIBLE_MACHINE_SCHEMA_VERSIONS:
             raise ReviewWorkflowError(
-                f"Review v3.3.2 expects a frozen {MACHINE_SCHEMA_VERSION} machine baseline; "
+                f"Review expects a compatible machine schema {sorted(COMPATIBLE_MACHINE_SCHEMA_VERSIONS)!r}; "
                 f"the supplied manifest reports {schema_version!r}."
             )
-        if prompt_version and prompt_version != MACHINE_EXTRACTION_PROMPT_VERSION:
+        if prompt_version and prompt_version not in COMPATIBLE_MACHINE_EXTRACTION_PROMPT_VERSIONS:
             raise ReviewWorkflowError(
-                f"Review v3.3.2 expects machine extraction prompt {MACHINE_EXTRACTION_PROMPT_VERSION!r}; "
+                f"Review expects a compatible machine extraction prompt {sorted(COMPATIBLE_MACHINE_EXTRACTION_PROMPT_VERSIONS)!r}; "
                 f"the supplied manifest reports {prompt_version!r}."
             )
         paths.baseline_manifest.write_bytes(extraction_manifest.read_bytes())
@@ -834,13 +857,23 @@ def _apply_patch(obj: dict[str, Any], patch: dict[str, Any], *, kind: str) -> No
             f"Corrections to {kind} may not replace its evidence list. Review/correct evidence records separately."
         )
     patch.pop("review_status", None)
+    allowed_by_kind = {
+        "validation_metric": set(ValidationMetricRecord.model_fields),
+        "related_resource": set(RelatedResource.model_fields),
+        "tuning_parameter": set(TuningParameterRecord.model_fields),
+        "evidence": set(EvidenceRecord.model_fields),
+    }
+    allowed = allowed_by_kind.get(kind, set(obj))
     for key, value in patch.items():
-        if key not in obj:
+        if key not in allowed:
             raise ReviewWorkflowError(
                 f"Correction patch for {kind} contains unknown field {key!r}. "
                 "The review layer does not extend the extraction schema."
             )
         obj[key] = value
+    if kind in {"validation_metric", "tuning_parameter"} and not patch.get("quantitative_value"):
+        if {"name", "value_or_summary", "unit"} & set(patch):
+            obj.pop("quantitative_value", None)
 
 
 def review_decision_quality_issues(queue: dict[str, Any], manifest: dict[str, Any]) -> list[dict[str, Any]]:
@@ -998,6 +1031,7 @@ def derive_reviewed_matrix(review_dir: str | Path) -> tuple[Path, dict[str, Any]
         model = FAIRagroApplicationDataFitnessModel.model_validate(record)
     except ValidationError as exc:
         raise ReviewWorkflowError(f"Human review decisions produced an invalid DFFP record: {exc}") from exc
+    enrich_quantitative_values(model)
     derive_fitness_metrics_from_canonical_ledger(model, promote_legacy=False)
 
     # Extraction provenance remains the extraction provenance, but its review
@@ -1042,7 +1076,14 @@ def publication_gate(review_dir: str | Path, *, require_source_doi: bool = True)
     queue = apply_queue_status(queue, manifest)
     errors, warnings = _validation_counts(paths.baseline_validation_report)
     state = manifest.get("source_publication_state") or {}
+    machine_contract = ((manifest.get("machine_baseline") or {}).get("machine_contract") or {})
+    run_purpose = machine_contract.get("run_purpose", "legacy_unknown")
     checks = [
+        {
+            "id": "run_not_marked_test",
+            "passed": run_purpose != "test",
+            "detail": f"run_purpose={run_purpose!r}",
+        },
         {
             "id": "machine_validation_errors_zero",
             "passed": errors == 0,
