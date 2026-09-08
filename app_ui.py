@@ -129,9 +129,12 @@ if "result" in st.session_state:
         ("DFFP JSON", exports.json_path, "application/json", Path(exports.json_path).name),
         ("Extraction manifest", exports.manifest_path, "application/json", "extraction_manifest.json"),
         ("Validation report", exports.validation_report_path, "application/json", "validation_report.json"),
+        ("JSON Schema", exports.schema_path, "application/schema+json", "application_matrix.schema.json"),
         ("Excel", exports.excel_path, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application_matrix.xlsx"),
         ("Interactive HTML", exports.interactive_html_path, "text/html", "application_matrix_interactive.html"),
     ]
+    if exports.ro_crate_metadata_path:
+        specs.append(("RO-Crate metadata", exports.ro_crate_metadata_path, "application/ld+json", "ro-crate-metadata.json"))
     cols = st.columns(2)
     for i, (label, path, mime, filename) in enumerate(specs):
         with cols[i % 2]:

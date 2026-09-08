@@ -1,0 +1,60 @@
+{
+  "review_schema_version": "fairagro-dffp-review-v1.2",
+  "checked_at_utc": "2026-09-08T07:00:19.019517+00:00",
+  "ready_for_publication": false,
+  "checks": [
+    {
+      "id": "run_not_marked_test",
+      "passed": false,
+      "detail": "run_purpose='test'"
+    },
+    {
+      "id": "machine_validation_errors_zero",
+      "passed": true,
+      "detail": "machine validation errors=0"
+    },
+    {
+      "id": "machine_validation_warnings_zero",
+      "passed": true,
+      "detail": "machine validation warnings=0"
+    },
+    {
+      "id": "required_human_review_complete",
+      "passed": true,
+      "detail": "required_remaining=0"
+    },
+    {
+      "id": "review_decision_quality_issues_zero",
+      "passed": true,
+      "detail": "review_decision_quality_issues=0"
+    },
+    {
+      "id": "manuscript_frozen",
+      "passed": false,
+      "detail": "manuscript_frozen=False"
+    },
+    {
+      "id": "source_identifier_checked",
+      "passed": false,
+      "detail": "source_document_identifier_checked=False"
+    },
+    {
+      "id": "source_document_doi_resolved",
+      "passed": false,
+      "detail": "source_document_doi=None"
+    }
+  ],
+  "review_summary": {
+    "total": 129,
+    "pending": 0,
+    "verified": 102,
+    "corrected": 27,
+    "rejected": 0,
+    "deferred": 0,
+    "not_applicable": 0,
+    "required_remaining": 0,
+    "publication_review_complete": true
+  },
+  "machine_baseline_sha256": "25737baac6f2632e2a4a1c1aa7d2470acf026e2be148b266f873f83d02f50eb1",
+  "reviewed_matrix_sha256": "d55544804b2b5a048a743ddd814ea4aac6d70c6a8ffbd22500ae51338535b264"
+}

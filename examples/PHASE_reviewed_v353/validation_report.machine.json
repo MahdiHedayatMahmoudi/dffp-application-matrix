@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "info",
+    "code": "NO_DETERMINISTIC_ISSUES",
+    "message": "No configured deterministic semantic checks failed.",
+    "field": null
+  }
+]

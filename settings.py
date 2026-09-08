@@ -13,7 +13,11 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Optional
 
-from dotenv import load_dotenv
+try:
+    from dotenv import load_dotenv
+except ImportError:  # Environment variables still work in minimal audit/test environments.
+    def load_dotenv() -> bool:
+        return False
 
 load_dotenv()
 
@@ -21,9 +25,9 @@ load_dotenv()
 # newer package execute an older extraction contract.  Advanced experiments can
 # opt in explicitly with DFFP_ALLOW_RELEASE_CONFIG_OVERRIDE=true.
 RELEASE_SYSTEM_PROMPT_VERSION = "system_v2"
-RELEASE_EXTRACTION_PROMPT_VERSION = "extraction_v9"
-RELEASE_SCHEMA_VERSION = "fairagro-dffp-v3.2.8"
-RELEASE_REPAIR_PROMPT_VERSION = "repair_v1"
+RELEASE_EXTRACTION_PROMPT_VERSION = "extraction_v12"
+RELEASE_SCHEMA_VERSION = "fairagro-dffp-v3.5.2"
+RELEASE_REPAIR_PROMPT_VERSION = "repair_v4"
 
 
 class ConfigurationError(RuntimeError):
@@ -88,6 +92,7 @@ class Settings:
     semantic_repair_max_attempts: int = 1
     semantic_repair_prompt_version: str = RELEASE_REPAIR_PROMPT_VERSION
     release_config_override_allowed: bool = False
+    run_purpose: str = "test"
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -138,6 +143,7 @@ class Settings:
                 if _env_bool("DFFP_ALLOW_RELEASE_CONFIG_OVERRIDE", False) else RELEASE_REPAIR_PROMPT_VERSION
             ),
             release_config_override_allowed=_env_bool("DFFP_ALLOW_RELEASE_CONFIG_OVERRIDE", False),
+            run_purpose=os.getenv("DFFP_RUN_PURPOSE", "test").strip().lower(),
         )
 
     def validate_for_extraction(self) -> None:
@@ -145,6 +151,8 @@ class Settings:
             raise ConfigurationError("OPENAI_API_KEY is missing. Add it to .env or your environment.")
         if not self.extraction_model:
             raise ConfigurationError("OPENAI_MODEL must not be empty.")
+        if self.run_purpose not in {"test", "evaluation", "publication"}:
+            raise ConfigurationError("DFFP_RUN_PURPOSE must be test, evaluation, or publication.")
 
     @property
     def ignored_release_config_overrides(self) -> dict[str, str]:

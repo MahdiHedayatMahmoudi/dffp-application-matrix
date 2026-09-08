@@ -12,6 +12,8 @@ import re
 from typing import Any
 
 from models import FAIRagroApplicationDataFitnessModel, MetricContext
+from quantitative_values import enrich_quantitative_values
+from metric_postprocess import deduplicate_canonical_metrics
 
 _SOURCE_KEYS = {"source_text", "source_section", "source_location"}
 
@@ -258,4 +260,6 @@ def postprocess_semantics(record: FAIRagroApplicationDataFitnessModel) -> FAIRag
     ensure_supported_spatial_applicability_limitation(record)
     normalize_dataset_family_scope_labels(record)
     remove_unsupported_application_only_analysis_types(record)
+    enrich_quantitative_values(record)
+    deduplicate_canonical_metrics(record)
     return record

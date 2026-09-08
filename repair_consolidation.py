@@ -14,10 +14,12 @@ from __future__ import annotations
 
 from copy import deepcopy
 from dataclasses import asdict, dataclass
+from decimal import Decimal
 import re
 from typing import Any, Iterable
 
 from models import (
+    AggregationStatistic,
     EvidenceRecord,
     EvidenceType,
     FAIRagroApplicationDataFitnessModel,
@@ -31,7 +33,12 @@ from models import (
     ValidationAndDiagnostics,
     ValidationMetricRecord,
 )
-from metric_postprocess import derive_fitness_metrics_from_canonical_ledger
+from metric_postprocess import (
+    canonical_metrics_equivalent,
+    deduplicate_canonical_metrics,
+    derive_fitness_metrics_from_canonical_ledger,
+)
+from quantitative_values import parse_quantitative_value
 
 
 @dataclass
@@ -48,6 +55,8 @@ class ConsolidationReport:
     scopes_harmonized: int = 0
     uncertainty_views_added: int = 0
     structured_candidates_backfilled: int = 0
+    structured_target_rows_backfilled: int = 0
+    structured_semantics_enriched: int = 0
     evidence_records_deduplicated: int = 0
     cross_target_evidence_removed: int = 0
     non_outcome_metrics_demoted: int = 0
@@ -112,6 +121,47 @@ def _metric_value_key(value: str | None) -> str:
     return re.sub(r"\s+", " ", (value or "").strip().lower())
 
 
+def _target_specific_evaluation_population(value: str | None) -> bool:
+    """Return True for evaluation-population text carrying a target-specific count.
+
+    Such counts (for example, ``231 produced phase-year surfaces``) are valid only
+    for the target row that establishes them.  Generic protocol wording such as
+    ``Five-fold held-out station observations over produced surfaces`` may safely
+    be shared across sibling rows.
+    """
+    text = _norm_text(value)
+    if not text:
+        return False
+    return bool(
+        re.search(
+            r"\b\d+\b[^.;]{0,80}\b(?:produced\s+)?(?:phase[- ]year\s+)?surfaces?\b",
+            text,
+        )
+        or re.search(
+            r"\b(?:produced\s+)?(?:phase[- ]year\s+)?surfaces?\b[^.;]{0,80}\b\d+\b",
+            text,
+        )
+    )
+
+
+def _is_generated_structured_row_evidence(metric: ValidationMetricRecord, source_item_id: str) -> bool:
+    """Identify the deterministic evidence stub created by table-row backfill."""
+    expected = _norm_text(f"{metric.scope_label}: {metric.name} {metric.value_or_summary}.")
+    if not expected:
+        return False
+    matches = [
+        ev for ev in (metric.evidence or [])
+        if str(ev.source_item_id or "") == source_item_id
+    ]
+    return bool(matches) and all(
+        _norm_text(ev.claim) == expected
+        and _norm_text(ev.source_text) == expected
+        and ev.source_modality == SourceModality.author_table
+        and ev.representation_method == RepresentationMethod.docling_structured
+        for ev in matches
+    )
+
+
 def _metric_key(metric: ValidationMetricRecord) -> tuple[str, str, tuple[str, ...], str, str]:
     return (
         _metric_identity(metric.name),
@@ -128,22 +178,29 @@ def _section_anchor(text: str | None) -> str:
     return m.group(1) if m else raw
 
 
-def _evidence_key(ev: EvidenceRecord) -> tuple[str, str, str, str]:
-    # ``source_text`` is intentionally excluded: repair and initial extraction often carry
-    # slightly different truncations of the same authored evidence.  Claim + source anchor
-    # + modality is the safer deterministic identity.
+def _evidence_key(ev: EvidenceRecord) -> tuple[str, str, str, str, str, str]:
+    """Conservative evidence identity used during repair consolidation.
+
+    A concrete supporting source fragment is a better identity than model-generated
+    claim wording.  Therefore two records with the same authored source fragment and
+    source anchor are duplicates even when their normalized claims are paraphrased.
+    When source_text is absent, claim wording remains part of the identity.
+    """
     anchor = _norm_text(ev.source_item_id) or _norm_text(ev.source_location)
+    support_text = _norm_text(ev.source_text) or ("claim:" + _norm_text(ev.claim))
     return (
-        _norm_text(ev.claim),
+        support_text,
         anchor,
         _section_anchor(ev.source_section),
+        str(ev.source_page or ""),
         _norm_text(getattr(ev.source_modality, "value", str(ev.source_modality or ""))),
+        _norm_text(getattr(ev.representation_method, "value", str(ev.representation_method or ""))),
     )
 
 
 def _merge_evidence(primary: Iterable[EvidenceRecord] | None, secondary: Iterable[EvidenceRecord] | None) -> tuple[list[EvidenceRecord], int]:
     out: list[EvidenceRecord] = []
-    seen: set[tuple[str, str, str, str]] = set()
+    seen: set[tuple[str, str, str, str, str, str]] = set()
     added_secondary = 0
     for source, is_secondary in ((primary or [], False), (secondary or [], True)):
         for ev in source:
@@ -240,6 +297,222 @@ def _section_related(a: ValidationMetricRecord, b: ValidationMetricRecord) -> bo
 
 
 
+def _generic_range_basis(value: str | None) -> bool:
+    text = _norm_text(value)
+    return not text or text in {
+        "reported range (basis not stated)",
+        "reported interval or range (type not stated)",
+        "reported min-max or across-group range",
+    }
+
+
+def _source_item_ids(metric: ValidationMetricRecord) -> set[str]:
+    return {str(ev.source_item_id or "") for ev in metric.evidence if ev.source_item_id}
+
+
+def _apply_structured_caption_semantics(metric: ValidationMetricRecord, caption: str | None) -> bool:
+    """Fill quantitative semantics that are explicitly stated in an authored table caption.
+
+    The rules are deliberately narrow and metric-generic. They never infer a statistic
+    from the column label alone; the caption must explicitly state the aggregation,
+    interval level, range basis, or unit applying to the metric family.
+    """
+    if not caption or metric.quantitative_value is None:
+        return False
+
+    text = _norm_text(caption).replace("mae s", "maes")
+    family = _metric_family(metric.name)
+    identity = _metric_identity(metric.name)
+    q = metric.quantitative_value
+    changed = False
+
+    # Captions commonly define shared units once for a block of error metrics.
+    if family in {"mae", "rmse", "mse"} and re.search(r"\ball error metrics?\s+(?:are\s+)?in\s+days?\b", text):
+        if not metric.unit:
+            metric.unit = "days"
+            changed = True
+        if not q.unit_code:
+            q.unit_code = "d"
+            changed = True
+
+    # Explicit table-level aggregation statements, e.g. "MAE and RMSE are medians ...".
+    if family in {"mae", "rmse"} and "range" not in identity:
+        combined = re.search(r"\bmae\b\s*(?:,|/|and|&)\s*\brmse\b[^.;]{0,120}\bare\s+medians?\b", text)
+        direct = re.search(rf"\b{re.escape(family)}\b[^.;]{{0,80}}\b(?:is|are)\s+(?:the\s+)?medians?\b", text)
+        if (combined or direct) and q.aggregation == AggregationStatistic.unspecified:
+            q.aggregation = AggregationStatistic.median
+            changed = True
+
+    # A range may have a source-defined basis distinct from the scalar MAE statistic.
+    if family == "mae" and "range" in identity:
+        explicit_range = re.search(
+            r"\bmae\s+range\b[^.;]{0,140}\bper[- ]phase\s+median\s+maes?\b",
+            text,
+        )
+        if explicit_range:
+            if q.aggregation == AggregationStatistic.unspecified:
+                q.aggregation = AggregationStatistic.median
+                changed = True
+            if _generic_range_basis(q.range_basis):
+                q.range_basis = "Across per-phase median MAEs"
+                changed = True
+
+    # Prediction-interval table captions often define PICP and MPIW together.
+    if family in {"picp", "mpiw"}:
+        joint = re.search(
+            r"\bpicp\b\s*(?:,|/|and|&)\s*\bmpiw\b[^.;]{0,220}\bmedian\b[^.;]{0,220}"
+            r"\bnominal\s+(?P<level>\d{1,3}(?:\.\d+)?)\s*%\s+prediction[- ]intervals?\b",
+            text,
+        )
+        if joint:
+            if q.aggregation == AggregationStatistic.unspecified:
+                q.aggregation = AggregationStatistic.median
+                changed = True
+            if q.nominal_level is None:
+                level = Decimal(joint.group("level")) / Decimal("100")
+                if Decimal("0") <= level <= Decimal("1"):
+                    q.nominal_level = level
+                    changed = True
+            level_text = format(Decimal(joint.group("level")).normalize(), "f")
+            basis = (
+                f"Empirical coverage of nominal {level_text}% prediction intervals"
+                if family == "picp"
+                else f"Width of nominal {level_text}% prediction intervals"
+            )
+            if _generic_range_basis(q.range_basis):
+                q.range_basis = basis
+                changed = True
+
+    # A proportion is dimensionless; preserve the source wording in ``unit`` and
+    # use the canonical UCUM dimensionless code for machine comparison.
+    if family == "picp" and _norm_text(metric.unit) in {"proportion", "fraction", "ratio"} and not q.unit_code:
+        q.unit_code = "1"
+        changed = True
+
+    return changed
+
+
+def enrich_structured_metric_semantics(record: FAIRagroApplicationDataFitnessModel, bundle: Any | None) -> int:
+    """Enrich structured-table metrics from same-table consensus and explicit captions.
+
+    This is safe to run both during repair consolidation and later revalidation. A
+    metadata field is copied from sibling rows only when every non-empty value for the
+    same source item and metric identity agrees. Caption-derived values are filled only
+    where the canonical metric is missing or still carries a generic placeholder.
+    """
+    if bundle is None or record.validation_and_diagnostics is None:
+        return 0
+    metrics = list(record.validation_and_diagnostics.validation_metrics or [])
+    hints = [
+        h for h in (getattr(bundle, "metric_candidate_hints", []) or [])
+        if h.get("kind") == "structured_table_metric"
+    ]
+    if not metrics or not hints:
+        return 0
+
+    hints_by_item: dict[str, list[dict[str, Any]]] = {}
+    for hint in hints:
+        iid = str(hint.get("source_item_id") or "")
+        if iid:
+            hints_by_item.setdefault(iid, []).append(hint)
+
+    groups: dict[tuple[str, str], list[ValidationMetricRecord]] = {}
+    for metric in metrics:
+        identity = _metric_identity(metric.name)
+        for iid in _source_item_ids(metric):
+            if iid in hints_by_item:
+                groups.setdefault((iid, identity), []).append(metric)
+
+    def consensus(values: list[Any], normalizer=lambda x: x) -> Any | None:
+        explicit = [v for v in values if v is not None]
+        if not explicit:
+            return None
+        by_key: dict[Any, Any] = {}
+        for value in explicit:
+            by_key[normalizer(value)] = value
+        return next(iter(by_key.values())) if len(by_key) == 1 else None
+
+    changed_metrics: set[int] = set()
+
+    # Evaluation-population descriptions can carry target-specific counts.  Those
+    # must never be inherited from another table row.  During revalidation, clean
+    # legacy contamination on deterministic backfilled rows while preserving a
+    # population when the same target has a non-synthetic metric that establishes
+    # it explicitly.
+    target_groups: dict[tuple[str, tuple[str, ...]], list[ValidationMetricRecord]] = {}
+    for metric in metrics:
+        target = _target_token_key(metric.scope_label)
+        for iid in _source_item_ids(metric):
+            if iid in hints_by_item and target:
+                target_groups.setdefault((iid, target), []).append(metric)
+
+    for (iid, _target), target_group in target_groups.items():
+        explicit_populations = [
+            metric.evaluation_population
+            for metric in target_group
+            if metric.evaluation_population
+            and not _is_generated_structured_row_evidence(metric, iid)
+        ]
+        explicit_population = consensus(explicit_populations, lambda x: _norm_text(str(x)))
+        for metric in target_group:
+            if not _is_generated_structured_row_evidence(metric, iid):
+                continue
+            before_population = metric.evaluation_population
+            if explicit_population and _target_specific_evaluation_population(explicit_population):
+                if (
+                    metric.evaluation_population is None
+                    or _target_specific_evaluation_population(metric.evaluation_population)
+                ):
+                    metric.evaluation_population = explicit_population
+            elif _target_specific_evaluation_population(metric.evaluation_population):
+                metric.evaluation_population = None
+            if metric.evaluation_population != before_population:
+                changed_metrics.add(id(metric))
+
+    for (iid, identity), group in groups.items():
+        units = consensus([m.unit for m in group if m.unit], lambda x: _norm_text(str(x)))
+        qrows = [m.quantitative_value for m in group if m.quantitative_value is not None]
+        unit_code = consensus([q.unit_code for q in qrows if q.unit_code], lambda x: _norm_text(str(x)))
+        aggregation = consensus([
+            q.aggregation for q in qrows if q.aggregation != AggregationStatistic.unspecified
+        ], lambda x: getattr(x, "value", str(x)))
+        nominal_level = consensus([q.nominal_level for q in qrows if q.nominal_level is not None])
+        specific_bases = [q.range_basis for q in qrows if not _generic_range_basis(q.range_basis)]
+        range_basis = consensus(specific_bases, lambda x: _norm_text(str(x)))
+
+        # Table captions are duplicated across structured hints; de-duplicate before applying.
+        captions: list[str] = []
+        seen_captions: set[str] = set()
+        for hint in hints_by_item.get(iid, []):
+            caption = str(hint.get("caption") or "").strip()
+            key = _norm_text(caption)
+            if caption and key not in seen_captions:
+                seen_captions.add(key)
+                captions.append(caption)
+
+        for metric in group:
+            q = metric.quantitative_value
+            if q is None:
+                continue
+            before = metric.model_dump(mode="json")
+            if not metric.unit and units:
+                metric.unit = units
+            if not q.unit_code and unit_code:
+                q.unit_code = unit_code
+            if q.aggregation == AggregationStatistic.unspecified and aggregation is not None:
+                q.aggregation = aggregation
+            if q.nominal_level is None and nominal_level is not None:
+                q.nominal_level = nominal_level
+            if _generic_range_basis(q.range_basis) and range_basis:
+                q.range_basis = range_basis
+            for caption in captions:
+                _apply_structured_caption_semantics(metric, caption)
+            if metric.model_dump(mode="json") != before:
+                changed_metrics.add(id(metric))
+
+    return len(changed_metrics)
+
+
 def _backfill_selected_structured_siblings(record: FAIRagroApplicationDataFitnessModel, bundle: Any, report: ConsolidationReport) -> None:
     """Backfill an omitted structured-table sibling only from explicit source candidates.
 
@@ -273,6 +546,41 @@ def _backfill_selected_structured_siblings(record: FAIRagroApplicationDataFitnes
             identity_proto.setdefault((iid, identity), metric)
             existing_candidate_keys.add((iid, target, identity, _metric_value_key(metric.value_or_summary)))
 
+    table_targets: dict[str, set[tuple[str, ...]]] = {}
+    table_recognized_metrics: dict[str, set[str]] = {}
+    for hint in hints:
+        iid = str(hint.get("source_item_id") or "")
+        target = _target_token_key(str(hint.get("target") or ""))
+        if iid and target:
+            table_targets.setdefault(iid, set()).add(target)
+        if iid and hint.get("metric_family"):
+            table_recognized_metrics.setdefault(iid, set()).add(_metric_family(str(hint.get("metric_family"))))
+    selected_table_ids = {iid for iid, _target in selected}
+    whole_table_eligible = {
+        iid for iid in selected_table_ids
+        if len(table_targets.get(iid, set())) >= 2 and len(table_recognized_metrics.get(iid, set())) >= 2
+    }
+    newly_materialized_targets: set[tuple[str, tuple[str, ...]]] = set()
+
+    def inferred_target_scope(iid: str, target_label: str) -> MetricScope:
+        table_metrics = [m for m in metrics if iid in evidence_items(m)]
+        if re.search(r"\b(?:all|overall|pooled|combined|aggregate|family[- ]wide|entire|full)\b", target_label, re.I):
+            aggregate = next((m.scope for m in table_metrics if m.scope in {MetricScope.dataset_family, MetricScope.dataset}), None)
+            return aggregate or MetricScope.dataset_family
+        specific = [
+            m.scope for m in table_metrics
+            if m.scope not in {MetricScope.dataset, MetricScope.dataset_family, MetricScope.unknown,
+                               MetricScope.local_or_pixel, MetricScope.spatial_surface_summary,
+                               MetricScope.station_or_observation}
+        ]
+        if specific:
+            return max(set(specific), key=specific.count)
+        return MetricScope.subgroup
+
+    def source_representation(metric: ValidationMetricRecord, iid: str) -> RepresentationMethod:
+        ev = next((x for x in metric.evidence if str(x.source_item_id or "") == iid), None)
+        return ev.representation_method if ev is not None else RepresentationMethod.docling_structured
+
     for hint in hints:
         iid = str(hint.get("source_item_id") or "")
         target_label = str(hint.get("target") or "").strip()
@@ -289,13 +597,20 @@ def _backfill_selected_structured_siblings(record: FAIRagroApplicationDataFitnes
         if metric_proto is None:
             base_family = _metric_family(metric_name)
             metric_proto = next((m for m in metrics if iid in evidence_items(m) and _metric_family(m.name) == base_family), None)
-        if not target_protos or metric_proto is None:
+        # For a missing row in an already-selected quantitative result table, the
+        # table itself establishes shared context/support. This lets unfamiliar
+        # paper-specific columns survive without pretending their unit is known.
+        table_protos = [m for m in metrics if iid in evidence_items(m)]
+        missing_whole_row = not target_protos and iid in whole_table_eligible
+        if metric_proto is None and missing_whole_row and table_protos:
+            metric_proto = table_protos[0]
+        if (not target_protos and not missing_whole_row) or metric_proto is None:
             continue
         if (iid, target, identity, _metric_value_key(value)) in existing_candidate_keys:
             continue
         if any(_metric_identity(m.name) == identity and _metric_value_key(m.value_or_summary) == _metric_value_key(value) for m in target_protos):
             continue
-        target_proto = target_protos[0]
+        target_proto = target_protos[0] if target_protos else metric_proto
         section = hint.get("section_hint")
         location = hint.get("source_location")
         page = hint.get("source_page")
@@ -309,24 +624,45 @@ def _backfill_selected_structured_siblings(record: FAIRagroApplicationDataFitnes
             source_page=int(page) if isinstance(page, int) or (isinstance(page, str) and page.isdigit()) else None,
             source_item_id=iid,
             source_modality=SourceModality.author_table,
-            representation_method=RepresentationMethod.docling_structured,
+            representation_method=source_representation(metric_proto, iid),
         )
+        same_metric_family = _metric_family(metric_name) == _metric_family(metric_proto.name)
+        inferred_unit = metric_proto.unit if same_metric_family else None
         new_metric = ValidationMetricRecord(
             name=metric_name,
             value_or_summary=value,
-            unit=metric_proto.unit,
+            unit=inferred_unit,
+            quantitative_value=parse_quantitative_value(value, metric_name=metric_name, unit=inferred_unit),
             context=metric_proto.context,
-            scope=target_proto.scope,
-            scope_label=target_proto.scope_label or target_label,
+            scope=inferred_target_scope(iid, target_label) if missing_whole_row else target_proto.scope,
+            scope_label=target_label if missing_whole_row else (target_proto.scope_label or target_label),
             evaluation_support=metric_proto.evaluation_support,
-            evaluation_population=target_proto.evaluation_population or metric_proto.evaluation_population,
+            evaluation_population=(
+                target_proto.evaluation_population
+                if target_protos and target_proto.evaluation_population
+                else (
+                    metric_proto.evaluation_population
+                    if metric_proto.evaluation_population
+                    and not _target_specific_evaluation_population(metric_proto.evaluation_population)
+                    else None
+                )
+            ) if not missing_whole_row else None,
             interpretation=None,
             evidence=[ev],
         )
+        # The authored table may render a value more tersely than the model
+        # (for example ``5.7`` versus ``5.7 days``).  Structured quantitative
+        # identity, not display-string equality, decides whether the sibling
+        # already exists in the canonical ledger.
+        if any(canonical_metrics_equivalent(existing, new_metric) for existing in target_protos):
+            continue
         metrics.append(new_metric)
         selected.setdefault((iid, target), []).append(new_metric)
         existing_candidate_keys.add((iid, target, identity, _metric_value_key(value)))
         report.structured_candidates_backfilled += 1
+        if missing_whole_row and (iid, target) not in newly_materialized_targets:
+            newly_materialized_targets.add((iid, target))
+            report.structured_target_rows_backfilled += 1
 
     vad.validation_metrics = metrics or None
 
@@ -464,7 +800,7 @@ def _deduplicate_all_evidence(record: FAIRagroApplicationDataFitnessModel, repor
                 evidence = getattr(obj, "evidence", None)
                 if isinstance(evidence, list) and evidence and all(isinstance(x, EvidenceRecord) for x in evidence):
                     out: list[EvidenceRecord] = []
-                    seen: set[tuple[str, str, str, str]] = set()
+                    seen: set[tuple[str, str, str, str, str, str]] = set()
                     for ev in evidence:
                         key = _evidence_key(ev)
                         if key in seen:
@@ -588,27 +924,63 @@ def _merge_repair_evidence(repaired: FAIRagroApplicationDataFitnessModel, initia
 
     merged = merge_node(rp, ip, ())
 
-    # Related resources are source entities rather than semantic classifications, so omission
-    # during repair should not discard them.  Merge by persistent identifier, then name.
+
+    # Related resources are source entities rather than semantic classifications.
+    # Preserve omitted resources, but also merge claim-level evidence from the
+    # initial extraction into matching resources returned by semantic repair.
+
     rd = merged.get("document_metadata") or {}
     idoc = ip.get("document_metadata") or {}
+
     rr = list(rd.get("related_resources") or [])
     ir = list(idoc.get("related_resources") or [])
-    seen: set[str] = set()
-    for item in rr:
-        key = _norm_text(item.get("identifier") or item.get("name")) if isinstance(item, dict) else ""
-        if key:
-            seen.add(key)
+
+    initial_by_key: dict[str, dict[str, Any]] = {}
+
     for item in ir:
         if not isinstance(item, dict):
             continue
         key = _norm_text(item.get("identifier") or item.get("name"))
+        if key:
+            initial_by_key[key] = item
+
+    seen: set[str] = set()
+    merged_resources: list[dict[str, Any]] = []
+
+    for item in rr:
+        if not isinstance(item, dict):
+            continue
+
+        key = _norm_text(item.get("identifier") or item.get("name"))
+
+        # The repair remains authoritative for semantic fields, but source
+        # evidence already present in the initial extraction must not disappear.
+        if key and key in initial_by_key:
+            item = merge_node(
+                item,
+                initial_by_key[key],
+                ("document_metadata", "related_resources", key),
+            )
+
+        merged_resources.append(item)
+
+        if key:
+            seen.add(key)
+
+    # Preserve resources omitted completely by the repair.
+    for item in ir:
+        if not isinstance(item, dict):
+            continue
+
+        key = _norm_text(item.get("identifier") or item.get("name"))
+
         if key and key not in seen:
-            rr.append(deepcopy(item))
+            merged_resources.append(deepcopy(item))
             seen.add(key)
             report.related_resources_preserved += 1
+
     if rd:
-        rd["related_resources"] = rr or None
+        rd["related_resources"] = merged_resources or None
         merged["document_metadata"] = rd
 
     return FAIRagroApplicationDataFitnessModel.model_validate(merged)
@@ -670,7 +1042,9 @@ def consolidate_repair_record(
     record.validation_and_diagnostics.validation_metrics = _merge_metric_ledgers(initial_metrics, repair_metrics, report) or None
 
     _backfill_selected_structured_siblings(record, bundle, report)
+    report.structured_semantics_enriched += enrich_structured_metric_semantics(record, bundle)
     _harmonize_target_scopes(record, report)
+    report.deduplicated_metrics += deduplicate_canonical_metrics(record)
     _demote_redundant_composites(record, report)
     _demote_non_outcome_metric_definitions(record, report)
     _move_tuning_parameters(record, report)

@@ -1,0 +1,13 @@
+{{INCLUDE:repair_v2}}
+
+15. If an explicit related-resource identifier lacks evidence, add only direct evidence that prints or unambiguously
+    associates that exact identifier with the declared object. Otherwise downgrade identifier_status; never fabricate
+    a locator or retain an article DOI as a dataset/software identifier.
+16. If a qualitative-guardrail coverage warning is supplied, inspect the cited authored limitation/risk candidate and
+    add each missing, substantively distinct DFFP-relevant caveat to limitations_and_risks or validation_limitations.
+    Preserve source meaning and direct evidence; do not create a categorical fitness judgment.
+17. If a metric reports a central value plus bounds/range, keep both in value_or_summary and represent it as
+    estimate_with_range. Do not repair the record by discarding the central value or by assigning an unsupported
+    confidence/prediction-interval meaning to the bounds.
+18. Leave schema_version, canonical_source_sha256, and source_bundle_sha256 null; the pipeline injects them after the
+    structured response is validated.

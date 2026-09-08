@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -34,7 +35,12 @@ def available_prompt_versions() -> list[str]:
     return sorted(x.stem for x in PROMPT_DIR.glob("*.txt") if x.is_file())
 
 
-def _load(version: str) -> str:
+_INCLUDE = re.compile(r"^\{\{INCLUDE:([A-Za-z0-9_.-]+)\}\}$", re.MULTILINE)
+
+
+def _load(version: str, _seen: frozenset[str] = frozenset()) -> str:
+    if version in _seen:
+        raise PromptError(f"Recursive prompt include detected for {version!r}")
     path = PROMPT_DIR / f"{version}.txt"
     if not path.exists():
         available = ", ".join(available_prompt_versions()) or "[none]"
@@ -42,7 +48,8 @@ def _load(version: str) -> str:
             f"Prompt not found: {path}. Available prompt versions: {available}. "
             "Check DFFP_SYSTEM_PROMPT_VERSION and DFFP_EXTRACTION_PROMPT_VERSION in .env."
         )
-    return path.read_text(encoding="utf-8").strip()
+    text = path.read_text(encoding="utf-8").strip()
+    return _INCLUDE.sub(lambda m: _load(m.group(1), _seen | {version}), text)
 
 
 def validate_prompt_configuration(*, system_version: str, extraction_version: str) -> None:

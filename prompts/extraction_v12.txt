@@ -1,0 +1,8 @@
+{{INCLUDE:extraction_v11}}
+
+49. QUANTITATIVE KIND MUST MATCH THE SUPPLIED COMPONENTS
+    Use kind=estimate_with_range only when numeric_value, lower_bound, and upper_bound are all supplied. If the source
+    reports only lower and upper bounds, use kind=range. If it reports only one numeric value, use kind=scalar. Use
+    estimate_with_uncertainty only when numeric_value and at least one uncertainty component are supplied, and use
+    labeled_series only when points are supplied. Never select a richer kind while leaving one of its required
+    components null. Preserve the authored expression in value_or_summary and quantitative_value.as_reported.

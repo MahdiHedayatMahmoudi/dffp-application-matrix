@@ -1,0 +1,4187 @@
+{
+  "release_config": {
+    "system_prompt_version": "system_v2",
+    "extraction_prompt_version": "extraction_v12",
+    "schema_version": "fairagro-dffp-v3.5.2",
+    "repair_prompt_version": "repair_v4",
+    "run_purpose": "test",
+    "override_allowed": false,
+    "ignored_stale_environment_overrides": {}
+  },
+  "source_package": {
+    "package_dir": "2026_DRAFT_ESSD__69b6cffd28",
+    "source_filename": "2026_DRAFT_ESSD.pdf",
+    "source_sha256": "69b6cffd28e8cc6bf8981875259f8c1f325c3aecdeacf3ad0632810b1d34c916",
+    "source_fidelity_status": "pass_after_recovery",
+    "source_fidelity_initial_status": "multimodal_review_recommended",
+    "source_fidelity_summary": {
+      "overall_status": "multimodal_review_recommended",
+      "pdf_page_count": 38,
+      "docling_page_count": 38,
+      "docling_table_count": 6,
+      "pdf_table_caption_count": 6,
+      "docling_picture_count": 10,
+      "pdf_figure_caption_count": 10,
+      "matched_numbered_scientific_figure_count": 10,
+      "unmatched_numbered_scientific_figure_count": 0,
+      "formula_count": 9,
+      "markdown_formula_placeholder_count": 0,
+      "recovery_queue_count": 3,
+      "high_priority_recovery_count": 1,
+      "required_recovery_count": 0,
+      "recommended_recovery_count": 3,
+      "derived_picture_annotations_enabled": false,
+      "derived_picture_annotations_authoritative": false
+    },
+    "unresolved_items": [],
+    "clean_markdown_path": "docling/document.clean.md",
+    "bundle_sha256": "22905419b96c719738cf375c79bff7f61ee8bcac4a8fd77a56a184c211885e23",
+    "item_counts": {
+      "tables": 6,
+      "formulas": 9,
+      "recovered_figures": 3
+    },
+    "source_item_registry": {
+      "tbl_001": {
+        "item_type": "table",
+        "source_location": "Table 1",
+        "source_page": 9,
+        "section_hint": "2.2.1 Growing degree day calculation",
+        "caption": "Table 1. Crop-specific base temperatures T b used in Eq. 1 as implemented in effective_temperature_calculation.R (Möller and Gerstmann, 2026)."
+      },
+      "tbl_002": {
+        "item_type": "table",
+        "source_location": "Table 2",
+        "source_page": 16,
+        "section_hint": "3.1 Dataset scope and completeness",
+        "caption": "Table 2. Modelled phenological phase starts per crop type, with the maximum ( ∑ N P ) and produced ( N I ) number of interpolated phaseentry surfaces (meaning of Phase IDs and Crop type IDs see Table A1). A checkmark ( ✓ ) indicates that the phase start is modelled for the respective crop. N P = number of modelled crop-specific phases; ∑ N P = maximum number of surfaces over the crop's temporal coverage ( N P times the number of covered years: 33, 1993-2025, for all crops except spring barley, whose programme resumed in 2014, giving 12 years, 2014-2025); N I = number of produced surfaces, derived from the per-crop VAM tables; N M = ∑ N P -N I = number of missing surfaces. The five missing surfaces are winter rye phase 15 (2022), winter rapeseed phases 17 and 67 (2022), and sugar beet phases 10 and 13 (2024)."
+      },
+      "tbl_003": {
+        "item_type": "table",
+        "source_location": "Table 3",
+        "source_page": 17,
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the produced surfaces; coverage close to nominal together with comparatively narrow intervals indicates favourable prediction-interval performance. Best and worst give the phase with the lowest and highest median MAE (Phase IDs as in Table A1), with the respective median MAE in parentheses."
+      },
+      "tbl_004": {
+        "item_type": "table",
+        "source_location": "Table 4",
+        "source_page": 18,
+        "section_hint": null,
+        "caption": "Table 4. SD-threshold selection for winter wheat: for each SD threshold multiplier f std of the Step 5 grid, the number of phase-years in which Step 6 selects it (in total and per equal third of the record), together with the median number of retained stations ( SN ) and the median Pearson correlation r of the threshold-specific, per-phase-year OPT-maximising grid cell over all 231 phase-years. Smaller f std values define more restrictive filtering, whereas larger values define wider accepted residual ranges and retain more observations. The station network falls below half its 1993 level in 2016, within the last third. All quantities are Step 6 selection statistics and, like the CAL diagnostics, in-sample by construction; predictive performance is certified in Sect. 3.2."
+      },
+      "tbl_005": {
+        "item_type": "table",
+        "source_location": "Table A1",
+        "source_page": 30,
+        "section_hint": "1 Introduction",
+        "caption": "Table A1. Names and identifiers (Phase ID) of beginning phenological DWD development stages for crop types (Crop type ID) (Bruns et al., 2015) and corresponding BBCH equivalents (Meier, 2018). There is no BBCH equivalent for the Phase IDs 10 and 13. PLANT ID: 202 winter wheat, 203 - winter rye, 204 - winter barley, 205 - winter rape, 207 - spring barley, 208 - oats, 215 - maize, 253 - sugar beet."
+      },
+      "tbl_006": {
+        "item_type": "table",
+        "source_location": "Table C1",
+        "source_page": 32,
+        "section_hint": "3.3.1 Filter-variant selection",
+        "caption": "Table C1. SD-threshold selection across the crop family: share of phase-years (%) in which Step 6 (Sect. 2.2.3) selects each SD threshold multiplier f std , with the modal threshold in bold, and the median gain in retained stations of the adaptive choice over a fixed f std =1 . 0 with its MAE-optimal temperature-sum threshold (Gain, %). N = produced phase-years as in Table 2; for winter rye, one processed but unpublished phase-year (phase 15, 2022) is excluded. Selection shares and gains were recalculated from the archived OPT tables. All quantities are in-sample selection statistics; predictive performance is certified in Sect. 3.2."
+      },
+      "fig_001": {
+        "item_type": "figure",
+        "source_location": "Figure 1",
+        "source_page": 3,
+        "section_hint": "1 Introduction",
+        "caption": "Figure 1. Spatial coverage of DWD observations (Kaspar et al., 2014) using the example of the winter wheat phase heading (Phase 18) for 1992 (a) and 1993 (b)."
+      },
+      "fig_002": {
+        "item_type": "figure",
+        "source_location": "Figure 2",
+        "source_page": 3,
+        "section_hint": "1 Introduction",
+        "caption": "Figure 2. Yearly temporal DWD observation coverage of phenological phases (Table A1; Kaspar et al., 2014) for winter wheat and spring barley."
+      },
+      "fig_003": {
+        "item_type": "figure",
+        "source_location": "Figure 3",
+        "source_page": 7,
+        "section_hint": "2 Methods",
+        "caption": "Figure 3. Phase-specific processing and in-pipeline publication workflow of PhenoPhaseR (Möller and Gerstmann, 2026). Stage 1: Input data preparation (A: Steps 1-3); Stage 2: Temperature modelling and filter variant generation (B: Steps 4-5); Stage 3: Filter variant selection, spatial interpolation and uncertainty quantification (C: Steps 6-7). Red (left): input data sources provided by the DWD, BKG and JKI. Yellow (centre): seven sequential processing steps with the main data flow directed top-to-bottom. Blue (right): in-pipeline FAIR publication, including the two RO-Crate publish hooks, machine-actionable provenance and quality metadata, and the linked Zenodo records. The finalproduct hook can additionally package the machine-readable Data-Fitness-for-Purpose (DFFP) Application Matrix evidence record described in Sect. 2.4. Steps 2-5 can be executed in a nested year × phase loop; Step 5 is repeated for five SD-threshold variants."
+      },
+      "fig_004": {
+        "item_type": "figure",
+        "source_location": "Figure 4",
+        "source_page": 19,
+        "section_hint": "3.3 Winter wheat example",
+        "caption": "Figure 4. Quantitative characterisation of the winter wheat ( Triticum aestivum , DWD Plant ID 202) dataset, 1993-2025. (a) Out-of-sample mean absolute error (MAE) per year for all seven modelled phases; the heading phase (18) is highlighted. (b) For the heading phase, the number of contributing station observations (blue, left axis) declines by about 70 % over the period while the out-of-sample MAE (red, right axis) remains stable. (c) Median and interquartile range of the per-pixel Bayesian posterior standard error (BSE) of the heading interpolation, which increases as the network thins. (d) Cross-validated coverage assessment for heading: prediction-interval coverage probability (PICP, blue, left axis) against the nominal 0.90 level, and mean prediction-interval width (MPIW, grey, right axis), from separate five-fold crossvalidation. The quantities shown in all panels were derived from the VAM , GEM , and PIC tables of the winter wheat deposit (Möller et al., 2026b). Phase colours in (a) follow the PhenoWin phase colour scheme (Möller et al., 2020), darkened for line legibility."
+      },
+      "fig_005": {
+        "item_type": "figure",
+        "source_location": "Figure 5",
+        "source_page": 21,
+        "section_hint": "3.3.5 Interpolated DOY and uncertainty maps",
+        "caption": "Figure 5. Interpolated entry day-of-year (DOY) based on the spatial generalised additive model (BAM) (a) and the corresponding per-pixel uncertainty layer, the Bayesian posterior standard error (BSE) (b), for the winter wheat phase heading (Phase 18) in the year 2018. The black outline marks the Uckermark district, for which the phenological window in Fig. 6 is extracted."
+      },
+      "fig_006": {
+        "item_type": "figure",
+        "source_location": "Figure 6",
+        "source_page": 21,
+        "section_hint": "3.3.5 Interpolated DOY and uncertainty maps",
+        "caption": "Figure 6. Extraction of a phenological window and its propagated uncertainty for winter wheat over the Uckermark district (outlined in Fig. 5), 1993-2025, following the window-extraction approach of PhenoWin (Möller et al., 2020). The interpolated entry dates of shooting (15) and heading (18) (points) and the intervening window are shown with BSE-based uncertainty bands derived from the per-pixel modelmean precision; dashed lines give the linear trends of the two entry dates, with the fitted equations annotated."
+      },
+      "fig_007": {
+        "item_type": "figure",
+        "source_location": "Figure 7",
+        "source_page": 22,
+        "section_hint": null,
+        "caption": "Figure 7. Derivation of the phase-resolved weather indicator for the Uckermark district in 2018, mirroring Fig. 8 of Möller et al. (2019): (a) Germany-wide E-OBS daily precipitation for the wettest day of the shooting-heading window, with the district outlined; (b) daily precipitation (bars, spatial mean over the district) during the window, with whiskers spanning the ± 1 σ E-OBS ensemble spread of each day, overlaid with the accumulated indicator WI (line). Orange bands at the two phase boundaries span ± 1 BSE and visualise the BSE-based phenological sensitivity component; the blue ribbon around the accumulated indicator spans its ± 1 σ precipitation component, obtained by accumulating the daily spread in quadrature. The dotted vertical marks the day mapped in (a). For 2018 the window spans DOY 113 ± 1 . 5 to DOY 143 ± 1 . 0 , yielding WI =16 . 3 ± 2 . 3 mm(precipitation component)."
+      },
+      "fig_008": {
+        "item_type": "figure",
+        "source_location": "Figure 8",
+        "source_page": 24,
+        "section_hint": null,
+        "caption": "Figure 8. Germany-wide weather indicator (WI, cumulative precipitation during the winter wheat shooting-heading window) and its approximate uncertainty decomposition for 2018 on the E-OBS 0.1 ◦ grid. Top row : the indicator and the absolute 1 σ contributions of the phenological component ( u pheno , propagated PHASE BSE), the precipitation component ( u precip , accumulated E-OBS ensemble spread), and their quadrature total. Bottom row : the corresponding relative uncertainties ( σ/WI ) for cells with WI ≥ 10 mm, with the WI panel repeated for reference. The σ scales are capped at 30 mm and 30 %, with a 10-class quantile colour classification; the yellow outline marks the Uckermark district of Figs. 5-6."
+      },
+      "fig_009": {
+        "item_type": "figure",
+        "source_location": "Figure 9",
+        "source_page": 25,
+        "section_hint": null,
+        "caption": "Figure 9. Weather indicator and approximate two-component uncertainty for the Uckermark district, 1993-2025. Top : median WI over the district's E-OBS cells with the propagated ± 1 σ band (dark) and the spatial interquartile range across cells (light). Middle : stacked absolute 1 σ contributions of the phenological (PHASE BSE, orange) and precipitation (E-OBS ensemble spread, blue) components. Bottom : the same contributions relative to the indicator ( σ/WI , stacked) for years with WI ≥ 10 mm; dashed lines mark illustrative relative-uncertainty levels of 15 % and 25 %. The lines are shown as visual reference levels and do not represent formal suitability thresholds for a specific application."
+      },
+      "fig_010": {
+        "item_type": "figure",
+        "source_location": "Figure B1",
+        "source_page": 31,
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Figure B1. Out-of-sample interpolation accuracy by phenological phase for all eight crops, extending Fig. 4a to the full family: per-phase out-of-sample MAE per year, derived from the per-crop VAM tables. Colours identify Phase IDs consistently across panels and follow the PhenoWin phase colour scheme (Möller et al., 2020), darkened for line legibility (Table A1); the thickened line marks each crop's most accurately interpolated phase (Table 3). The spring barley record begins with the resumption of its observation programme in 2014."
+      },
+      "formula_001": {
+        "item_type": "formula",
+        "source_location": "Eq. 1",
+        "source_page": 8,
+        "section_hint": "2.2.1 Growing degree day calculation",
+        "caption": null
+      },
+      "formula_002": {
+        "item_type": "formula",
+        "source_location": "Eq. 2",
+        "source_page": 9,
+        "section_hint": "2.2.2 Critical DOY determination",
+        "caption": null
+      },
+      "formula_003": {
+        "item_type": "formula",
+        "source_location": "Eq. 3",
+        "source_page": 9,
+        "section_hint": "2.2.2 Critical DOY determination",
+        "caption": null
+      },
+      "formula_004": {
+        "item_type": "formula",
+        "source_location": "Eq. 4",
+        "source_page": 10,
+        "section_hint": "2.2.3 Adaptive filter-variant optimisation",
+        "caption": null
+      },
+      "formula_005": {
+        "item_type": "formula",
+        "source_location": "Eq. 5",
+        "source_page": 11,
+        "section_hint": "2.3.3 Spatial generalised additive model (BAM)",
+        "caption": null
+      },
+      "formula_006": {
+        "item_type": "formula",
+        "source_location": "Eq. 6",
+        "source_page": 11,
+        "section_hint": "2.3.3 Spatial generalised additive model (BAM)",
+        "caption": null
+      },
+      "formula_007": {
+        "item_type": "formula",
+        "source_location": "Eq. 7",
+        "source_page": 12,
+        "section_hint": "2.3.4 Validation",
+        "caption": null
+      },
+      "formula_008": {
+        "item_type": "formula",
+        "source_location": "Eq. 8",
+        "source_page": 12,
+        "section_hint": null,
+        "caption": null
+      },
+      "formula_009": {
+        "item_type": "formula",
+        "source_location": "Eq. 9",
+        "source_page": 12,
+        "section_hint": null,
+        "caption": null
+      }
+    },
+    "metric_candidate_hints": [
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "6f4826fbf238e871",
+        "metric_name": "MAE",
+        "metric_key": "mae",
+        "metric_family": "MAE",
+        "target": "Winter wheat (202)",
+        "value": "5.7",
+        "column": "MAE",
+        "row_index": 0,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "3523ddb828195d29",
+        "metric_name": "MAE range",
+        "metric_key": "mae_range",
+        "metric_family": null,
+        "target": "Winter wheat (202)",
+        "value": "3.9-7.5",
+        "column": "MAE range",
+        "row_index": 0,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "531362f102d30cbe",
+        "metric_name": "RMSE",
+        "metric_key": "rmse",
+        "metric_family": "RMSE",
+        "target": "Winter wheat (202)",
+        "value": "7.1",
+        "column": "RMSE",
+        "row_index": 0,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "eabc4f9959feaa41",
+        "metric_name": "PICP",
+        "metric_key": "picp",
+        "metric_family": "PICP",
+        "target": "Winter wheat (202)",
+        "value": "0.898",
+        "column": "PICP",
+        "row_index": 0,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "9cc13307aa006703",
+        "metric_name": "MPIW",
+        "metric_key": "mpiw",
+        "metric_family": "MPIW",
+        "target": "Winter wheat (202)",
+        "value": "23.5",
+        "column": "MPIW",
+        "row_index": 0,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "cc79545b186fe2f1",
+        "metric_name": "MAE",
+        "metric_key": "mae",
+        "metric_family": "MAE",
+        "target": "Winter rye (203)",
+        "value": "5.4",
+        "column": "MAE",
+        "row_index": 1,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "63a430890fe83d92",
+        "metric_name": "MAE range",
+        "metric_key": "mae_range",
+        "metric_family": null,
+        "target": "Winter rye (203)",
+        "value": "3.8-7.5",
+        "column": "MAE range",
+        "row_index": 1,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "d09f630014b2c128",
+        "metric_name": "RMSE",
+        "metric_key": "rmse",
+        "metric_family": "RMSE",
+        "target": "Winter rye (203)",
+        "value": "6.8",
+        "column": "RMSE",
+        "row_index": 1,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "bf8670bfa4f17bfd",
+        "metric_name": "PICP",
+        "metric_key": "picp",
+        "metric_family": "PICP",
+        "target": "Winter rye (203)",
+        "value": "0.896",
+        "column": "PICP",
+        "row_index": 1,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "b62e37b10487e209",
+        "metric_name": "MPIW",
+        "metric_key": "mpiw",
+        "metric_family": "MPIW",
+        "target": "Winter rye (203)",
+        "value": "22.6",
+        "column": "MPIW",
+        "row_index": 1,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "b85b3fc82bc684f2",
+        "metric_name": "MAE",
+        "metric_key": "mae",
+        "metric_family": "MAE",
+        "target": "Winter barley (204)",
+        "value": "4.6",
+        "column": "MAE",
+        "row_index": 2,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "697cfafb38779558",
+        "metric_name": "MAE range",
+        "metric_key": "mae_range",
+        "metric_family": null,
+        "target": "Winter barley (204)",
+        "value": "3.3-6.9",
+        "column": "MAE range",
+        "row_index": 2,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "d349aa3003ae51ea",
+        "metric_name": "RMSE",
+        "metric_key": "rmse",
+        "metric_family": "RMSE",
+        "target": "Winter barley (204)",
+        "value": "5.9",
+        "column": "RMSE",
+        "row_index": 2,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "ed18a15d84a1e12b",
+        "metric_name": "PICP",
+        "metric_key": "picp",
+        "metric_family": "PICP",
+        "target": "Winter barley (204)",
+        "value": "0.896",
+        "column": "PICP",
+        "row_index": 2,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "0a1b258925a0393a",
+        "metric_name": "MPIW",
+        "metric_key": "mpiw",
+        "metric_family": "MPIW",
+        "target": "Winter barley (204)",
+        "value": "19.3",
+        "column": "MPIW",
+        "row_index": 2,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "a08b5486b2cb4fba",
+        "metric_name": "MAE",
+        "metric_key": "mae",
+        "metric_family": "MAE",
+        "target": "Winter rapeseed (205)",
+        "value": "5.3",
+        "column": "MAE",
+        "row_index": 3,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "902fc475e0a367f4",
+        "metric_name": "MAE range",
+        "metric_key": "mae_range",
+        "metric_family": null,
+        "target": "Winter rapeseed (205)",
+        "value": "3.5-8.5",
+        "column": "MAE range",
+        "row_index": 3,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "4e68ffffe783c026",
+        "metric_name": "RMSE",
+        "metric_key": "rmse",
+        "metric_family": "RMSE",
+        "target": "Winter rapeseed (205)",
+        "value": "6.7",
+        "column": "RMSE",
+        "row_index": 3,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "fb748908db5e7fd1",
+        "metric_name": "PICP",
+        "metric_key": "picp",
+        "metric_family": "PICP",
+        "target": "Winter rapeseed (205)",
+        "value": "0.898",
+        "column": "PICP",
+        "row_index": 3,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "8db50d9fe3f30574",
+        "metric_name": "MPIW",
+        "metric_key": "mpiw",
+        "metric_family": "MPIW",
+        "target": "Winter rapeseed (205)",
+        "value": "22.2",
+        "column": "MPIW",
+        "row_index": 3,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "3d3e7d4afebf38fc",
+        "metric_name": "MAE",
+        "metric_key": "mae",
+        "metric_family": "MAE",
+        "target": "Spring barley (207)",
+        "value": "5.3",
+        "column": "MAE",
+        "row_index": 4,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "6f42877ed90e39e5",
+        "metric_name": "MAE range",
+        "metric_key": "mae_range",
+        "metric_family": null,
+        "target": "Spring barley (207)",
+        "value": "4.2-5.9",
+        "column": "MAE range",
+        "row_index": 4,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "f755a56baefae948",
+        "metric_name": "RMSE",
+        "metric_key": "rmse",
+        "metric_family": "RMSE",
+        "target": "Spring barley (207)",
+        "value": "6.5",
+        "column": "RMSE",
+        "row_index": 4,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "da6a9dd282d14050",
+        "metric_name": "PICP",
+        "metric_key": "picp",
+        "metric_family": "PICP",
+        "target": "Spring barley (207)",
+        "value": "0.901",
+        "column": "PICP",
+        "row_index": 4,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "606e277f21c46611",
+        "metric_name": "MPIW",
+        "metric_key": "mpiw",
+        "metric_family": "MPIW",
+        "target": "Spring barley (207)",
+        "value": "21.6",
+        "column": "MPIW",
+        "row_index": 4,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "039355b0c9cd4724",
+        "metric_name": "MAE",
+        "metric_key": "mae",
+        "metric_family": "MAE",
+        "target": "Oats (208)",
+        "value": "5.1",
+        "column": "MAE",
+        "row_index": 5,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "d442201503767aac",
+        "metric_name": "MAE range",
+        "metric_key": "mae_range",
+        "metric_family": null,
+        "target": "Oats (208)",
+        "value": "3.6-5.8",
+        "column": "MAE range",
+        "row_index": 5,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "496c4faa10bfeea4",
+        "metric_name": "RMSE",
+        "metric_key": "rmse",
+        "metric_family": "RMSE",
+        "target": "Oats (208)",
+        "value": "6.4",
+        "column": "RMSE",
+        "row_index": 5,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "2a9b92f3bff7e941",
+        "metric_name": "PICP",
+        "metric_key": "picp",
+        "metric_family": "PICP",
+        "target": "Oats (208)",
+        "value": "0.899",
+        "column": "PICP",
+        "row_index": 5,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "e5cf426905ea997d",
+        "metric_name": "MPIW",
+        "metric_key": "mpiw",
+        "metric_family": "MPIW",
+        "target": "Oats (208)",
+        "value": "20.6",
+        "column": "MPIW",
+        "row_index": 5,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "168ae2d4c8a47ad5",
+        "metric_name": "MAE",
+        "metric_key": "mae",
+        "metric_family": "MAE",
+        "target": "Maize (215)",
+        "value": "5.2",
+        "column": "MAE",
+        "row_index": 6,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "9446429147f64371",
+        "metric_name": "MAE range",
+        "metric_key": "mae_range",
+        "metric_family": null,
+        "target": "Maize (215)",
+        "value": "3.1-7.5",
+        "column": "MAE range",
+        "row_index": 6,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "cfcd1ca60f28d256",
+        "metric_name": "RMSE",
+        "metric_key": "rmse",
+        "metric_family": "RMSE",
+        "target": "Maize (215)",
+        "value": "6.4",
+        "column": "RMSE",
+        "row_index": 6,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "5bc561feb8c2603d",
+        "metric_name": "PICP",
+        "metric_key": "picp",
+        "metric_family": "PICP",
+        "target": "Maize (215)",
+        "value": "0.897",
+        "column": "PICP",
+        "row_index": 6,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "2f8205a3a93a0a4c",
+        "metric_name": "MPIW",
+        "metric_key": "mpiw",
+        "metric_family": "MPIW",
+        "target": "Maize (215)",
+        "value": "21.1",
+        "column": "MPIW",
+        "row_index": 6,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "9e7799273602a812",
+        "metric_name": "MAE",
+        "metric_key": "mae",
+        "metric_family": "MAE",
+        "target": "Sugar beet (253)",
+        "value": "4.6",
+        "column": "MAE",
+        "row_index": 7,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "2eba36063264ce09",
+        "metric_name": "MAE range",
+        "metric_key": "mae_range",
+        "metric_family": null,
+        "target": "Sugar beet (253)",
+        "value": "3.9-9.4",
+        "column": "MAE range",
+        "row_index": 7,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "210eb67a6c5eea76",
+        "metric_name": "RMSE",
+        "metric_key": "rmse",
+        "metric_family": "RMSE",
+        "target": "Sugar beet (253)",
+        "value": "5.6",
+        "column": "RMSE",
+        "row_index": 7,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "3ee2a67cdb267cff",
+        "metric_name": "PICP",
+        "metric_key": "picp",
+        "metric_family": "PICP",
+        "target": "Sugar beet (253)",
+        "value": "0.901",
+        "column": "PICP",
+        "row_index": 7,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "dd66f35a0d5821c1",
+        "metric_name": "MPIW",
+        "metric_key": "mpiw",
+        "metric_family": "MPIW",
+        "target": "Sugar beet (253)",
+        "value": "18.7",
+        "column": "MPIW",
+        "row_index": 7,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "1275f197ea1bf333",
+        "metric_name": "MAE",
+        "metric_key": "mae",
+        "metric_family": "MAE",
+        "target": "All crops",
+        "value": "5.2",
+        "column": "MAE",
+        "row_index": 8,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "e2810b1625cb4619",
+        "metric_name": "MAE range",
+        "metric_key": "mae_range",
+        "metric_family": null,
+        "target": "All crops",
+        "value": "3.1-9.4",
+        "column": "MAE range",
+        "row_index": 8,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "cb7ebfb730370d59",
+        "metric_name": "RMSE",
+        "metric_key": "rmse",
+        "metric_family": "RMSE",
+        "target": "All crops",
+        "value": "6.5",
+        "column": "RMSE",
+        "row_index": 8,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "eee99b010e3b47f3",
+        "metric_name": "PICP",
+        "metric_key": "picp",
+        "metric_family": "PICP",
+        "target": "All crops",
+        "value": "0.898",
+        "column": "PICP",
+        "row_index": 8,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "structured_table_metric",
+        "candidate_id": "02ced9c27ec3d9b4",
+        "metric_name": "MPIW",
+        "metric_key": "mpiw",
+        "metric_family": "MPIW",
+        "target": "All crops",
+        "value": "21.3",
+        "column": "MPIW",
+        "row_index": 8,
+        "source_item_id": "tbl_003",
+        "source_page": 17,
+        "source_location": "Table 3",
+        "section_hint": "3.2 Accuracy and calibration across the crop family",
+        "caption": "Table 3. Out-of-sample accuracy and prediction-interval performance of the eight crops, summarised from the per-crop VAM and PIC tables (all error metrics in days; N I = number of produced surfaces as in Table 2). MAE and RMSE are medians over all produced (phase, year) surfaces of a crop; the MAE range spans its per-phase median MAE s. PICP and MPIW are the median empirical coverage of the nominal 90 % prediction intervals and their median width, from the per-crop PIC tables restricted to the p\n...[TRUNCATED 286 CHARACTERS]..."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "73e5136e9f16c5ac",
+        "metric_names": [
+          "MAE",
+          "EPSG"
+        ],
+        "metric_keys": [
+          "mae",
+          "epsg"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "epsg"
+        ],
+        "metric_families": [
+          "MAE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "2.8-5.1",
+            "candidate_role": "result",
+            "unit_hint": "days."
+          },
+          {
+            "metric_name": "EPSG",
+            "metric_key": "epsg",
+            "value": "25832",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "Germany",
+        "summary_signal": true,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "Germany-wide 1km time series of interpolated phenological phase-entry dates for eight major crop types, 1993-2025",
+        "excerpt": "Abstract. Spatially and temporally consistent information on crop development is needed for many agro-environmental applications. In Germany, the volunteer phenology network of the German Meteorological Service (Deutscher Wetterdienst, DWD) provides long-term observations of crop development. However, the observations are irregularly distributed and contain spatial and temporal gaps. In this study, we present a Germany-wide, gridded time series of interpolated phenological phase-entry dates for eight major crop types. The dataset was produced with the open-source PhenoPhaseR workflow, which implements the PHASE approach and combines a photoperiod-weighted growing-degree-days model with a spatial generalised additive model. The data are provided at 1 km resolution in ETRS89/UTM zone 32N (EPSG:25832) for 1993-2025; spring barley is available for 2014-2025. For each crop and phase, the phase-entry day-of-year (DOY) is stored as a multi-band Cloud-Optimised GeoTIFF with one band per year. A matching Bayesian posterior standard error (BSE) layer describes the model-internal precision of the fitted mean. Each phase-year surface is evaluated using held-out observations, while predictioninterval coverage is assessed separately by five-fold cross-validation. For winter wheat ( Triticum aestivum , DWD Plant ID 202), which is used as a worked example, the median out-of-sample MAE across s\n...[TRUNCATED 790 CHARACTERS]..."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "c9509eba0cb78212",
+        "metric_names": [
+          "EPSG"
+        ],
+        "metric_keys": [
+          "epsg"
+        ],
+        "result_metric_keys": [
+          "epsg"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "EPSG",
+            "metric_key": "epsg",
+            "value": "25832",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "ETRS89/UTM zone 32N (EPSG",
+        "summary_signal": false,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "Germany-wide 1km time series of interpolated phenological phase-entry dates for eight major crop types, 1993-2025",
+        "excerpt": "The dataset was produced with the open-source PhenoPhaseR workflow, which implements the PHASE approach and combines a photoperiod-weighted growing-degree-days model with a spatial generalised additive model. The data are provided at 1 km resolution in ETRS89/UTM zone 32N (EPSG:25832) for 1993-2025; spring barley is available for 2014-2025."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "a892729362fc02e1",
+        "metric_names": [
+          "EPSG"
+        ],
+        "metric_keys": [
+          "epsg"
+        ],
+        "result_metric_keys": [
+          "epsg"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "EPSG",
+            "metric_key": "epsg",
+            "value": "25832",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "ETRS89/UTM zone 32N (EPSG",
+        "summary_signal": false,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "Germany-wide 1km time series of interpolated phenological phase-entry dates for eight major crop types, 1993-2025",
+        "excerpt": "The data are provided at 1 km resolution in ETRS89/UTM zone 32N (EPSG:25832) for 1993-2025; spring barley is available for 2014-2025."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "dbc046b3a3b3cc72",
+        "metric_names": [
+          "EPSG"
+        ],
+        "metric_keys": [
+          "epsg"
+        ],
+        "result_metric_keys": [
+          "epsg"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "EPSG",
+            "metric_key": "epsg",
+            "value": "25832",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "ETRS89/UTM zone 32N (EPSG",
+        "summary_signal": false,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "Germany-wide 1km time series of interpolated phenological phase-entry dates for eight major crop types, 1993-2025",
+        "excerpt": "The data are provided at 1 km resolution in ETRS89/UTM zone 32N (EPSG:25832) for 1993-2025; spring barley is available for 2014-2025. For each crop and phase, the phase-entry day-of-year (DOY) is stored as a multi-band Cloud-Optimised GeoTIFF with one band per year."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "a3d36eb416a3bb6b",
+        "metric_names": [
+          "MAE"
+        ],
+        "metric_keys": [
+          "mae"
+        ],
+        "result_metric_keys": [
+          "mae"
+        ],
+        "metric_families": [
+          "MAE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "2.8-5.1",
+            "candidate_role": "result",
+            "unit_hint": "days."
+          }
+        ],
+        "target_hint": "winter wheat ( Triticum aestivum",
+        "summary_signal": true,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "Germany-wide 1km time series of interpolated phenological phase-entry dates for eight major crop types, 1993-2025",
+        "excerpt": "For winter wheat ( Triticum aestivum , DWD Plant ID 202), which is used as a worked example, the median out-of-sample MAE across seven phases is 5.7 days. Heading is interpolated most accurately, with annual MAE values of 2.8-5.1 days."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "57e5204e39d8faba",
+        "metric_names": [
+          "MAE"
+        ],
+        "metric_keys": [
+          "mae"
+        ],
+        "result_metric_keys": [
+          "mae"
+        ],
+        "metric_families": [
+          "MAE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "2.8-5.1",
+            "candidate_role": "result",
+            "unit_hint": "days."
+          }
+        ],
+        "target_hint": "Heading",
+        "summary_signal": false,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "Germany-wide 1km time series of interpolated phenological phase-entry dates for eight major crop types, 1993-2025",
+        "excerpt": "Heading is interpolated most accurately, with annual MAE values of 2.8-5.1 days."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "612453812bdf1967",
+        "metric_names": [
+          "MAE"
+        ],
+        "metric_keys": [
+          "mae"
+        ],
+        "result_metric_keys": [
+          "mae"
+        ],
+        "metric_families": [
+          "MAE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "2.8-5.1",
+            "candidate_role": "result",
+            "unit_hint": "days."
+          }
+        ],
+        "target_hint": "Heading",
+        "summary_signal": false,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "Germany-wide 1km time series of interpolated phenological phase-entry dates for eight major crop types, 1993-2025",
+        "excerpt": "Heading is interpolated most accurately, with annual MAE values of 2.8-5.1 days. The 90 % prediction intervals show close-to-nominal cross-validated coverage although the number of contributing observations decreases strongly over the study period."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "192972fc9219d1d3",
+        "metric_names": [
+          "EPSG"
+        ],
+        "metric_keys": [
+          "epsg"
+        ],
+        "result_metric_keys": [
+          "epsg"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "EPSG",
+            "metric_key": "epsg",
+            "value": "25832",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "projected reference system ETRS89 / UTM zone 32N (EPSG",
+        "summary_signal": false,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "2.1 Input data preparation",
+        "excerpt": "The output grid follows the 1 km digital elevation model (DEM) provided by the Federal Agency for Cartography and Geodesy (BKG). All interpolated products are distributed in the projected reference system ETRS89 / UTM zone 32N (EPSG:25832). Both datasets are part of the input data archive (DWD and JKI, 2026)."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "9d107ecce7b6643d",
+        "metric_names": [
+          "EPSG"
+        ],
+        "metric_keys": [
+          "epsg"
+        ],
+        "result_metric_keys": [
+          "epsg"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "EPSG",
+            "metric_key": "epsg",
+            "value": "25832",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "projected reference system ETRS89 / UTM zone 32N (EPSG",
+        "summary_signal": false,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "2.1 Input data preparation",
+        "excerpt": "The output grid follows the 1 km digital elevation model (DEM) provided by the Federal Agency for Cartography and Geodesy (BKG). All interpolated products are distributed in the projected reference system ETRS89 / UTM zone 32N (EPSG:25832)."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "38b92a5480122b04",
+        "metric_names": [
+          "EPSG"
+        ],
+        "metric_keys": [
+          "epsg"
+        ],
+        "result_metric_keys": [
+          "epsg"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "EPSG",
+            "metric_key": "epsg",
+            "value": "25832",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "projected reference system ETRS89 / UTM zone 32N (EPSG",
+        "summary_signal": false,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "2.1 Input data preparation",
+        "excerpt": "All interpolated products are distributed in the projected reference system ETRS89 / UTM zone 32N (EPSG:25832)."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "0d09afd3c69dc1fd",
+        "metric_names": [
+          "EPSG"
+        ],
+        "metric_keys": [
+          "epsg"
+        ],
+        "result_metric_keys": [
+          "epsg"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "EPSG",
+            "metric_key": "epsg",
+            "value": "25832",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "projected reference system ETRS89 / UTM zone 32N (EPSG",
+        "summary_signal": false,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "2.1 Input data preparation",
+        "excerpt": "All interpolated products are distributed in the projected reference system ETRS89 / UTM zone 32N (EPSG:25832). Both datasets are part of the input data archive (DWD and JKI, 2026)."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "eb2e15caa4cdd730",
+        "metric_names": [
+          "DOY"
+        ],
+        "metric_keys": [
+          "doy"
+        ],
+        "result_metric_keys": [
+          "doy"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "DOY",
+            "metric_key": "doy",
+            "value": "1",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "summer crops",
+        "summary_signal": false,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "2.1.2 Phenological observations",
+        "excerpt": "- -For winter crops (e.g. winter wheat, winter rye, winter barley, winter rapeseed), the reference start phase (default: sowing in autumn or PhaseID = 10 ) is assigned to the previous calendar year. The corresponding DOY is stored as a negative integer. - -For summer crops, the start-phase DOY is a positive index within the current calendar year (default DOY=1 )."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "bc760bffbfb4e270",
+        "metric_names": [
+          "DOY"
+        ],
+        "metric_keys": [
+          "doy"
+        ],
+        "result_metric_keys": [
+          "doy"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "DOY",
+            "metric_key": "doy",
+            "value": "1",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "summer crops",
+        "summary_signal": false,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "2.1.2 Phenological observations",
+        "excerpt": "The corresponding DOY is stored as a negative integer. - -For summer crops, the start-phase DOY is a positive index within the current calendar year (default DOY=1 )."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "8cee92ce2a930bb5",
+        "metric_names": [
+          "RMSE"
+        ],
+        "metric_keys": [
+          "rmse"
+        ],
+        "result_metric_keys": [
+          "rmse"
+        ],
+        "metric_families": [
+          "RMSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "2",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": null,
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "2.3.4 Validation",
+        "excerpt": "where DOY i is the observed phenological DOY at test station i , ̂ DOY i is the interpolated prediction at that location, DOY is the mean of the test-set observations, and n test is the number of held-out stations. Mean squared error (MSE = RMSE 2 ) is additionally recorded."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "620589d0fc31f6b0",
+        "metric_names": [
+          "RMSE"
+        ],
+        "metric_keys": [
+          "rmse"
+        ],
+        "result_metric_keys": [
+          "rmse"
+        ],
+        "metric_families": [
+          "RMSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "2",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": null,
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "2.3.4 Validation",
+        "excerpt": "Mean squared error (MSE = RMSE 2 ) is additionally recorded."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "0b1db1b7f4d50661",
+        "metric_names": [
+          "MAE",
+          "MAE",
+          "MAE",
+          "RMSE",
+          "PICP"
+        ],
+        "metric_keys": [
+          "mae",
+          "mae",
+          "mae",
+          "rmse",
+          "picp"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "mae",
+          "mae",
+          "rmse",
+          "picp"
+        ],
+        "metric_families": [
+          "MAE",
+          "MAE",
+          "MAE",
+          "RMSE",
+          "PICP"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "3.9",
+            "candidate_role": "result"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "7.5",
+            "candidate_role": "result",
+            "unit_hint": "and"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "4.6-5.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.5",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.896-0.901",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "winter wheat",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "excerpt": "Every published surface is validated by the identical out-of-sample protocol (Sect. 2.3.4), and the accuracy of the full crop family is summarised in Table 3. The eight crops show similar overall accuracy: the per-crop median MAE spans 4.6-5.7 days, with a family-wide median of 5.2 days (interquartile range 4.1-6.5 days) and a median RMSE of 6.5 days over all 1684 produced surfaces. A consistent phase dependence emerges across the family. Heading (18) is the most accurately interpolated phase in all four crops for which it is modelled (median MAE 3.9, 3.8, 3.3, and 4.2 days for winter wheat, winter rye, winter barley, and spring barley, respectively), and flowering (5) takes this role for winter rapeseed (3.5 days), whereas the least accurately interpolated phases are early vegetative stages and, for maize and sugar beet, harvest (24; median MAE 7.5 and 9.4 days). Percrop accuracy time series for every phase are shown in Fig. B1 (Appendix B). The prediction intervals show close-to-nominal coverage across the crop family: the per-crop median PICP at the nominal 90 % level lies between 0.896 and 0.901, and 90.7 % of all produced surfaces fall within ± 0 . 02 of nominal, at median interval widths of 18.7-23.5 days (Table 3). Winter wheat, the worked example of Sect. 3.3, has the highest median MAE and RMSE of the eight crops and therefore represents a comparatively demanding examp\n...[TRUNCATED 226 CHARACTERS]..."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "4563fd7d56d42e92",
+        "metric_names": [
+          "MAE",
+          "RMSE"
+        ],
+        "metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "metric_families": [
+          "MAE",
+          "RMSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "4.6-5.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.5",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "eight crops",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "excerpt": "2.3.4), and the accuracy of the full crop family is summarised in Table 3. The eight crops show similar overall accuracy: the per-crop median MAE spans 4.6-5.7 days, with a family-wide median of 5.2 days (interquartile range 4.1-6.5 days) and a median RMSE of 6.5 days over all 1684 produced surfaces."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "c78847da5d57d614",
+        "metric_names": [
+          "MAE",
+          "RMSE"
+        ],
+        "metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "metric_families": [
+          "MAE",
+          "RMSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "4.6-5.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.5",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "eight crops",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "excerpt": "The eight crops show similar overall accuracy: the per-crop median MAE spans 4.6-5.7 days, with a family-wide median of 5.2 days (interquartile range 4.1-6.5 days) and a median RMSE of 6.5 days over all 1684 produced surfaces."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "bf70a54db6456a87",
+        "metric_names": [
+          "MAE",
+          "RMSE"
+        ],
+        "metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "metric_families": [
+          "MAE",
+          "RMSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "4.6-5.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.5",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "eight crops",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "excerpt": "The eight crops show similar overall accuracy: the per-crop median MAE spans 4.6-5.7 days, with a family-wide median of 5.2 days (interquartile range 4.1-6.5 days) and a median RMSE of 6.5 days over all 1684 produced surfaces. A consistent phase dependence emerges across the family."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "5736ae60d38ef36c",
+        "metric_names": [
+          "MAE",
+          "MAE"
+        ],
+        "metric_keys": [
+          "mae",
+          "mae"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "mae"
+        ],
+        "metric_families": [
+          "MAE",
+          "MAE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "3.9",
+            "candidate_role": "result"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "7.5",
+            "candidate_role": "result",
+            "unit_hint": "and"
+          }
+        ],
+        "target_hint": "winter wheat",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "excerpt": "A consistent phase dependence emerges across the family. Heading (18) is the most accurately interpolated phase in all four crops for which it is modelled (median MAE 3.9, 3.8, 3.3, and 4.2 days for winter wheat, winter rye, winter barley, and spring barley, respectively), and flowering (5) takes this role for winter rapeseed (3.5 days), whereas the least accurately interpolated phases are early vegetative stages and, for maize and sugar beet, harvest (24; median MAE 7.5 and 9.4 days)."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "6865a6132c2e9182",
+        "metric_names": [
+          "MAE",
+          "MAE"
+        ],
+        "metric_keys": [
+          "mae",
+          "mae"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "mae"
+        ],
+        "metric_families": [
+          "MAE",
+          "MAE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "3.9",
+            "candidate_role": "result"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "7.5",
+            "candidate_role": "result",
+            "unit_hint": "and"
+          }
+        ],
+        "target_hint": "winter wheat",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "excerpt": "Heading (18) is the most accurately interpolated phase in all four crops for which it is modelled (median MAE 3.9, 3.8, 3.3, and 4.2 days for winter wheat, winter rye, winter barley, and spring barley, respectively), and flowering (5) takes this role for winter rapeseed (3.5 days), whereas the least accurately interpolated phases are early vegetative stages and, for maize and sugar beet, harvest (24; median MAE 7.5 and 9.4 days)."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "c84172f254aa1043",
+        "metric_names": [
+          "MAE",
+          "MAE"
+        ],
+        "metric_keys": [
+          "mae",
+          "mae"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "mae"
+        ],
+        "metric_families": [
+          "MAE",
+          "MAE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "3.9",
+            "candidate_role": "result"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "7.5",
+            "candidate_role": "result",
+            "unit_hint": "and"
+          }
+        ],
+        "target_hint": "winter wheat",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "excerpt": "Heading (18) is the most accurately interpolated phase in all four crops for which it is modelled (median MAE 3.9, 3.8, 3.3, and 4.2 days for winter wheat, winter rye, winter barley, and spring barley, respectively), and flowering (5) takes this role for winter rapeseed (3.5 days), whereas the least accurately interpolated phases are early vegetative stages and, for maize and sugar beet, harvest (24; median MAE 7.5 and 9.4 days). Percrop accuracy time series for every phase are shown in Fig."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "b6688990a1368435",
+        "metric_names": [
+          "PICP"
+        ],
+        "metric_keys": [
+          "picp"
+        ],
+        "result_metric_keys": [
+          "picp"
+        ],
+        "metric_families": [
+          "PICP"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.896-0.901",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "crop family",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "excerpt": "B1 (Appendix B). The prediction intervals show close-to-nominal coverage across the crop family: the per-crop median PICP at the nominal 90 % level lies between 0.896 and 0.901, and 90.7 % of all produced surfaces fall within ± 0 ."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "332fc002d9bc3e23",
+        "metric_names": [
+          "PICP"
+        ],
+        "metric_keys": [
+          "picp"
+        ],
+        "result_metric_keys": [
+          "picp"
+        ],
+        "metric_families": [
+          "PICP"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.896-0.901",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "crop family",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "excerpt": "The prediction intervals show close-to-nominal coverage across the crop family: the per-crop median PICP at the nominal 90 % level lies between 0.896 and 0.901, and 90.7 % of all produced surfaces fall within ± 0 ."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "d14f427cbbcfa427",
+        "metric_names": [
+          "PICP"
+        ],
+        "metric_keys": [
+          "picp"
+        ],
+        "result_metric_keys": [
+          "picp"
+        ],
+        "metric_families": [
+          "PICP"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.896-0.901",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "crop family",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "excerpt": "The prediction intervals show close-to-nominal coverage across the crop family: the per-crop median PICP at the nominal 90 % level lies between 0.896 and 0.901, and 90.7 % of all produced surfaces fall within ± 0 . 02 of nominal, at median interval widths of 18.7-23.5 days (Table 3)."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "66cb17a09cdbc08b",
+        "metric_names": [
+          "MAE",
+          "RMSE"
+        ],
+        "metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "metric_families": [
+          "MAE",
+          "RMSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "7.1",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "every phase and year",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.2 Accuracy across phenological phases",
+        "excerpt": "Each interpolated phase-entry surface was validated out of sample. For every phase and year, the spatial generalised additive model (DOY ∼ s ( X,Y ) + DEM ) was assessed against the withheld station observations and summarised by the rootmean-square error ( RMSE ) and the mean absolute error ( MAE ) between predicted and observed entry dates (file series VAM\\_202-&lt;phase&gt;.csv ). Across the seven winter wheat phases, out-of-sample errors are of the order of 2.6-9.5 days ( MAE ; median 5.7 days) and 3.4-11.6 days ( RMSE ; median 7.1 days) over the full period (Fig. 4a)."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "9decb059e0069f6e",
+        "metric_names": [
+          "MAE",
+          "RMSE"
+        ],
+        "metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "metric_families": [
+          "MAE",
+          "RMSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "7.1",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "every phase and year",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.2 Accuracy across phenological phases",
+        "excerpt": "For every phase and year, the spatial generalised additive model (DOY ∼ s ( X,Y ) + DEM ) was assessed against the withheld station observations and summarised by the rootmean-square error ( RMSE ) and the mean absolute error ( MAE ) between predicted and observed entry dates (file series VAM\\_202-&lt;phase&gt;.csv ). Across the seven winter wheat phases, out-of-sample errors are of the order of 2.6-9.5 days ( MAE ; median 5.7 days) and 3.4-11.6 days ( RMSE ; median 7.1 days) over the full period (Fig."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "42294327a72a2679",
+        "metric_names": [
+          "MAE",
+          "RMSE"
+        ],
+        "metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "metric_families": [
+          "MAE",
+          "RMSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "7.1",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "seven winter wheat phases",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.2 Accuracy across phenological phases",
+        "excerpt": "Across the seven winter wheat phases, out-of-sample errors are of the order of 2.6-9.5 days ( MAE ; median 5.7 days) and 3.4-11.6 days ( RMSE ; median 7.1 days) over the full period (Fig."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "1cfff628204c7b98",
+        "metric_names": [
+          "MAE",
+          "RMSE"
+        ],
+        "metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "metric_families": [
+          "MAE",
+          "RMSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "7.1",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "seven winter wheat phases",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.2 Accuracy across phenological phases",
+        "excerpt": "Across the seven winter wheat phases, out-of-sample errors are of the order of 2.6-9.5 days ( MAE ; median 5.7 days) and 3.4-11.6 days ( RMSE ; median 7.1 days) over the full period (Fig. 4a)."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "441cdc76ba61268a",
+        "metric_names": [
+          "MAE",
+          "MAE"
+        ],
+        "metric_keys": [
+          "mae",
+          "mae"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "mae"
+        ],
+        "metric_families": [
+          "MAE",
+          "MAE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "7.5",
+            "candidate_role": "result",
+            "unit_hint": "and"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "2.8-5.1",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "heading phase",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.2 Accuracy across phenological phases",
+        "excerpt": "Accuracy is clearly phase-dependent. The heading phase (18) is interpolated most accurately, with an MAE of 2.8-5.1 days (median 3.9 days), whereas the early post-emergence phases - emergence (12) and shooting (15) - are the least accurate (median MAE 7.5 and 7.3 days, respectively). This ordering is consistent with the biological interpretation that heading is a temperature-driven, sharply defined and reliably reported stage, while the timing of the earliest phases is more sensitive to sowing-date variability and observer interpretation."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "3f66fe2750869314",
+        "metric_names": [
+          "MAE",
+          "MAE"
+        ],
+        "metric_keys": [
+          "mae",
+          "mae"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "mae"
+        ],
+        "metric_families": [
+          "MAE",
+          "MAE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "7.5",
+            "candidate_role": "result",
+            "unit_hint": "and"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "2.8-5.1",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "heading phase",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.2 Accuracy across phenological phases",
+        "excerpt": "Accuracy is clearly phase-dependent. The heading phase (18) is interpolated most accurately, with an MAE of 2.8-5.1 days (median 3.9 days), whereas the early post-emergence phases - emergence (12) and shooting (15) - are the least accurate (median MAE 7.5 and 7.3 days, respectively)."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "311b069bddc0e103",
+        "metric_names": [
+          "MAE",
+          "MAE"
+        ],
+        "metric_keys": [
+          "mae",
+          "mae"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "mae"
+        ],
+        "metric_families": [
+          "MAE",
+          "MAE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "7.5",
+            "candidate_role": "result",
+            "unit_hint": "and"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "2.8-5.1",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "heading phase",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.2 Accuracy across phenological phases",
+        "excerpt": "The heading phase (18) is interpolated most accurately, with an MAE of 2.8-5.1 days (median 3.9 days), whereas the early post-emergence phases - emergence (12) and shooting (15) - are the least accurate (median MAE 7.5 and 7.3 days, respectively)."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "81834c35273d440b",
+        "metric_names": [
+          "MAE",
+          "MAE"
+        ],
+        "metric_keys": [
+          "mae",
+          "mae"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "mae"
+        ],
+        "metric_families": [
+          "MAE",
+          "MAE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "7.5",
+            "candidate_role": "result",
+            "unit_hint": "and"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "2.8-5.1",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "heading phase",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.2 Accuracy across phenological phases",
+        "excerpt": "The heading phase (18) is interpolated most accurately, with an MAE of 2.8-5.1 days (median 3.9 days), whereas the early post-emergence phases - emergence (12) and shooting (15) - are the least accurate (median MAE 7.5 and 7.3 days, respectively). This ordering is consistent with the biological interpretation that heading is a temperature-driven, sharply defined and reliably reported stage, while the timing of the earliest phases is more sensitive to sowing-date variability and observer interpretation."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "65c3ce474b4e4046",
+        "metric_names": [
+          "BSE"
+        ],
+        "metric_keys": [
+          "bse"
+        ],
+        "result_metric_keys": [
+          "bse"
+        ],
+        "metric_families": [
+          "BSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "BSE",
+            "metric_key": "bse",
+            "value": "0.76",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "heading phase",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+        "excerpt": "Alongside each DOY surface we provide a per-pixel uncertainty layer (BSE), the Bayesian posterior standard error of the fitted mean returned by the spatial model. BSE is a model-internal statistical uncertainty - the model's own estimate of the precision of its fitted surface - and not a validated predictive uncertainty. It generally increases where the fitted surface is less constrained by observations and decreases where observations are denser (Sect. 2.3.5). Spatial summaries of the BSE field (percentiles per phase and year) are tabulated in the GEM files. For the heading phase, the median per-pixel BSE rises from 0.76 days in 1993 to 1.38 days in 2025 (Fig. 4c), tracking the decline of the observation network shown in Fig. 4b and illustrating how the layer flags the years and regions in which the interpolated surface is least constrained."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "a4335999c7e04e45",
+        "metric_names": [
+          "BSE"
+        ],
+        "metric_keys": [
+          "bse"
+        ],
+        "result_metric_keys": [
+          "bse"
+        ],
+        "metric_families": [
+          "BSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "BSE",
+            "metric_key": "bse",
+            "value": "0.76",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "heading phase",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+        "excerpt": "Spatial summaries of the BSE field (percentiles per phase and year) are tabulated in the GEM files. For the heading phase, the median per-pixel BSE rises from 0.76 days in 1993 to 1.38 days in 2025 (Fig."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "01ebd9497a7baf01",
+        "metric_names": [
+          "BSE"
+        ],
+        "metric_keys": [
+          "bse"
+        ],
+        "result_metric_keys": [
+          "bse"
+        ],
+        "metric_families": [
+          "BSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "BSE",
+            "metric_key": "bse",
+            "value": "0.76",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "heading phase",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+        "excerpt": "For the heading phase, the median per-pixel BSE rises from 0.76 days in 1993 to 1.38 days in 2025 (Fig."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "f5cdb2a288dcf7af",
+        "metric_names": [
+          "BSE"
+        ],
+        "metric_keys": [
+          "bse"
+        ],
+        "result_metric_keys": [
+          "bse"
+        ],
+        "metric_families": [
+          "BSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "BSE",
+            "metric_key": "bse",
+            "value": "0.76",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "heading phase",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+        "excerpt": "For the heading phase, the median per-pixel BSE rises from 0.76 days in 1993 to 1.38 days in 2025 (Fig. 4c), tracking the decline of the observation network shown in Fig."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "4de647750c7f14f2",
+        "metric_names": [
+          "PICP",
+          "MPIW"
+        ],
+        "metric_keys": [
+          "picp",
+          "mpiw"
+        ],
+        "result_metric_keys": [
+          "picp",
+          "mpiw"
+        ],
+        "metric_families": [
+          "PICP",
+          "MPIW"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.900",
+            "candidate_role": "result"
+          },
+          {
+            "metric_name": "MPIW",
+            "metric_key": "mpiw",
+            "value": "16.0",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": null,
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+        "excerpt": "To assess predictive coverage separately from the BSE, we additionally report the prediction-interval coverage probability (PICP) and the mean prediction-interval width (MPIW) at a nominal 90 % level (PIC files), following the reliability-sharpness protocol for validating predictive uncertainty (Schmidinger and Heuvelink, 2023). These metrics are obtained from a separate five-fold cross-validation in which each station is held out exactly once. The prediction interval combines the fold-specific BAMmodel-mean standard error with the residual variance of the final production model. For the heading phase, the observed coverage is close to nominal throughout, with a mean PICP of 0.900 (range 0.888-0.920 across years) and a mean interval width of 16.0 days (range 12.6-21.4 days; Fig. 4d). The nominal 90 % intervals therefore show close-to-nominal empirical coverage even in the most recent, sparsely observed years, where the intervals widen (larger MPIW) without a clear loss of coverage. By reporting BSE and the cross-validated coverage assessment separately, the user receives both the model-internal precision estimate and information on how well the nominal prediction intervals perform within the validation framework."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "d693950c2e2476f3",
+        "metric_names": [
+          "PICP",
+          "MPIW"
+        ],
+        "metric_keys": [
+          "picp",
+          "mpiw"
+        ],
+        "result_metric_keys": [
+          "picp",
+          "mpiw"
+        ],
+        "metric_families": [
+          "PICP",
+          "MPIW"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.900",
+            "candidate_role": "result"
+          },
+          {
+            "metric_name": "MPIW",
+            "metric_key": "mpiw",
+            "value": "16.0",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "heading phase",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+        "excerpt": "The prediction interval combines the fold-specific BAMmodel-mean standard error with the residual variance of the final production model. For the heading phase, the observed coverage is close to nominal throughout, with a mean PICP of 0.900 (range 0.888-0.920 across years) and a mean interval width of 16.0 days (range 12.6-21.4 days; Fig."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "fe4114e88b889138",
+        "metric_names": [
+          "PICP",
+          "MPIW"
+        ],
+        "metric_keys": [
+          "picp",
+          "mpiw"
+        ],
+        "result_metric_keys": [
+          "picp",
+          "mpiw"
+        ],
+        "metric_families": [
+          "PICP",
+          "MPIW"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.900",
+            "candidate_role": "result"
+          },
+          {
+            "metric_name": "MPIW",
+            "metric_key": "mpiw",
+            "value": "16.0",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "heading phase",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+        "excerpt": "For the heading phase, the observed coverage is close to nominal throughout, with a mean PICP of 0.900 (range 0.888-0.920 across years) and a mean interval width of 16.0 days (range 12.6-21.4 days; Fig."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "37a65f4e695b3fb2",
+        "metric_names": [
+          "PICP",
+          "MPIW"
+        ],
+        "metric_keys": [
+          "picp",
+          "mpiw"
+        ],
+        "result_metric_keys": [
+          "picp",
+          "mpiw"
+        ],
+        "metric_families": [
+          "PICP",
+          "MPIW"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.900",
+            "candidate_role": "result"
+          },
+          {
+            "metric_name": "MPIW",
+            "metric_key": "mpiw",
+            "value": "16.0",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "heading phase",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+        "excerpt": "For the heading phase, the observed coverage is close to nominal throughout, with a mean PICP of 0.900 (range 0.888-0.920 across years) and a mean interval width of 16.0 days (range 12.6-21.4 days; Fig. 4d)."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "f9c921f064b5fd0f",
+        "metric_names": [
+          "WI"
+        ],
+        "metric_keys": [
+          "wi"
+        ],
+        "result_metric_keys": [
+          "wi"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "WI",
+            "metric_key": "wi",
+            "value": "16",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "Uckermark district in 2018",
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.5 Interpolated DOY and uncertainty maps",
+        "excerpt": "Figure 7. Derivation of the phase-resolved weather indicator for the Uckermark district in 2018, mirroring Fig. 8 of Möller et al. (2019): (a) Germany-wide E-OBS daily precipitation for the wettest day of the shooting-heading window, with the district outlined; (b) daily precipitation (bars, spatial mean over the district) during the window, with whiskers spanning the ± 1 σ E-OBS ensemble spread of each day, overlaid with the accumulated indicator WI (line). Orange bands at the two phase boundaries span ± 1 BSE and visualise the BSE-based phenological sensitivity component; the blue ribbon around the accumulated indicator spans its ± 1 σ precipitation component, obtained by accumulating the daily spread in quadrature. The dotted vertical marks the day mapped in (a). For 2018 the window spans DOY 113 ± 1 . 5 to DOY 143 ± 1 . 0 , yielding WI =16 . 3 ± 2 . 3 mm(precipitation component)."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "719e5d5036079bc5",
+        "metric_names": [
+          "WI"
+        ],
+        "metric_keys": [
+          "wi"
+        ],
+        "result_metric_keys": [
+          "wi"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "WI",
+            "metric_key": "wi",
+            "value": "16",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": null,
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.5 Interpolated DOY and uncertainty maps",
+        "excerpt": "5 to DOY 143 ± 1 . 0 , yielding WI =16 ."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "345c973e6dea6553",
+        "metric_names": [
+          "WI"
+        ],
+        "metric_keys": [
+          "wi"
+        ],
+        "result_metric_keys": [
+          "wi"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "WI",
+            "metric_key": "wi",
+            "value": "16",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": null,
+        "summary_signal": false,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.5 Interpolated DOY and uncertainty maps",
+        "excerpt": "0 , yielding WI =16 ."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "c876f2cf122aead0",
+        "metric_names": [
+          "WI"
+        ],
+        "metric_keys": [
+          "wi"
+        ],
+        "result_metric_keys": [
+          "wi"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "WI",
+            "metric_key": "wi",
+            "value": "16",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": null,
+        "summary_signal": true,
+        "quality_context": true,
+        "downstream_use_case_result": false,
+        "source_section": "3.3.5 Interpolated DOY and uncertainty maps",
+        "excerpt": "0 , yielding WI =16 . 3 ± 2 ."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "39ec479ad190a944",
+        "metric_names": [
+          "BSE"
+        ],
+        "metric_keys": [
+          "bse"
+        ],
+        "result_metric_keys": [
+          "bse"
+        ],
+        "metric_families": [
+          "BSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "BSE",
+            "metric_key": "bse",
+            "value": "0.76",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "addition",
+        "summary_signal": true,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "4.2 Robustness to the declining observation network",
+        "excerpt": "In addition, for the winter wheat heading phase, the out-of-sample MAE remains within about 3-5 days over the full period. At the same time, the median BSE increases from 0.76 days in 1993 to 1.38 days in 2025, and the cross-validated prediction intervals become wider (Fig. 4c,d). Thus, stable global accuracy does not mean that local data quality remains unchanged. The uncertainty information shows where and when the fitted surface is less well constrained. This aspect is especially relevant for a dataset that will be extended in future years."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "29580ddaf8295735",
+        "metric_names": [
+          "BSE"
+        ],
+        "metric_keys": [
+          "bse"
+        ],
+        "result_metric_keys": [
+          "bse"
+        ],
+        "metric_families": [
+          "BSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "BSE",
+            "metric_key": "bse",
+            "value": "0.76",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "addition",
+        "summary_signal": true,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "4.2 Robustness to the declining observation network",
+        "excerpt": "In addition, for the winter wheat heading phase, the out-of-sample MAE remains within about 3-5 days over the full period. At the same time, the median BSE increases from 0.76 days in 1993 to 1.38 days in 2025, and the cross-validated prediction intervals become wider (Fig."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "02dc89ca007eaab3",
+        "metric_names": [
+          "BSE"
+        ],
+        "metric_keys": [
+          "bse"
+        ],
+        "result_metric_keys": [
+          "bse"
+        ],
+        "metric_families": [
+          "BSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "BSE",
+            "metric_key": "bse",
+            "value": "0.76",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "2025",
+        "summary_signal": true,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "4.2 Robustness to the declining observation network",
+        "excerpt": "At the same time, the median BSE increases from 0.76 days in 1993 to 1.38 days in 2025, and the cross-validated prediction intervals become wider (Fig."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "0ecf54b08e6d3067",
+        "metric_names": [
+          "BSE"
+        ],
+        "metric_keys": [
+          "bse"
+        ],
+        "result_metric_keys": [
+          "bse"
+        ],
+        "metric_families": [
+          "BSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "BSE",
+            "metric_key": "bse",
+            "value": "0.76",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "2025",
+        "summary_signal": true,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "4.2 Robustness to the declining observation network",
+        "excerpt": "At the same time, the median BSE increases from 0.76 days in 1993 to 1.38 days in 2025, and the cross-validated prediction intervals become wider (Fig. 4c,d)."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "bf73000a6905925f",
+        "metric_names": [
+          "MAE",
+          "RMSE",
+          "RMSE"
+        ],
+        "metric_keys": [
+          "mae",
+          "rmse",
+          "rmse"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "rmse",
+          "rmse"
+        ],
+        "metric_families": [
+          "MAE",
+          "RMSE",
+          "RMSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.2",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "9.4-9.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.5",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "reference data",
+        "summary_signal": true,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "4.3 Relation to satellite-based phenology retrieval",
+        "excerpt": "Reported error magnitudes are of a similar order, although the approaches are not directly comparable because they differ in reference data, spatial support and validation design. Htitiou et al. (2024) report median temporal differences within ± 10 days for almost all analysed phases and RMSE values of 9.4-9.7 days against independent field-based BBCH records. Lobert et al. (2023) predict 50-66 % of winter wheat stages within six days of the DWD reference date. The present dataset has a familywide median MAE of 5.2 days and median RMSE of 6.5 days (Table 3), but these values refer to a 1 km spatial support. The comparison therefore provides context and should not be interpreted as a ranking of the methods."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "8e705b1b15b24204",
+        "metric_names": [
+          "RMSE"
+        ],
+        "metric_keys": [
+          "rmse"
+        ],
+        "result_metric_keys": [
+          "rmse"
+        ],
+        "metric_families": [
+          "RMSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "9.4-9.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": null,
+        "summary_signal": true,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "4.3 Relation to satellite-based phenology retrieval",
+        "excerpt": "Htitiou et al. (2024) report median temporal differences within ± 10 days for almost all analysed phases and RMSE values of 9.4-9.7 days against independent field-based BBCH records."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "7b3fa4087261a75f",
+        "metric_names": [
+          "RMSE"
+        ],
+        "metric_keys": [
+          "rmse"
+        ],
+        "result_metric_keys": [
+          "rmse"
+        ],
+        "metric_families": [
+          "RMSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "9.4-9.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": null,
+        "summary_signal": true,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "4.3 Relation to satellite-based phenology retrieval",
+        "excerpt": "(2024) report median temporal differences within ± 10 days for almost all analysed phases and RMSE values of 9.4-9.7 days against independent field-based BBCH records."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "6974452c99284241",
+        "metric_names": [
+          "RMSE"
+        ],
+        "metric_keys": [
+          "rmse"
+        ],
+        "result_metric_keys": [
+          "rmse"
+        ],
+        "metric_families": [
+          "RMSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "9.4-9.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": null,
+        "summary_signal": true,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "4.3 Relation to satellite-based phenology retrieval",
+        "excerpt": "(2024) report median temporal differences within ± 10 days for almost all analysed phases and RMSE values of 9.4-9.7 days against independent field-based BBCH records. Lobert et al."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "77dbd2addeb73441",
+        "metric_names": [
+          "MAE",
+          "RMSE"
+        ],
+        "metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "metric_families": [
+          "MAE",
+          "RMSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.2",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.5",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "present dataset",
+        "summary_signal": true,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "4.3 Relation to satellite-based phenology retrieval",
+        "excerpt": "(2023) predict 50-66 % of winter wheat stages within six days of the DWD reference date. The present dataset has a familywide median MAE of 5.2 days and median RMSE of 6.5 days (Table 3), but these values refer to a 1 km spatial support."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "80896d469425e1c9",
+        "metric_names": [
+          "MAE",
+          "RMSE"
+        ],
+        "metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "metric_families": [
+          "MAE",
+          "RMSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.2",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.5",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "present dataset",
+        "summary_signal": true,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "4.3 Relation to satellite-based phenology retrieval",
+        "excerpt": "The present dataset has a familywide median MAE of 5.2 days and median RMSE of 6.5 days (Table 3), but these values refer to a 1 km spatial support."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "306f14e0c1d0151c",
+        "metric_names": [
+          "MAE",
+          "RMSE"
+        ],
+        "metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "result_metric_keys": [
+          "mae",
+          "rmse"
+        ],
+        "metric_families": [
+          "MAE",
+          "RMSE"
+        ],
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.2",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.5",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "target_hint": "present dataset",
+        "summary_signal": true,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "4.3 Relation to satellite-based phenology retrieval",
+        "excerpt": "The present dataset has a familywide median MAE of 5.2 days and median RMSE of 6.5 days (Table 3), but these values refer to a 1 km spatial support. The comparison therefore provides context and should not be interpreted as a ranking of the methods."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "db5afcc43e6c1699",
+        "metric_names": [
+          "EPSG"
+        ],
+        "metric_keys": [
+          "epsg"
+        ],
+        "result_metric_keys": [
+          "epsg"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "EPSG",
+            "metric_key": "epsg",
+            "value": "25832",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "ETRS89 / UTM zone 32N (EPSG",
+        "summary_signal": false,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "5 Code and data availability",
+        "excerpt": "Each phase is distributed as a multi-band Cloud-Optimised GeoTIFF in ETRS89 / UTM zone 32N (EPSG:25832), one band per year (1993-2025; spring barley: 2014-2025), accompanied by CSV tables of the validation (VAM), model-fit calibration (CAL), uncertainty-quantile (GEM) and prediction-interval coverage (PIC) metrics described in Sect. 2.3. Each deposit is packaged as an RO-Crate whose provenance, cataloguing and quality metadata are machine-actionable (Sect. 2.4)."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "ca0f37e0d3734253",
+        "metric_names": [
+          "EPSG"
+        ],
+        "metric_keys": [
+          "epsg"
+        ],
+        "result_metric_keys": [
+          "epsg"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "EPSG",
+            "metric_key": "epsg",
+            "value": "25832",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "ETRS89 / UTM zone 32N (EPSG",
+        "summary_signal": false,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "5 Code and data availability",
+        "excerpt": "Each phase is distributed as a multi-band Cloud-Optimised GeoTIFF in ETRS89 / UTM zone 32N (EPSG:25832), one band per year (1993-2025; spring barley: 2014-2025), accompanied by CSV tables of the validation (VAM), model-fit calibration (CAL), uncertainty-quantile (GEM) and prediction-interval coverage (PIC) metrics described in Sect."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "89b0b939d15f9ebc",
+        "metric_names": [
+          "EPSG"
+        ],
+        "metric_keys": [
+          "epsg"
+        ],
+        "result_metric_keys": [
+          "epsg"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "EPSG",
+            "metric_key": "epsg",
+            "value": "25832",
+            "candidate_role": "result"
+          }
+        ],
+        "target_hint": "ETRS89 / UTM zone 32N (EPSG",
+        "summary_signal": false,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "5 Code and data availability",
+        "excerpt": "Each phase is distributed as a multi-band Cloud-Optimised GeoTIFF in ETRS89 / UTM zone 32N (EPSG:25832), one band per year (1993-2025; spring barley: 2014-2025), accompanied by CSV tables of the validation (VAM), model-fit calibration (CAL), uncertainty-quantile (GEM) and prediction-interval coverage (PIC) metrics described in Sect. 2.3."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "b4e025da014f0295",
+        "metric_names": [
+          "ID"
+        ],
+        "metric_keys": [
+          "id"
+        ],
+        "result_metric_keys": [
+          "id"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "ID",
+            "metric_key": "id",
+            "value": "202",
+            "candidate_role": "result",
+            "unit_hint": "winter"
+          }
+        ],
+        "target_hint": null,
+        "summary_signal": false,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "Appendix A: DWDand BBCH categories",
+        "excerpt": "Table A1. Names and identifiers (Phase ID) of beginning phenological DWD development stages for crop types (Crop type ID) (Bruns et al., 2015) and corresponding BBCH equivalents (Meier, 2018). There is no BBCH equivalent for the Phase IDs 10 and 13. PLANT ID: 202 winter wheat, 203 - winter rye, 204 - winter barley, 205 - winter rape, 207 - spring barley, 208 - oats, 215 - maize, 253 - sugar beet."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "b6dd3d3bac8ae95b",
+        "metric_names": [
+          "ID"
+        ],
+        "metric_keys": [
+          "id"
+        ],
+        "result_metric_keys": [
+          "id"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "ID",
+            "metric_key": "id",
+            "value": "202",
+            "candidate_role": "result",
+            "unit_hint": "winter"
+          }
+        ],
+        "target_hint": null,
+        "summary_signal": false,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "Appendix A: DWDand BBCH categories",
+        "excerpt": "There is no BBCH equivalent for the Phase IDs 10 and 13. PLANT ID: 202 winter wheat, 203 - winter rye, 204 - winter barley, 205 - winter rape, 207 - spring barley, 208 - oats, 215 - maize, 253 - sugar beet."
+      },
+      {
+        "kind": "prose_metric_candidate",
+        "candidate_id": "bca2878d8c1ef15c",
+        "metric_names": [
+          "ID"
+        ],
+        "metric_keys": [
+          "id"
+        ],
+        "result_metric_keys": [
+          "id"
+        ],
+        "metric_families": [],
+        "quantitative_pairs": [
+          {
+            "metric_name": "ID",
+            "metric_key": "id",
+            "value": "202",
+            "candidate_role": "result",
+            "unit_hint": "winter"
+          }
+        ],
+        "target_hint": null,
+        "summary_signal": false,
+        "quality_context": false,
+        "downstream_use_case_result": false,
+        "source_section": "Appendix A: DWDand BBCH categories",
+        "excerpt": "PLANT ID: 202 winter wheat, 203 - winter rye, 204 - winter barley, 205 - winter rape, 207 - spring barley, 208 - oats, 215 - maize, 253 - sugar beet."
+      }
+    ],
+    "metric_candidate_focus": [
+      {
+        "candidate_id": "8cee92ce2a930bb5",
+        "kind": "prose_metric_candidate",
+        "source_section": "2.3.4 Validation",
+        "target_hint": null,
+        "quantitative_pairs": [
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "2",
+            "candidate_role": "result"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "where DOY i is the observed phenological DOY at test station i , ̂ DOY i is the interpolated prediction at that location, DOY is the mean of the test-set observations, and n test is the number of held-out stations. Mean squared error (MSE = RMSE 2 ) is additionally recorded."
+      },
+      {
+        "candidate_id": "620589d0fc31f6b0",
+        "kind": "prose_metric_candidate",
+        "source_section": "2.3.4 Validation",
+        "target_hint": null,
+        "quantitative_pairs": [
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "2",
+            "candidate_role": "result"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "Mean squared error (MSE = RMSE 2 ) is additionally recorded."
+      },
+      {
+        "candidate_id": "0b1db1b7f4d50661",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "target_hint": "winter wheat",
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "3.9",
+            "candidate_role": "result"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "7.5",
+            "candidate_role": "result",
+            "unit_hint": "and"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "4.6-5.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.5",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.896-0.901",
+            "candidate_role": "result"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "Every published surface is validated by the identical out-of-sample protocol (Sect. 2.3.4), and the accuracy of the full crop family is summarised in Table 3. The eight crops show similar overall accuracy: the per-crop median MAE spans 4.6-5.7 days, with a family-wide median of 5.2 days (interquartile range 4.1-6.5 days) and a median RMSE of 6.5 days over all 1684 produced surfaces. A consistent phase dependence emerges across the family. Heading (18) is the most accurately interpolated phase in all four crops for which it is modelled (median MAE 3.9, 3.8, 3.3, and 4.2 days for winter wheat, winter rye, winter barley, and spring barley, respectively), and flowering (5) takes this role for winter rapeseed (3.5 days), whereas the least accurately interpolated phases are early vegetative stages and, for maize and sugar beet, harvest (24; median MAE 7.5 and 9.4 days). Percrop accuracy time series for every phase are shown in Fig. B1 (Appendix B). The prediction intervals show close-to-nominal coverage across the crop family: the per-crop median PICP at the nominal 90 % level lies between 0.896 and 0.901, and 90.7 % of all produced surfaces fall within ± 0 . 02 of nominal, at median interval widths of 18.7-23.5 days (Table 3). Winter wheat, the worked example of Sect. 3.3, has the highest median MAE and RMSE of the eight crops and therefore represents a comparatively demanding examp\n...[TRUNCATED 226 CHARACTERS]..."
+      },
+      {
+        "candidate_id": "4563fd7d56d42e92",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "target_hint": "eight crops",
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "4.6-5.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.5",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "2.3.4), and the accuracy of the full crop family is summarised in Table 3. The eight crops show similar overall accuracy: the per-crop median MAE spans 4.6-5.7 days, with a family-wide median of 5.2 days (interquartile range 4.1-6.5 days) and a median RMSE of 6.5 days over all 1684 produced surfaces."
+      },
+      {
+        "candidate_id": "c78847da5d57d614",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "target_hint": "eight crops",
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "4.6-5.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.5",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "The eight crops show similar overall accuracy: the per-crop median MAE spans 4.6-5.7 days, with a family-wide median of 5.2 days (interquartile range 4.1-6.5 days) and a median RMSE of 6.5 days over all 1684 produced surfaces."
+      },
+      {
+        "candidate_id": "bf70a54db6456a87",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "target_hint": "eight crops",
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "4.6-5.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.5",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "The eight crops show similar overall accuracy: the per-crop median MAE spans 4.6-5.7 days, with a family-wide median of 5.2 days (interquartile range 4.1-6.5 days) and a median RMSE of 6.5 days over all 1684 produced surfaces. A consistent phase dependence emerges across the family."
+      },
+      {
+        "candidate_id": "5736ae60d38ef36c",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "target_hint": "winter wheat",
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "3.9",
+            "candidate_role": "result"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "7.5",
+            "candidate_role": "result",
+            "unit_hint": "and"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "A consistent phase dependence emerges across the family. Heading (18) is the most accurately interpolated phase in all four crops for which it is modelled (median MAE 3.9, 3.8, 3.3, and 4.2 days for winter wheat, winter rye, winter barley, and spring barley, respectively), and flowering (5) takes this role for winter rapeseed (3.5 days), whereas the least accurately interpolated phases are early vegetative stages and, for maize and sugar beet, harvest (24; median MAE 7.5 and 9.4 days)."
+      },
+      {
+        "candidate_id": "6865a6132c2e9182",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "target_hint": "winter wheat",
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "3.9",
+            "candidate_role": "result"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "7.5",
+            "candidate_role": "result",
+            "unit_hint": "and"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "Heading (18) is the most accurately interpolated phase in all four crops for which it is modelled (median MAE 3.9, 3.8, 3.3, and 4.2 days for winter wheat, winter rye, winter barley, and spring barley, respectively), and flowering (5) takes this role for winter rapeseed (3.5 days), whereas the least accurately interpolated phases are early vegetative stages and, for maize and sugar beet, harvest (24; median MAE 7.5 and 9.4 days)."
+      },
+      {
+        "candidate_id": "c84172f254aa1043",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "target_hint": "winter wheat",
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "3.9",
+            "candidate_role": "result"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "7.5",
+            "candidate_role": "result",
+            "unit_hint": "and"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "Heading (18) is the most accurately interpolated phase in all four crops for which it is modelled (median MAE 3.9, 3.8, 3.3, and 4.2 days for winter wheat, winter rye, winter barley, and spring barley, respectively), and flowering (5) takes this role for winter rapeseed (3.5 days), whereas the least accurately interpolated phases are early vegetative stages and, for maize and sugar beet, harvest (24; median MAE 7.5 and 9.4 days). Percrop accuracy time series for every phase are shown in Fig."
+      },
+      {
+        "candidate_id": "b6688990a1368435",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "target_hint": "crop family",
+        "quantitative_pairs": [
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.896-0.901",
+            "candidate_role": "result"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "B1 (Appendix B). The prediction intervals show close-to-nominal coverage across the crop family: the per-crop median PICP at the nominal 90 % level lies between 0.896 and 0.901, and 90.7 % of all produced surfaces fall within ± 0 ."
+      },
+      {
+        "candidate_id": "332fc002d9bc3e23",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "target_hint": "crop family",
+        "quantitative_pairs": [
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.896-0.901",
+            "candidate_role": "result"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "The prediction intervals show close-to-nominal coverage across the crop family: the per-crop median PICP at the nominal 90 % level lies between 0.896 and 0.901, and 90.7 % of all produced surfaces fall within ± 0 ."
+      },
+      {
+        "candidate_id": "d14f427cbbcfa427",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.2 Accuracy and calibration across the crop family",
+        "target_hint": "crop family",
+        "quantitative_pairs": [
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.896-0.901",
+            "candidate_role": "result"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "The prediction intervals show close-to-nominal coverage across the crop family: the per-crop median PICP at the nominal 90 % level lies between 0.896 and 0.901, and 90.7 % of all produced surfaces fall within ± 0 . 02 of nominal, at median interval widths of 18.7-23.5 days (Table 3)."
+      },
+      {
+        "candidate_id": "66cb17a09cdbc08b",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.2 Accuracy across phenological phases",
+        "target_hint": "every phase and year",
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "7.1",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "Each interpolated phase-entry surface was validated out of sample. For every phase and year, the spatial generalised additive model (DOY ∼ s ( X,Y ) + DEM ) was assessed against the withheld station observations and summarised by the rootmean-square error ( RMSE ) and the mean absolute error ( MAE ) between predicted and observed entry dates (file series VAM\\_202-&lt;phase&gt;.csv ). Across the seven winter wheat phases, out-of-sample errors are of the order of 2.6-9.5 days ( MAE ; median 5.7 days) and 3.4-11.6 days ( RMSE ; median 7.1 days) over the full period (Fig. 4a)."
+      },
+      {
+        "candidate_id": "9decb059e0069f6e",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.2 Accuracy across phenological phases",
+        "target_hint": "every phase and year",
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "7.1",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "For every phase and year, the spatial generalised additive model (DOY ∼ s ( X,Y ) + DEM ) was assessed against the withheld station observations and summarised by the rootmean-square error ( RMSE ) and the mean absolute error ( MAE ) between predicted and observed entry dates (file series VAM\\_202-&lt;phase&gt;.csv ). Across the seven winter wheat phases, out-of-sample errors are of the order of 2.6-9.5 days ( MAE ; median 5.7 days) and 3.4-11.6 days ( RMSE ; median 7.1 days) over the full period (Fig."
+      },
+      {
+        "candidate_id": "42294327a72a2679",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.2 Accuracy across phenological phases",
+        "target_hint": "seven winter wheat phases",
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "7.1",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "Across the seven winter wheat phases, out-of-sample errors are of the order of 2.6-9.5 days ( MAE ; median 5.7 days) and 3.4-11.6 days ( RMSE ; median 7.1 days) over the full period (Fig."
+      },
+      {
+        "candidate_id": "1cfff628204c7b98",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.2 Accuracy across phenological phases",
+        "target_hint": "seven winter wheat phases",
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.7",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "7.1",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "Across the seven winter wheat phases, out-of-sample errors are of the order of 2.6-9.5 days ( MAE ; median 5.7 days) and 3.4-11.6 days ( RMSE ; median 7.1 days) over the full period (Fig. 4a)."
+      },
+      {
+        "candidate_id": "441cdc76ba61268a",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.2 Accuracy across phenological phases",
+        "target_hint": "heading phase",
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "7.5",
+            "candidate_role": "result",
+            "unit_hint": "and"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "2.8-5.1",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "Accuracy is clearly phase-dependent. The heading phase (18) is interpolated most accurately, with an MAE of 2.8-5.1 days (median 3.9 days), whereas the early post-emergence phases - emergence (12) and shooting (15) - are the least accurate (median MAE 7.5 and 7.3 days, respectively). This ordering is consistent with the biological interpretation that heading is a temperature-driven, sharply defined and reliably reported stage, while the timing of the earliest phases is more sensitive to sowing-date variability and observer interpretation."
+      },
+      {
+        "candidate_id": "3f66fe2750869314",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.2 Accuracy across phenological phases",
+        "target_hint": "heading phase",
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "7.5",
+            "candidate_role": "result",
+            "unit_hint": "and"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "2.8-5.1",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "Accuracy is clearly phase-dependent. The heading phase (18) is interpolated most accurately, with an MAE of 2.8-5.1 days (median 3.9 days), whereas the early post-emergence phases - emergence (12) and shooting (15) - are the least accurate (median MAE 7.5 and 7.3 days, respectively)."
+      },
+      {
+        "candidate_id": "311b069bddc0e103",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.2 Accuracy across phenological phases",
+        "target_hint": "heading phase",
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "7.5",
+            "candidate_role": "result",
+            "unit_hint": "and"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "2.8-5.1",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "The heading phase (18) is interpolated most accurately, with an MAE of 2.8-5.1 days (median 3.9 days), whereas the early post-emergence phases - emergence (12) and shooting (15) - are the least accurate (median MAE 7.5 and 7.3 days, respectively)."
+      },
+      {
+        "candidate_id": "81834c35273d440b",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.2 Accuracy across phenological phases",
+        "target_hint": "heading phase",
+        "quantitative_pairs": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "7.5",
+            "candidate_role": "result",
+            "unit_hint": "and"
+          },
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "2.8-5.1",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "The heading phase (18) is interpolated most accurately, with an MAE of 2.8-5.1 days (median 3.9 days), whereas the early post-emergence phases - emergence (12) and shooting (15) - are the least accurate (median MAE 7.5 and 7.3 days, respectively). This ordering is consistent with the biological interpretation that heading is a temperature-driven, sharply defined and reliably reported stage, while the timing of the earliest phases is more sensitive to sowing-date variability and observer interpretation."
+      },
+      {
+        "candidate_id": "65c3ce474b4e4046",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+        "target_hint": "heading phase",
+        "quantitative_pairs": [
+          {
+            "metric_name": "BSE",
+            "metric_key": "bse",
+            "value": "0.76",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "Alongside each DOY surface we provide a per-pixel uncertainty layer (BSE), the Bayesian posterior standard error of the fitted mean returned by the spatial model. BSE is a model-internal statistical uncertainty - the model's own estimate of the precision of its fitted surface - and not a validated predictive uncertainty. It generally increases where the fitted surface is less constrained by observations and decreases where observations are denser (Sect. 2.3.5). Spatial summaries of the BSE field (percentiles per phase and year) are tabulated in the GEM files. For the heading phase, the median per-pixel BSE rises from 0.76 days in 1993 to 1.38 days in 2025 (Fig. 4c), tracking the decline of the observation network shown in Fig. 4b and illustrating how the layer flags the years and regions in which the interpolated surface is least constrained."
+      },
+      {
+        "candidate_id": "a4335999c7e04e45",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+        "target_hint": "heading phase",
+        "quantitative_pairs": [
+          {
+            "metric_name": "BSE",
+            "metric_key": "bse",
+            "value": "0.76",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "Spatial summaries of the BSE field (percentiles per phase and year) are tabulated in the GEM files. For the heading phase, the median per-pixel BSE rises from 0.76 days in 1993 to 1.38 days in 2025 (Fig."
+      },
+      {
+        "candidate_id": "01ebd9497a7baf01",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+        "target_hint": "heading phase",
+        "quantitative_pairs": [
+          {
+            "metric_name": "BSE",
+            "metric_key": "bse",
+            "value": "0.76",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "For the heading phase, the median per-pixel BSE rises from 0.76 days in 1993 to 1.38 days in 2025 (Fig."
+      },
+      {
+        "candidate_id": "f5cdb2a288dcf7af",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+        "target_hint": "heading phase",
+        "quantitative_pairs": [
+          {
+            "metric_name": "BSE",
+            "metric_key": "bse",
+            "value": "0.76",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "For the heading phase, the median per-pixel BSE rises from 0.76 days in 1993 to 1.38 days in 2025 (Fig. 4c), tracking the decline of the observation network shown in Fig."
+      },
+      {
+        "candidate_id": "4de647750c7f14f2",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+        "target_hint": null,
+        "quantitative_pairs": [
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.900",
+            "candidate_role": "result"
+          },
+          {
+            "metric_name": "MPIW",
+            "metric_key": "mpiw",
+            "value": "16.0",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "To assess predictive coverage separately from the BSE, we additionally report the prediction-interval coverage probability (PICP) and the mean prediction-interval width (MPIW) at a nominal 90 % level (PIC files), following the reliability-sharpness protocol for validating predictive uncertainty (Schmidinger and Heuvelink, 2023). These metrics are obtained from a separate five-fold cross-validation in which each station is held out exactly once. The prediction interval combines the fold-specific BAMmodel-mean standard error with the residual variance of the final production model. For the heading phase, the observed coverage is close to nominal throughout, with a mean PICP of 0.900 (range 0.888-0.920 across years) and a mean interval width of 16.0 days (range 12.6-21.4 days; Fig. 4d). The nominal 90 % intervals therefore show close-to-nominal empirical coverage even in the most recent, sparsely observed years, where the intervals widen (larger MPIW) without a clear loss of coverage. By reporting BSE and the cross-validated coverage assessment separately, the user receives both the model-internal precision estimate and information on how well the nominal prediction intervals perform within the validation framework."
+      },
+      {
+        "candidate_id": "d693950c2e2476f3",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+        "target_hint": "heading phase",
+        "quantitative_pairs": [
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.900",
+            "candidate_role": "result"
+          },
+          {
+            "metric_name": "MPIW",
+            "metric_key": "mpiw",
+            "value": "16.0",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "The prediction interval combines the fold-specific BAMmodel-mean standard error with the residual variance of the final production model. For the heading phase, the observed coverage is close to nominal throughout, with a mean PICP of 0.900 (range 0.888-0.920 across years) and a mean interval width of 16.0 days (range 12.6-21.4 days; Fig."
+      },
+      {
+        "candidate_id": "fe4114e88b889138",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+        "target_hint": "heading phase",
+        "quantitative_pairs": [
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.900",
+            "candidate_role": "result"
+          },
+          {
+            "metric_name": "MPIW",
+            "metric_key": "mpiw",
+            "value": "16.0",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "For the heading phase, the observed coverage is close to nominal throughout, with a mean PICP of 0.900 (range 0.888-0.920 across years) and a mean interval width of 16.0 days (range 12.6-21.4 days; Fig."
+      },
+      {
+        "candidate_id": "37a65f4e695b3fb2",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.4 Spatially explicit uncertainty and prediction-interval coverage",
+        "target_hint": "heading phase",
+        "quantitative_pairs": [
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.900",
+            "candidate_role": "result"
+          },
+          {
+            "metric_name": "MPIW",
+            "metric_key": "mpiw",
+            "value": "16.0",
+            "candidate_role": "result",
+            "unit_hint": "days"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "For the heading phase, the observed coverage is close to nominal throughout, with a mean PICP of 0.900 (range 0.888-0.920 across years) and a mean interval width of 16.0 days (range 12.6-21.4 days; Fig. 4d)."
+      },
+      {
+        "candidate_id": "f9c921f064b5fd0f",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.5 Interpolated DOY and uncertainty maps",
+        "target_hint": "Uckermark district in 2018",
+        "quantitative_pairs": [
+          {
+            "metric_name": "WI",
+            "metric_key": "wi",
+            "value": "16",
+            "candidate_role": "result"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "Figure 7. Derivation of the phase-resolved weather indicator for the Uckermark district in 2018, mirroring Fig. 8 of Möller et al. (2019): (a) Germany-wide E-OBS daily precipitation for the wettest day of the shooting-heading window, with the district outlined; (b) daily precipitation (bars, spatial mean over the district) during the window, with whiskers spanning the ± 1 σ E-OBS ensemble spread of each day, overlaid with the accumulated indicator WI (line). Orange bands at the two phase boundaries span ± 1 BSE and visualise the BSE-based phenological sensitivity component; the blue ribbon around the accumulated indicator spans its ± 1 σ precipitation component, obtained by accumulating the daily spread in quadrature. The dotted vertical marks the day mapped in (a). For 2018 the window spans DOY 113 ± 1 . 5 to DOY 143 ± 1 . 0 , yielding WI =16 . 3 ± 2 . 3 mm(precipitation component)."
+      },
+      {
+        "candidate_id": "719e5d5036079bc5",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.5 Interpolated DOY and uncertainty maps",
+        "target_hint": null,
+        "quantitative_pairs": [
+          {
+            "metric_name": "WI",
+            "metric_key": "wi",
+            "value": "16",
+            "candidate_role": "result"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "5 to DOY 143 ± 1 . 0 , yielding WI =16 ."
+      },
+      {
+        "candidate_id": "c876f2cf122aead0",
+        "kind": "prose_metric_candidate",
+        "source_section": "3.3.5 Interpolated DOY and uncertainty maps",
+        "target_hint": null,
+        "quantitative_pairs": [
+          {
+            "metric_name": "WI",
+            "metric_key": "wi",
+            "value": "16",
+            "candidate_role": "result"
+          }
+        ],
+        "downstream_use_case_result": false,
+        "excerpt": "0 , yielding WI =16 . 3 ± 2 ."
+      },
+      {
+        "kind": "structured_table_metric_group",
+        "source_item_id": "tbl_003",
+        "target": "Winter wheat (202)",
+        "metrics": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.7"
+          },
+          {
+            "metric_name": "MAE range",
+            "metric_key": "mae_range",
+            "value": "3.9-7.5"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "7.1"
+          },
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.898"
+          },
+          {
+            "metric_name": "MPIW",
+            "metric_key": "mpiw",
+            "value": "23.5"
+          }
+        ]
+      },
+      {
+        "kind": "structured_table_metric_group",
+        "source_item_id": "tbl_003",
+        "target": "Winter rye (203)",
+        "metrics": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.4"
+          },
+          {
+            "metric_name": "MAE range",
+            "metric_key": "mae_range",
+            "value": "3.8-7.5"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.8"
+          },
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.896"
+          },
+          {
+            "metric_name": "MPIW",
+            "metric_key": "mpiw",
+            "value": "22.6"
+          }
+        ]
+      },
+      {
+        "kind": "structured_table_metric_group",
+        "source_item_id": "tbl_003",
+        "target": "Winter barley (204)",
+        "metrics": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "4.6"
+          },
+          {
+            "metric_name": "MAE range",
+            "metric_key": "mae_range",
+            "value": "3.3-6.9"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "5.9"
+          },
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.896"
+          },
+          {
+            "metric_name": "MPIW",
+            "metric_key": "mpiw",
+            "value": "19.3"
+          }
+        ]
+      },
+      {
+        "kind": "structured_table_metric_group",
+        "source_item_id": "tbl_003",
+        "target": "Winter rapeseed (205)",
+        "metrics": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.3"
+          },
+          {
+            "metric_name": "MAE range",
+            "metric_key": "mae_range",
+            "value": "3.5-8.5"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.7"
+          },
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.898"
+          },
+          {
+            "metric_name": "MPIW",
+            "metric_key": "mpiw",
+            "value": "22.2"
+          }
+        ]
+      },
+      {
+        "kind": "structured_table_metric_group",
+        "source_item_id": "tbl_003",
+        "target": "Spring barley (207)",
+        "metrics": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.3"
+          },
+          {
+            "metric_name": "MAE range",
+            "metric_key": "mae_range",
+            "value": "4.2-5.9"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.5"
+          },
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.901"
+          },
+          {
+            "metric_name": "MPIW",
+            "metric_key": "mpiw",
+            "value": "21.6"
+          }
+        ]
+      },
+      {
+        "kind": "structured_table_metric_group",
+        "source_item_id": "tbl_003",
+        "target": "Oats (208)",
+        "metrics": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.1"
+          },
+          {
+            "metric_name": "MAE range",
+            "metric_key": "mae_range",
+            "value": "3.6-5.8"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.4"
+          },
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.899"
+          },
+          {
+            "metric_name": "MPIW",
+            "metric_key": "mpiw",
+            "value": "20.6"
+          }
+        ]
+      },
+      {
+        "kind": "structured_table_metric_group",
+        "source_item_id": "tbl_003",
+        "target": "Maize (215)",
+        "metrics": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.2"
+          },
+          {
+            "metric_name": "MAE range",
+            "metric_key": "mae_range",
+            "value": "3.1-7.5"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.4"
+          },
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.897"
+          },
+          {
+            "metric_name": "MPIW",
+            "metric_key": "mpiw",
+            "value": "21.1"
+          }
+        ]
+      },
+      {
+        "kind": "structured_table_metric_group",
+        "source_item_id": "tbl_003",
+        "target": "Sugar beet (253)",
+        "metrics": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "4.6"
+          },
+          {
+            "metric_name": "MAE range",
+            "metric_key": "mae_range",
+            "value": "3.9-9.4"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "5.6"
+          },
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.901"
+          },
+          {
+            "metric_name": "MPIW",
+            "metric_key": "mpiw",
+            "value": "18.7"
+          }
+        ]
+      },
+      {
+        "kind": "structured_table_metric_group",
+        "source_item_id": "tbl_003",
+        "target": "All crops",
+        "metrics": [
+          {
+            "metric_name": "MAE",
+            "metric_key": "mae",
+            "value": "5.2"
+          },
+          {
+            "metric_name": "MAE range",
+            "metric_key": "mae_range",
+            "value": "3.1-9.4"
+          },
+          {
+            "metric_name": "RMSE",
+            "metric_key": "rmse",
+            "value": "6.5"
+          },
+          {
+            "metric_name": "PICP",
+            "metric_key": "picp",
+            "value": "0.898"
+          },
+          {
+            "metric_name": "MPIW",
+            "metric_key": "mpiw",
+            "value": "21.3"
+          }
+        ]
+      }
+    ],
+    "qualitative_guardrail_hints": [
+      {
+        "candidate_id": "549086a1758d6802",
+        "source_section": "4.4 Limitations",
+        "numbered_items": [
+          {
+            "number": 1,
+            "excerpt": "Only DWD crop-phase combinations that can be modelled with a sufficient number of suitable observations are included in the dataset (Table 2). Station density also varies considerably over space and time. Predictions in sparsely observed regions should therefore be treated with greater caution, particularly where they extend beyond the main support of the observation network (cf. Meyer and Pebesma, 2021).\nRegardless of the station, the gridded predictions cover the complete territory of Germany and are not masked by the actual occurrence of the respective crop or by agricultural land use. The raster values should therefore be interpreted as conditional phase-entry dates, i.e. the dates predicted if the respective crop were present at a grid cell. They do not indicate crop occurrence or cultivation suitability. The validation and the PICP/MPIW assessment are based on phenological observation locations and therefore assess model performance where observations of the respective crop are available, not across all cells of the Germany-wide prediction grid."
+          },
+          {
+            "number": 2,
+            "excerpt": "The BSE describes the model-internal precision of the fitted mean and does not represent total predictive uncertainty. In particular, the critical DOYs used for spatial interpolation depend on the gridded daily mean temperature input (Sect. 2.2), while uncertainty in this temperature grid is not propagated into the BSE. The held-out accuracy metrics reflect the combined effect of the modelling steps when predictions are compared with observed entry dates, but the published per-pixel BSE should be interpreted as a measure of model-mean precision."
+          },
+          {
+            "number": 3,
+            "excerpt": "The 75/25 validation is conditional on the preceding filtering and thermal-time quantile selection. The adaptive filter variant and the MAE-optimal thermal-time quantile are determined before the spatial validation split. The reported errors therefore describe the performance for the retained observations and may be optimistic compared with the unfiltered volunteer record. In addition, phenological entry dates are spatially autocorrelated and the DWD volunteer network is not a probability sample. Randomly held-out stations can therefore remain spatially dependent on training stations. The global validation metrics should consequently be interpreted together with the spatial BSE and station-density information."
+          },
+          {
+            "number": 4,
+            "excerpt": "The five-fold PICP/MPIW assessment is out-of-sample with respect to the spatial BAM fit, but remains conditional on the preceding filtering and thermal-time selection. In addition, the interval widths use the residual variance of the final all-data production model. The PICP/MPIW statistics should therefore be interpreted as a cross-validated coverage assessment of the published modelling framework rather than as a fully nested independent validation."
+          },
+          {
+            "number": 5,
+            "excerpt": "The uncertainty propagation in the weather-indicator use case is an illustrative approximation. The phenological component is based on ± 1 BSE shifts and therefore represents sensitivity to model-mean precision rather than a calibrated phenological prediction interval. The quadrature accumulation of the daily E-OBS ensemble spread assumes independent daily errors, while aggregation of the 1 km BSE to the coarser E-OBS grid does not explicitly account for spatial covariance. The resulting u total should therefore be interpreted as a transparent two-component uncertainty estimate rather than as a complete predictive uncertainty budget.\nDespite these limitations, the dataset combines long-term coverage, documented validation, spatially explicit quality information and reproducible data publication. The accompanying quality information allows users to assess the suitability of individual crop-phase-year combinations for regional and Germany-wide applications."
+          }
+        ],
+        "section_excerpt": "Several limitations should be considered:\n1. Only DWD crop-phase combinations that can be modelled with a sufficient number of suitable observations are included in the dataset (Table 2). Station density also varies considerably over space and time. Predictions in sparsely observed regions should therefore be treated with greater caution, particularly where they extend beyond the main support of the observation network (cf. Meyer and Pebesma, 2021).\nRegardless of the station, the gridded predictions cover the complete territory of Germany and are not masked by the actual occurrence of the respective crop or by agricultural land use. The raster values should therefore be interpreted as conditional phase-entry dates, i.e. the dates predicted if the respective crop were present at a grid cell. They do not indicate crop occurrence or cultivation suitability. The validation and the PICP/MPIW assessment are based on phenological observation locations and therefore assess model performance where observations of the respective crop are available, not across all cells of the Germany-wide prediction grid.\n2. The BSE describes the model-internal precision of the fitted mean and does not represent total predictive uncertainty. In particular, the critical DOYs used for spatial interpolation depend on the gridded daily mean temperature input (Sect. 2.2), while uncertainty in this temperature grid is not propagated into the BSE. The held-out accuracy metrics reflect the combined effect of the modelling steps when predictions are compared with observed entry dates, but the published per-pixel BSE should be interpreted as a measure of model-mean precision.\n3. The 75/25 validation is conditional on the preceding filtering and thermal-time quantile selection. The adaptive filter variant and the MAE-optimal thermal-time quantile are determined before the spatial validation split. The reported errors therefore describe the performance for the retained observations and may be optimistic compared with the unfiltered volunteer record. In addition, phenological entry dates are spatially autocorrelated and the DWD volunteer network is not a probability sample. Randomly held-out stations can therefore remain spatially dependent on training stations. The global validation metrics should consequently be interpreted together with the spatial BSE and station-density information.\n4. The five-fold PICP/MPIW assessment is out-of-sample with respect to the spatial BAM fit, but remains conditional on the preceding filtering and thermal-time selection. In addition, the interval widths use the residual variance of the final all-data production model. The PICP/MPIW statistics should therefore be interpreted as a cross-validated coverage assessment of the published modelling framework rather than as a fully nested independent validation.\n5. The uncertainty propagation in the weather-indicator use case is an illustrative approximation. The phenological component is based on ± 1 BSE shifts and therefore represents sensitivity to model-mean precision rather than a calibrated phenological prediction interval. The quadrature accumulation of the daily E-OBS ensemble spread assumes independent daily errors, while aggregation of the 1 km BSE to the coarser E-OBS grid does not explicitly account for spatial covariance. The resulting u total should therefore be interpreted as a transparent two-component uncertainty estimate rather than as a complete predictive uncertainty budget.\nDespite these limitations, the dataset combines long-term coverage, documented validation, spatially explicit quality information and reproducible data publication. The accompanying quality information allows users to assess the suitability of individual crop-phase-year combinations for regional and Germany-wide applications."
+      }
+    ]
+  },
+  "source_bundle_path": "dffp/source_bundle.txt",
+  "extraction_run": {
+    "generated_at_utc": "2026-09-07T22:07:09.930212+00:00",
+    "api": "responses.parse",
+    "requested_model": "gpt-5.6-luna",
+    "response_model": "gpt-5.6-luna",
+    "system_prompt_version": "system_v2",
+    "extraction_prompt_version": "extraction_v12",
+    "system_prompt_sha256": "c29f17c702c46c2bddba6043cb47cb02d6ca3b2ac56fa7b0317ef40a941df54c",
+    "extraction_prompt_sha256": "5797e50bcf923e753dc24321b24e07d2b673cf888eede5d03e67fa270db7d13c",
+    "schema_version": "fairagro-dffp-v3.5.2",
+    "source_bundle_sha256": "22905419b96c719738cf375c79bff7f61ee8bcac4a8fd77a56a184c211885e23",
+    "duration_seconds": 115.135,
+    "input_tokens": 83864,
+    "output_tokens": 12361,
+    "total_tokens": 96225
+  },
+  "semantic_repair_runs": [
+    {
+      "generated_at_utc": "2026-09-07T22:09:26.234046+00:00",
+      "api": "responses.parse",
+      "requested_model": "gpt-5.6-luna",
+      "response_model": "gpt-5.6-luna",
+      "system_prompt_version": "system_v2",
+      "extraction_prompt_version": "repair_v4",
+      "system_prompt_sha256": "c29f17c702c46c2bddba6043cb47cb02d6ca3b2ac56fa7b0317ef40a941df54c",
+      "extraction_prompt_sha256": "2048426e129147061424fc24d8ac9b6324bd266393878f7b4aec1e0535abab8f",
+      "schema_version": "fairagro-dffp-v3.5.2",
+      "source_bundle_sha256": "22905419b96c719738cf375c79bff7f61ee8bcac4a8fd77a56a184c211885e23",
+      "duration_seconds": 136.244,
+      "input_tokens": 98553,
+      "output_tokens": 18813,
+      "total_tokens": 117366
+    }
+  ],
+  "semantic_repair_consolidations": [
+    {
+      "initial_metrics": 13,
+      "repair_metrics": 50,
+      "merged_metrics": 50,
+      "preserved_initial_metrics": 0,
+      "deduplicated_metrics": 13,
+      "composite_metrics_demoted": 0,
+      "tuning_parameters_moved": 0,
+      "evidence_records_preserved": 23,
+      "related_resources_preserved": 0,
+      "scopes_harmonized": 0,
+      "uncertainty_views_added": 1,
+      "structured_candidates_backfilled": 0,
+      "structured_target_rows_backfilled": 0,
+      "structured_semantics_enriched": 18,
+      "evidence_records_deduplicated": 0,
+      "cross_target_evidence_removed": 0,
+      "non_outcome_metrics_demoted": 0
+    }
+  ],
+  "semantic_repair_failure": null,
+  "final_structured_run": {
+    "generated_at_utc": "2026-09-07T22:09:26.234046+00:00",
+    "api": "responses.parse",
+    "requested_model": "gpt-5.6-luna",
+    "response_model": "gpt-5.6-luna",
+    "system_prompt_version": "system_v2",
+    "extraction_prompt_version": "repair_v4",
+    "system_prompt_sha256": "c29f17c702c46c2bddba6043cb47cb02d6ca3b2ac56fa7b0317ef40a941df54c",
+    "extraction_prompt_sha256": "2048426e129147061424fc24d8ac9b6324bd266393878f7b4aec1e0535abab8f",
+    "schema_version": "fairagro-dffp-v3.5.2",
+    "source_bundle_sha256": "22905419b96c719738cf375c79bff7f61ee8bcac4a8fd77a56a184c211885e23",
+    "duration_seconds": 136.244,
+    "input_tokens": 98553,
+    "output_tokens": 18813,
+    "total_tokens": 117366
+  },
+  "semantic_checks": [
+    {
+      "severity": "info",
+      "code": "NO_DETERMINISTIC_ISSUES",
+      "message": "No configured deterministic semantic checks failed.",
+      "field": null
+    }
+  ],
+  "output_portability": {
+    "absolute_local_paths_included": false,
+    "path_policy": "source-package-relative-or-basename"
+  },
+  "quality_summary": {
+    "record_count": 1,
+    "canonical_validation_metric_count": 50,
+    "structured_numeric_metric_count": 50,
+    "text_summary_metric_count": 0,
+    "metric_target_count": 12,
+    "metrics_with_evidence_count": 50,
+    "related_resource_count": 5,
+    "verified_resource_identifier_count": 5,
+    "semantic_issue_counts": {
+      "error": 0,
+      "warning": 0,
+      "info": 1
+    }
+  }
+}

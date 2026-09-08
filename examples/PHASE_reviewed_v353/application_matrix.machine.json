@@ -1,0 +1,4234 @@
+[
+  {
+    "document_metadata": {
+      "title": "Germany-wide 1km time series of interpolated phenological phase-entry dates for eight major crop types, 1993-2025",
+      "authors": [
+        "Markus Möller",
+        "Paul Peschel",
+        "Mahdi Hedayat Mahmoudi",
+        "Henning Gerstmann"
+      ],
+      "publication_year": 2026,
+      "source": "2026_DRAFT_ESSD.pdf",
+      "document_type": "data paper",
+      "document_status": "draft",
+      "generated_subject_terms": [
+        "crop phenology",
+        "phenological phase-entry dates",
+        "spatial interpolation",
+        "Germany-wide gridded dataset",
+        "Bayesian posterior standard error",
+        "prediction-interval coverage",
+        "PhenoPhaseR",
+        "DFFP"
+      ],
+      "related_resources": [
+        {
+          "name": "PHASE: Interpolated phenological phase entry dates for major crops in Germany (collection)",
+          "identifier": "https://doi.org/10.5281/zenodo.21294103",
+          "resource_type": "collection",
+          "relation": "describes",
+          "is_concept_identifier": true,
+          "identifier_object_type": "collection",
+          "identifier_status": "source_explicit",
+          "evidence": [
+            {
+              "claim": "The per-crop deposits are aggregated into a single citable PHASE collection at https://doi.org/10.5281/zenodo.21294103.",
+              "evidence_type": "explicit",
+              "source_section": "5 Code and data availability",
+              "source_text": "The per-crop deposits are aggregated into a single citable collection ... at https://doi.org/10.5281/zenodo.21294103.",
+              "source_modality": "authored_prose",
+              "representation_method": "docling_clean_markdown",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "PHASE winter wheat deposit",
+          "identifier": "https://doi.org/10.5281/zenodo.19571847",
+          "resource_type": "dataset",
+          "relation": "describes",
+          "version": "v1.9.0",
+          "is_concept_identifier": true,
+          "identifier_object_type": "dataset",
+          "identifier_status": "source_explicit",
+          "evidence": [
+            {
+              "claim": "The winter-wheat phase-entry surfaces, uncertainty layers and quality tables are archived at the cited Zenodo identifier.",
+              "evidence_type": "explicit",
+              "source_section": "5 Code and data availability",
+              "source_text": "The interpolated phase-entry surfaces and their uncertainty and quality tables for winter wheat ... are archived at https://doi.org/10.5281/zenodo.19571847.",
+              "source_modality": "authored_prose",
+              "representation_method": "docling_clean_markdown",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "PhenoPhaseR",
+          "identifier": "https://doi.org/10.5281/zenodo.18743008",
+          "resource_type": "software",
+          "relation": "isDerivedFrom",
+          "version": "v1.9.0",
+          "is_concept_identifier": true,
+          "identifier_object_type": "software",
+          "identifier_status": "source_explicit",
+          "evidence": [
+            {
+              "claim": "The PhenoPhaseR processing workflow is open-source and archived at the cited Zenodo identifier.",
+              "evidence_type": "explicit",
+              "source_section": "5 Code and data availability",
+              "source_text": "The processing workflow, PhenoPhaseR, is open-source ... and archived at https://doi.org/10.5281/zenodo.18743008.",
+              "source_modality": "authored_prose",
+              "representation_method": "docling_clean_markdown",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "Input data collection for the PhenoPhaseR model",
+          "identifier": "https://doi.org/10.5281/zenodo.18594963",
+          "resource_type": "input_data",
+          "relation": "wasGeneratedBy",
+          "is_concept_identifier": true,
+          "identifier_object_type": "input_data",
+          "identifier_status": "source_explicit",
+          "evidence": [
+            {
+              "claim": "The DWD phenological station network, 1 km weather grid with interpolated daily mean temperatures, and digital elevation model are archived as the input data collection.",
+              "evidence_type": "explicit",
+              "source_section": "5 Code and data availability",
+              "source_text": "The input data required to reproduce the dataset ... are archived at https://doi.org/10.5281/zenodo.18594963.",
+              "source_modality": "authored_prose",
+              "representation_method": "docling_clean_markdown",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "WeatherIndicatoR",
+          "identifier": "https://doi.org/10.5281/zenodo.19631197",
+          "resource_type": "software",
+          "relation": "supports",
+          "version": "v0.3.0",
+          "is_concept_identifier": true,
+          "identifier_object_type": "software",
+          "identifier_status": "source_explicit",
+          "evidence": [
+            {
+              "claim": "The WeatherIndicatoR workflow used for the demonstrated weather-indicator use case is archived at the cited Zenodo identifier.",
+              "evidence_type": "explicit",
+              "source_section": "5 Code and data availability",
+              "source_text": "The WeatherIndicatoR workflow ... is open-source ... and archived at https://doi.org/10.5281/zenodo.19631197.",
+              "source_modality": "authored_prose",
+              "representation_method": "docling_clean_markdown",
+              "review_status": "machine_extracted"
+            }
+          ]
+        }
+      ]
+    },
+    "dataset_characteristics": {
+      "dataset_name": "Germany-wide gridded time series of interpolated phenological phase-entry dates for eight crop types",
+      "description": "Interpolated phase-entry day-of-year surfaces with matching per-pixel Bayesian posterior standard-error layers and quality tables.",
+      "geographic_scope": "Complete territory of Germany",
+      "spatial": {
+        "native_resolution": "1 km",
+        "spatial_reference": "ETRS89 / UTM zone 32N (EPSG:25832)",
+        "geographic_extent": "Germany-wide",
+        "support_or_unit": "1 km raster grid cell",
+        "known_scale_limitations": [
+          "The 1 km resolution does not resolve individual fields.",
+          "Predictions are not masked by crop occurrence or agricultural land use.",
+          "Do not interpret raster values as crop occurrence or cultivation suitability.",
+          "Do not interpret illustrative 15% and 25% uncertainty guide lines as formal suitability thresholds.",
+          "Predictions in sparsely observed regions or beyond the main observation support require caution."
+        ]
+      },
+      "temporal": {
+        "temporal_extent": "1993-2025; spring barley 2014-2025",
+        "temporal_resolution_or_sampling": "Annual phase-entry surfaces; one raster band per year",
+        "update_frequency": "Extended annually after release of quality-checked DWD observations",
+        "published_dataset_gaps": [
+          "Five missing phase-year surfaces: winter rye phase 15 in 2022; winter rapeseed phases 17 and 67 in 2022; sugar beet phases 10 and 13 in 2024."
+        ],
+        "upstream_observation_gaps": [
+          "No digital observations for eastern Germany before 1993.",
+          "Spring barley observation programme interrupted between 1992 and 2014.",
+          "Observation density varies over space and time."
+        ],
+        "historical_coverage_constraints": [
+          "The observation programme and phase reporting were not continuous for all crop-phase combinations.",
+          "Spring barley coverage resumes in 2014."
+        ]
+      },
+      "variables_or_layers": [
+        "Phenological phase-entry day-of-year (DOY)",
+        "Per-pixel Bayesian posterior standard error (BSE)",
+        "Out-of-sample validation metrics (VAM)",
+        "In-sample model-fit diagnostics (CAL)",
+        "Spatial BSE quantiles (GEM)",
+        "Prediction-interval coverage and width statistics (PIC)"
+      ],
+      "formats": [
+        "Multi-band Cloud-Optimised GeoTIFF",
+        "CSV",
+        "Research Object Crate 1.2"
+      ],
+      "access_and_packaging": [
+        "Per-crop versioned Zenodo deposits",
+        "Citable collection",
+        "RO-Crate with machine-actionable provenance and quality metadata",
+        "CC BY 4.0"
+      ],
+      "evidence": [
+        {
+          "claim": "The dataset provides 1 km ETRS89/UTM zone 32N phenological DOY and BSE layers for Germany for 1993-2025, with spring barley from 2014-2025.",
+          "evidence_type": "explicit",
+          "source_section": "Abstract",
+          "source_text": "The data are provided at 1 km resolution in ETRS89/UTM zone 32N (EPSG:25832) for 1993-2025; spring barley is available for 2014-2025.",
+          "source_modality": "authored_prose",
+          "representation_method": "docling_clean_markdown",
+          "review_status": "machine_extracted"
+        },
+        {
+          "claim": "The dataset contains 1684 produced surfaces out of 1689 possible surfaces and five missing surfaces.",
+          "evidence_type": "explicit",
+          "source_section": "3.1 Dataset scope and completeness",
+          "source_location": "Table 2",
+          "source_text": "In total, 1684 of the 1689 possible interpolated phase-entry surfaces are produced.",
+          "source_page": 16,
+          "source_item_id": "tbl_002",
+          "source_modality": "author_table",
+          "representation_method": "docling_structured",
+          "review_status": "machine_extracted"
+        }
+      ]
+    },
+    "application_profile": {
+      "application_area": [
+        "agro-environmental applications",
+        "crop exposure to extreme weather",
+        "remote-sensing acquisition timing and crop classification",
+        "climate-change bio-indicators",
+        "agricultural economics and food policy",
+        "crop-model parameter calibration"
+      ],
+      "intended_use": "Provide spatially and temporally consistent crop phenology and phenological windows for regional to Germany-wide analyses.",
+      "use_case_problem": [
+        "Irregular spatial and temporal coverage of DWD phenological observations",
+        "Need for phenology-anchored time windows and uncertainty information"
+      ],
+      "demonstrated_uses": [
+        "Propagation of per-pixel BSE into a phase-specific cumulative precipitation weather indicator for winter wheat in the Uckermark and Germany-wide."
+      ],
+      "potential_uses": [
+        "Crop exposure assessment during phenological periods",
+        "Phenology-defined remote-sensing acquisition and crop classification",
+        "Long-term climate-change phenology indicators",
+        "Agricultural economics and food-policy analyses",
+        "Calibration bounds for process-based crop models"
+      ],
+      "recommended_context": [
+        "Regional and Germany-wide applications that account for spatial support, station density and the distinction between model-mean precision and predictive uncertainty."
+      ],
+      "not_suitable_for": [
+        "Interpreting raster values as crop occurrence or cultivation suitability.",
+        "Treating the 1 km product as field-resolving.",
+        "Interpreting BSE directly as a predictive interval for an individual observation."
+      ],
+      "evidence": [
+        {
+          "claim": "The paper lists five application domains for the phenological windows and demonstrates a weather-indicator use case.",
+          "evidence_type": "explicit",
+          "source_section": "1 Introduction; 3.3.6 Use case: propagation into a weather-based indicator",
+          "source_text": "The applications can be grouped into five main thematic domains ... A use case illustrates how the BSE layer can be included as one uncertainty component in a phase-specific precipitation indicator.",
+          "source_modality": "authored_prose",
+          "representation_method": "docling_clean_markdown",
+          "review_status": "machine_extracted"
+        }
+      ]
+    },
+    "analysis_characteristics": {
+      "analysis_type": [
+        "regression",
+        "comparative analysis",
+        "uncertainty estimation",
+        "spatial interpolation",
+        "prediction-interval assessment",
+        "phenology-aware indices"
+      ],
+      "modeling_approach": [
+        "Photoperiod-weighted growing-degree-days model",
+        "Spatial generalised additive model using BAM",
+        "Universal kriging with external drift",
+        "Thin-plate splines",
+        "Five-fold cross-validation for prediction-interval coverage and width"
+      ],
+      "assumptions": [
+        "Temperature is the principal explanatory factor for large-scale crop phenology.",
+        "Daily precipitation errors are independent when accumulated in quadrature in the demonstrated use case.",
+        "BSE aggregation to the coarser E-OBS grid does not explicitly account for spatial covariance."
+      ],
+      "sensitivity_factors": [
+        "Station density",
+        "Spatial extrapolation beyond observation support",
+        "Crop phase and year",
+        "Filtering and thermal-time quantile selection",
+        "Uncertainty in gridded daily mean temperature is not propagated into BSE"
+      ],
+      "evidence": [
+        {
+          "claim": "The producer workflow performs spatial interpolation and separately evaluates prediction-interval coverage and width.",
+          "evidence_type": "explicit",
+          "source_section": "2.3 Spatial interpolation and uncertainty quantification; 2.3.5 Uncertainty quantification",
+          "source_text": "The workflow maps station-level DOY predictions to the full 1 km grid ... Prediction-interval coverage is evaluated separately from the production BSE using five-fold cross-validation.",
+          "source_modality": "authored_prose",
+          "representation_method": "docling_clean_markdown",
+          "review_status": "machine_extracted"
+        }
+      ]
+    },
+    "input_data_requirements": {
+      "data_types": [
+        "Published phenological phase-entry DOY surfaces",
+        "Published BSE layers",
+        "E-OBS daily precipitation ensemble data"
+      ],
+      "required_sources": [
+        "Winter wheat PHASE deposit",
+        "E-OBS v33.0e ensemble dataset"
+      ],
+      "spatial_resolution": {
+        "recommended": "The demonstrated use case aggregates the published 1 km phase-entry and BSE surfaces to the coarser E-OBS grid.",
+        "aggregation_levels": [
+          "1 km phase-entry/BSE grid",
+          "0.1 degree E-OBS grid"
+        ]
+      },
+      "temporal_resolution": {
+        "sampling_frequency": "Daily precipitation for the phase-defined window",
+        "temporal_extent": "1993-2025",
+        "phenology_dependency": true
+      },
+      "spectral_or_variable_requirements": [
+        "Winter wheat shooting and heading phase-entry surfaces",
+        "Corresponding BSE layers",
+        "Daily precipitation best estimate and ensemble spread"
+      ],
+      "dependency_on_multiple_inputs": true,
+      "other_requirements": [
+        "A phase-defined shooting-heading window.",
+        "Aggregation of phase-entry and BSE layers to the E-OBS grid."
+      ],
+      "evidence": [
+        {
+          "claim": "The demonstrated weather-indicator use case combines the published winter wheat phase-entry/BSE products with E-OBS daily precipitation and ensemble spread.",
+          "evidence_type": "explicit",
+          "source_section": "3.3.6 Use case: propagation into a weather-based indicator",
+          "source_text": "It combines the winter wheat deposit above with the E-OBS v33.0e ensemble dataset ... The 1 km phase-entry and BSE surfaces are aggregated to the coarser precipitation grid.",
+          "source_modality": "authored_prose",
+          "representation_method": "docling_clean_markdown",
+          "review_status": "machine_extracted"
+        }
+      ]
+    },
+    "producer_workflow_inputs": {
+      "data_types": [
+        "DWD phenological point observations",
+        "Phenological station point shapefile",
+        "Gridded daily mean temperatures",
+        "Germany-wide weather grid",
+        "1 km digital elevation model"
+      ],
+      "sources": [
+        "DWD Climate Data Center",
+        "BKG",
+        "DWD and JKI input-data archive"
+      ],
+      "variables_or_covariates": [
+        "Observed phenological DOY",
+        "Daily mean temperature",
+        "Latitude and photoperiod",
+        "Digital elevation model",
+        "Station coordinates"
+      ],
+      "temporal_requirements": [
+        "1993-2025; preceding calendar year for winter crops",
+        "Daily temperature data over the crop-specific accumulation interval"
+      ],
+      "spatial_requirements": [
+        "Germany-wide 1 km grid",
+        "Station observations linked to grid cells",
+        "ETRS89 / UTM zone 32N output reference system"
+      ],
+      "method_specific_requirements": [
+        "R >= 4.0",
+        "IQR-based outlier removal",
+        "Photoperiod-weighted GDD",
+        "Candidate quantiles q=0.30 to 0.70 in 0.05 increments",
+        "SD-threshold multipliers 1.0, 1.5, 2.0, 2.5 and 3.0",
+        "75/25 held-out station validation",
+        "BAM with DEM covariate"
+      ],
+      "evidence": [
+        {
+          "claim": "The workflow combines DWD phenological observations, gridded daily mean temperatures and a DEM to produce the dataset.",
+          "evidence_type": "explicit",
+          "source_section": "2 Methods",
+          "source_text": "The workflow ingests point-scale phenological observations ... and combines them with gridded daily mean temperatures and a digital elevation model (DEM).",
+          "source_modality": "authored_prose",
+          "representation_method": "docling_clean_markdown",
+          "review_status": "machine_extracted"
+        }
+      ]
+    },
+    "processing_pipeline": {
+      "preprocessing_steps": [
+        "Download and harmonise DWD phenological observations.",
+        "Join observations to station geometry and weather-grid identifiers.",
+        "Remove outliers using the interquartile-range criterion.",
+        "Extract daily temperatures for crop-specific vegetation periods."
+      ],
+      "feature_extraction_or_index_definition": [
+        "Compute photoperiod-weighted running GDD.",
+        "Determine critical DOY from empirical thermal-time quantiles."
+      ],
+      "aggregation_methods": [
+        "Aggregate 1 km phase-entry and BSE layers to the E-OBS grid in the demonstrated use case.",
+        "Combine uncertainty components in quadrature under an independence assumption."
+      ],
+      "model_fitting": [
+        "Fit spatial BAM: DOY ~ s(x,y) + s(DEM).",
+        "Alternative interpolation methods are universal kriging with external drift and thin-plate splines."
+      ],
+      "postprocessing": [
+        "Generate per-phase multi-band COGs with one band per year.",
+        "Generate BSE layers and VAM, CAL, GEM and PIC quality tables.",
+        "Package outputs as RO-Crates."
+      ],
+      "selection_or_tuning_steps": [
+        "Evaluate five SD-threshold filter variants.",
+        "Select temperature-sum quantile by MAE.",
+        "Select filter variant using OPT = SN^alpha(y) × r with minimum correlation threshold r_min=0.50."
+      ],
+      "evidence": [
+        {
+          "claim": "PhenoPhaseR consists of seven sequential processing steps from observation preparation through interpolation and uncertainty quantification.",
+          "evidence_type": "explicit",
+          "source_section": "2 Methods",
+          "source_location": "Figure 3",
+          "source_text": "Stage 1: Input data preparation; Stage 2: Temperature modelling and filter variant generation; Stage 3: Filter variant selection, spatial interpolation and uncertainty quantification.",
+          "source_page": 7,
+          "source_item_id": "fig_003",
+          "source_modality": "author_figure",
+          "representation_method": "structured_visual_recovery",
+          "source_asset_sha256": "e061f150c6f27dc63efbabdddf5f9d0f399ba57f8892e01f31ea92a9c3888590",
+          "representation_confidence": 0.96,
+          "review_status": "machine_extracted"
+        }
+      ]
+    },
+    "data_quality_dependencies": {
+      "accuracy_requirements": {
+        "measurement_accuracy": "Out-of-sample DOY accuracy evaluated using MAE, RMSE, MSE and R2 against held-out station observations.",
+        "temporal_accuracy": "Phenological phase-entry dates are evaluated in days of year.",
+        "spatial_accuracy": "Validation is at held-out observation stations; spatially varying model-mean precision is represented by BSE.",
+        "evidence": [
+          {
+            "claim": "Each interpolated surface is assessed against withheld station observations using DOY error metrics.",
+            "evidence_type": "explicit",
+            "source_section": "2.3.4 Validation",
+            "source_text": "DOY is predicted at held-out test station coordinates ... accuracy is assessed using RMSE, MAE, MSE, and R2.",
+            "source_modality": "authored_prose",
+            "representation_method": "docling_clean_markdown",
+            "review_status": "machine_extracted"
+          }
+        ]
+      },
+      "completeness": {
+        "missing_data_tolerance": "Only crop-phase combinations with sufficient suitable observations are included; five possible phase-year surfaces are missing.",
+        "coverage_requirements": "Germany-wide spatial coverage; 1993-2025 for most crops and 2014-2025 for spring barley.",
+        "evidence": [
+          {
+            "claim": "The dataset excludes crop-phase combinations that cannot be modelled with sufficient observations and contains five missing surfaces.",
+            "evidence_type": "explicit",
+            "source_section": "3.1 Dataset scope and completeness",
+            "source_location": "Table 2",
+            "source_text": "Only DWD crop-phase combinations that can be modelled with a sufficient number of suitable observations are included ... The five missing surfaces are ...",
+            "source_page": 16,
+            "source_item_id": "tbl_002",
+            "source_modality": "author_table",
+            "representation_method": "docling_structured",
+            "review_status": "machine_extracted"
+          }
+        ]
+      },
+      "consistency": [
+        "All published surfaces use the same 1 km grid, projection and data structure.",
+        "The same processing chain is applied across eight crops and 55 crop-phase combinations.",
+        "Per-crop deposits and intermediate products are linked through machine-readable provenance."
+      ],
+      "uncertainty_handling": {
+        "global": [
+          "Global BSE quantile summaries are exported in GEM CSV files.",
+          "PICP and MPIW are assessed separately using five-fold cross-validation."
+        ],
+        "local": [
+          "Each DOY surface has a matching per-pixel BSE layer representing model-mean precision."
+        ],
+        "products_or_measures": [
+          {
+            "name": "Bayesian posterior standard error (BSE)",
+            "scope": "per_pixel_or_local",
+            "evaluation_support": "raster_cell",
+            "evaluation_population": "Germany-wide 1 km raster cells",
+            "representation": "Per-pixel raster layer",
+            "interpretation": "Model-internal precision of the fitted mean, not total predictive uncertainty.",
+            "not_equivalent_to": [
+              "A validated predictive uncertainty for an individual observation",
+              "A prediction interval"
+            ]
+          },
+          {
+            "name": "Spatial summaries of BSE",
+            "scope": "spatial_surface_summary",
+            "evaluation_support": "spatial_surface",
+            "evaluation_population": "BSE fields summarized by phase and year",
+            "representation": "GEM percentile summaries",
+            "interpretation": "Global summaries of the BSE surface, not per-cell uncertainty products."
+          },
+          {
+            "name": "PICP and MPIW",
+            "scope": "station_or_observation",
+            "assessment_context": "cross_validated_interval_assessment",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Each station held out once in five-fold cross-validation",
+            "representation": "PIC tables; scalar coverage and mean interval width",
+            "interpretation": "Empirical prediction-interval coverage and interval width for the validation framework.",
+            "not_equivalent_to": [
+              "The published per-pixel BSE",
+              "Post-hoc calibration of the BSE layer"
+            ],
+            "evidence": [
+              {
+                "claim": "Winter wheat median PICP is 0.898 for nominal 90% prediction intervals.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter wheat (202): PICP 0.898.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MPIW",
+            "scope": "station_or_observation",
+            "assessment_context": "cross_validated_interval_assessment",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations in five-fold cross-validation",
+            "representation": "Scalar/table assessment metric",
+            "interpretation": "Median mean prediction-interval width.",
+            "evidence": [
+              {
+                "claim": "Winter wheat median MPIW is 23.5 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter wheat (202): MPIW 23.5.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          }
+        ],
+        "propagation_methods": [
+          "Five-fold prediction-interval construction combining fold-specific BAM standard error with production-model residual variance.",
+          "Weather-indicator phenological component from ±1 BSE boundary shifts.",
+          "Quadrature accumulation of daily E-OBS ensemble spread."
+        ],
+        "unpropagated_sources": [
+          "Uncertainty in the gridded daily mean temperature input is not propagated into BSE.",
+          "Spatial covariance among 1 km cells is not explicitly accounted for during aggregation.",
+          "The weather-indicator quadrature calculation assumes independent daily precipitation errors."
+        ]
+      },
+      "outlier_sensitivity": "Outlier removal uses an IQR criterion; filter selection varies the accepted residual range through five SD-threshold multipliers.",
+      "scale_sensitivity": {
+        "spatial": "Predictions in sparsely observed regions and beyond the main support of the observation network require caution; station-based validation does not assess all raster cells.",
+        "temporal": "Observation density declines over time; BSE increases while global MAE may remain stable.",
+        "aggregation": "Aggregation of 1 km BSE to the coarser E-OBS grid does not explicitly account for spatial covariance.",
+        "evidence": [
+          {
+            "claim": "Validation and uncertainty depend on station density, spatial support and aggregation scale.",
+            "evidence_type": "explicit",
+            "source_section": "4.4 Limitations",
+            "source_location": "limitations 1-5",
+            "source_text": "The validation and the PICP/MPIW assessment are based on phenological observation locations ... aggregation of the 1 km BSE to the coarser E-OBS grid does not explicitly account for spatial covariance.",
+            "source_modality": "authored_prose",
+            "representation_method": "docling_clean_markdown",
+            "review_status": "machine_extracted"
+          }
+        ]
+      },
+      "quality_dimensions": [
+        "Completeness",
+        "Quantitative attribute accuracy",
+        "Spatially explicit model-mean precision",
+        "Empirical prediction-interval coverage",
+        "Prediction-interval width",
+        "Reproducibility"
+      ],
+      "evidence": [
+        {
+          "claim": "The paper addresses input-observation plausibility, producer accuracy, spatially explicit uncertainty and prediction-interval coverage/width as complementary quality dimensions.",
+          "evidence_type": "explicit",
+          "source_section": "1 Introduction",
+          "source_text": "Three complementary quality dimensions are addressed: the plausibility of input VGI observations; producer's accuracy ...; spatially explicit uncertainty surfaces ... complemented by a separate assessment of prediction-interval reliability and width.",
+          "source_modality": "authored_prose",
+          "representation_method": "docling_clean_markdown",
+          "review_status": "machine_extracted"
+        }
+      ]
+    },
+    "validation_and_diagnostics": {
+      "validation_method": [
+        "Random stratified 75/25 split into training and held-out station test sets.",
+        "Five-fold cross-validation for PICP and MPIW, with each station held out once.",
+        "Validation conditional on prior filtering and thermal-time quantile selection."
+      ],
+      "validation_metrics": [
+        {
+          "name": "MAE",
+          "value_or_summary": "5.7 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "5.7 days",
+            "numeric_value": 5.7,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Winter wheat (202)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 231 produced phase-year surfaces",
+          "interpretation": "Median MAE over produced phase-year surfaces.",
+          "evidence": [
+            {
+              "claim": "Winter wheat median out-of-sample MAE is 5.7 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter wheat (202): MAE 5.7.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE range",
+          "value_or_summary": "3.9-7.5 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "range",
+            "as_reported": "3.9-7.5 days",
+            "lower_bound": 3.9,
+            "upper_bound": 7.5,
+            "unit_code": "d",
+            "aggregation": "other",
+            "range_basis": "across per-phase median MAE values"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Winter wheat (202)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across produced phase-year surfaces",
+          "interpretation": "Range of per-phase median MAE values.",
+          "evidence": [
+            {
+              "claim": "Winter wheat per-phase median MAE ranges from 3.9 to 7.5 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter wheat (202): MAE range 3.9-7.5.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "RMSE",
+          "value_or_summary": "7.1 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "7.1 days",
+            "numeric_value": 7.1,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Winter wheat (202)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 231 produced phase-year surfaces",
+          "interpretation": "Median RMSE over produced phase-year surfaces.",
+          "evidence": [
+            {
+              "claim": "Winter wheat median out-of-sample RMSE is 7.1 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter wheat (202): RMSE 7.1.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "PICP",
+          "value_or_summary": "0.898",
+          "unit": "proportion",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "0.898",
+            "numeric_value": 0.898,
+            "nominal_level": 0.9,
+            "unit_code": "1",
+            "aggregation": "median",
+            "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop",
+          "scope_label": "Winter wheat (202)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations in five-fold cross-validation",
+          "interpretation": "Median empirical coverage of nominal 90% prediction intervals.",
+          "evidence": [
+            {
+              "claim": "Winter wheat median PICP is 0.898 for nominal 90% prediction intervals.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter wheat (202): PICP 0.898.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MPIW",
+          "value_or_summary": "23.5 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "23.5 days",
+            "numeric_value": 23.5,
+            "nominal_level": 0.9,
+            "unit_code": "d",
+            "aggregation": "median",
+            "range_basis": "Width of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop",
+          "scope_label": "Winter wheat (202)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations in five-fold cross-validation",
+          "interpretation": "Median mean prediction-interval width.",
+          "evidence": [
+            {
+              "claim": "Winter wheat median MPIW is 23.5 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter wheat (202): MPIW 23.5.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE",
+          "value_or_summary": "5.4 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "5.4 days",
+            "numeric_value": 5.4,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Winter rye (203)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 263 produced surfaces",
+          "interpretation": "Median MAE over produced phase-year surfaces.",
+          "evidence": [
+            {
+              "claim": "Winter rye median MAE is 5.4 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter rye (203): MAE 5.4.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE range",
+          "value_or_summary": "3.8-7.5 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "range",
+            "as_reported": "3.8-7.5 days",
+            "lower_bound": 3.8,
+            "upper_bound": 7.5,
+            "unit_code": "d",
+            "aggregation": "other",
+            "range_basis": "across per-phase median MAE values"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Winter rye (203)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across produced phase-year surfaces",
+          "interpretation": "Range of per-phase median MAE values.",
+          "evidence": [
+            {
+              "claim": "Winter rye per-phase median MAE ranges from 3.8 to 7.5 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter rye (203): MAE range 3.8-7.5.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "RMSE",
+          "value_or_summary": "6.8 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "6.8 days",
+            "numeric_value": 6.8,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Winter rye (203)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 263 produced surfaces",
+          "interpretation": "Median RMSE over produced phase-year surfaces.",
+          "evidence": [
+            {
+              "claim": "Winter rye median RMSE is 6.8 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter rye (203): RMSE 6.8.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "PICP",
+          "value_or_summary": "0.896",
+          "unit": "proportion",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "0.896",
+            "numeric_value": 0.896,
+            "nominal_level": 0.9,
+            "unit_code": "1",
+            "aggregation": "median",
+            "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop",
+          "scope_label": "Winter rye (203)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations in five-fold cross-validation",
+          "interpretation": "Median empirical coverage of nominal 90% prediction intervals.",
+          "evidence": [
+            {
+              "claim": "Winter rye median PICP is 0.896.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter rye (203): PICP 0.896.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MPIW",
+          "value_or_summary": "22.6 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "22.6 days",
+            "numeric_value": 22.6,
+            "nominal_level": 0.9,
+            "unit_code": "d",
+            "aggregation": "median",
+            "range_basis": "Width of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop",
+          "scope_label": "Winter rye (203)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations in five-fold cross-validation",
+          "interpretation": "Median prediction-interval width.",
+          "evidence": [
+            {
+              "claim": "Winter rye median MPIW is 22.6 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter rye (203): MPIW 22.6.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE",
+          "value_or_summary": "4.6 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "4.6 days",
+            "numeric_value": 4.6,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Winter barley (204)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 198 produced surfaces",
+          "interpretation": "Median MAE over produced phase-year surfaces.",
+          "evidence": [
+            {
+              "claim": "Winter barley median MAE is 4.6 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter barley (204): MAE 4.6.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE range",
+          "value_or_summary": "3.3-6.9 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "range",
+            "as_reported": "3.3-6.9 days",
+            "lower_bound": 3.3,
+            "upper_bound": 6.9,
+            "unit_code": "d",
+            "aggregation": "other",
+            "range_basis": "across per-phase median MAE values"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Winter barley (204)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across produced phase-year surfaces",
+          "interpretation": "Range of per-phase median MAE values.",
+          "evidence": [
+            {
+              "claim": "Winter barley per-phase median MAE ranges from 3.3 to 6.9 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter barley (204): MAE range 3.3-6.9.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "RMSE",
+          "value_or_summary": "5.9 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "5.9 days",
+            "numeric_value": 5.9,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Winter barley (204)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 198 produced surfaces",
+          "interpretation": "Median RMSE over produced phase-year surfaces.",
+          "evidence": [
+            {
+              "claim": "Winter barley median RMSE is 5.9 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter barley (204): RMSE 5.9.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "PICP",
+          "value_or_summary": "0.896",
+          "unit": "proportion",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "0.896",
+            "numeric_value": 0.896,
+            "nominal_level": 0.9,
+            "unit_code": "1",
+            "aggregation": "median",
+            "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop",
+          "scope_label": "Winter barley (204)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations in five-fold cross-validation",
+          "interpretation": "Median empirical coverage of nominal 90% prediction intervals.",
+          "evidence": [
+            {
+              "claim": "Winter barley median PICP is 0.896.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter barley (204): PICP 0.896.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MPIW",
+          "value_or_summary": "19.3 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "19.3 days",
+            "numeric_value": 19.3,
+            "nominal_level": 0.9,
+            "unit_code": "d",
+            "aggregation": "median",
+            "range_basis": "Width of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop",
+          "scope_label": "Winter barley (204)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations in five-fold cross-validation",
+          "interpretation": "Median prediction-interval width.",
+          "evidence": [
+            {
+              "claim": "Winter barley median MPIW is 19.3 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter barley (204): MPIW 19.3.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE",
+          "value_or_summary": "5.3 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "5.3 days",
+            "numeric_value": 5.3,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Winter rapeseed (205)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 262 produced surfaces",
+          "interpretation": "Median MAE over produced phase-year surfaces.",
+          "evidence": [
+            {
+              "claim": "Winter rapeseed median MAE is 5.3 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter rapeseed (205): MAE 5.3.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE range",
+          "value_or_summary": "3.5-8.5 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "range",
+            "as_reported": "3.5-8.5 days",
+            "lower_bound": 3.5,
+            "upper_bound": 8.5,
+            "unit_code": "d",
+            "aggregation": "other",
+            "range_basis": "across per-phase median MAE values"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Winter rapeseed (205)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across produced phase-year surfaces",
+          "interpretation": "Range of per-phase median MAE values.",
+          "evidence": [
+            {
+              "claim": "Winter rapeseed per-phase median MAE ranges from 3.5 to 8.5 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter rapeseed (205): MAE range 3.5-8.5.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "RMSE",
+          "value_or_summary": "6.7 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "6.7 days",
+            "numeric_value": 6.7,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Winter rapeseed (205)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 262 produced surfaces",
+          "interpretation": "Median RMSE over produced phase-year surfaces.",
+          "evidence": [
+            {
+              "claim": "Winter rapeseed median RMSE is 6.7 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter rapeseed (205): RMSE 6.7.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "PICP",
+          "value_or_summary": "0.898",
+          "unit": "proportion",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "0.898",
+            "numeric_value": 0.898,
+            "nominal_level": 0.9,
+            "unit_code": "1",
+            "aggregation": "median",
+            "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop",
+          "scope_label": "Winter rapeseed (205)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations in five-fold cross-validation",
+          "interpretation": "Median empirical coverage of nominal 90% prediction intervals.",
+          "evidence": [
+            {
+              "claim": "Winter rapeseed median PICP is 0.898.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter rapeseed (205): PICP 0.898.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MPIW",
+          "value_or_summary": "22.2 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "22.2 days",
+            "numeric_value": 22.2,
+            "nominal_level": 0.9,
+            "unit_code": "d",
+            "aggregation": "median",
+            "range_basis": "Width of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop",
+          "scope_label": "Winter rapeseed (205)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations in five-fold cross-validation",
+          "interpretation": "Median prediction-interval width.",
+          "evidence": [
+            {
+              "claim": "Winter rapeseed median MPIW is 22.2 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Winter rapeseed (205): MPIW 22.2.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE",
+          "value_or_summary": "5.3 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "5.3 days",
+            "numeric_value": 5.3,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Spring barley (207)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 72 produced surfaces",
+          "interpretation": "Median MAE over produced phase-year surfaces.",
+          "evidence": [
+            {
+              "claim": "Spring barley median MAE is 5.3 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Spring barley (207): MAE 5.3.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE range",
+          "value_or_summary": "4.2-5.9 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "range",
+            "as_reported": "4.2-5.9 days",
+            "lower_bound": 4.2,
+            "upper_bound": 5.9,
+            "unit_code": "d",
+            "aggregation": "other",
+            "range_basis": "across per-phase median MAE values"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Spring barley (207)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across produced phase-year surfaces",
+          "interpretation": "Range of per-phase median MAE values.",
+          "evidence": [
+            {
+              "claim": "Spring barley per-phase median MAE ranges from 4.2 to 5.9 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Spring barley (207): MAE range 4.2-5.9.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "RMSE",
+          "value_or_summary": "6.5 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "6.5 days",
+            "numeric_value": 6.5,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Spring barley (207)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 72 produced surfaces",
+          "interpretation": "Median RMSE over produced phase-year surfaces.",
+          "evidence": [
+            {
+              "claim": "Spring barley median RMSE is 6.5 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Spring barley (207): RMSE 6.5.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "PICP",
+          "value_or_summary": "0.901",
+          "unit": "proportion",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "0.901",
+            "numeric_value": 0.901,
+            "nominal_level": 0.9,
+            "unit_code": "1",
+            "aggregation": "median",
+            "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop",
+          "scope_label": "Spring barley (207)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations in five-fold cross-validation",
+          "interpretation": "Median empirical coverage of nominal 90% prediction intervals.",
+          "evidence": [
+            {
+              "claim": "Spring barley median PICP is 0.901.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Spring barley (207): PICP 0.901.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MPIW",
+          "value_or_summary": "21.6 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "21.6 days",
+            "numeric_value": 21.6,
+            "nominal_level": 0.9,
+            "unit_code": "d",
+            "aggregation": "median",
+            "range_basis": "Width of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop",
+          "scope_label": "Spring barley (207)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations in five-fold cross-validation",
+          "interpretation": "Median prediction-interval width.",
+          "evidence": [
+            {
+              "claim": "Spring barley median MPIW is 21.6 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Spring barley (207): MPIW 21.6.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE",
+          "value_or_summary": "5.1 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "5.1 days",
+            "numeric_value": 5.1,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Oats (208)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 231 produced surfaces",
+          "interpretation": "Median MAE over produced phase-year surfaces.",
+          "evidence": [
+            {
+              "claim": "Oats median MAE is 5.1 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Oats (208): MAE 5.1.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE range",
+          "value_or_summary": "3.6-5.8 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "range",
+            "as_reported": "3.6-5.8 days",
+            "lower_bound": 3.6,
+            "upper_bound": 5.8,
+            "unit_code": "d",
+            "aggregation": "other",
+            "range_basis": "across per-phase median MAE values"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Oats (208)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across produced phase-year surfaces",
+          "interpretation": "Range of per-phase median MAE values.",
+          "evidence": [
+            {
+              "claim": "Oats per-phase median MAE ranges from 3.6 to 5.8 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Oats (208): MAE range 3.6-5.8.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "RMSE",
+          "value_or_summary": "6.4 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "6.4 days",
+            "numeric_value": 6.4,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Oats (208)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 231 produced surfaces",
+          "interpretation": "Median RMSE over produced phase-year surfaces.",
+          "evidence": [
+            {
+              "claim": "Oats median RMSE is 6.4 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Oats (208): RMSE 6.4.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "PICP",
+          "value_or_summary": "0.899",
+          "unit": "proportion",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "0.899",
+            "numeric_value": 0.899,
+            "nominal_level": 0.9,
+            "unit_code": "1",
+            "aggregation": "median",
+            "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop",
+          "scope_label": "Oats (208)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations in five-fold cross-validation",
+          "interpretation": "Median empirical coverage of nominal 90% prediction intervals.",
+          "evidence": [
+            {
+              "claim": "Oats median PICP is 0.899.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Oats (208): PICP 0.899.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MPIW",
+          "value_or_summary": "20.6 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "20.6 days",
+            "numeric_value": 20.6,
+            "nominal_level": 0.9,
+            "unit_code": "d",
+            "aggregation": "median",
+            "range_basis": "Width of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop",
+          "scope_label": "Oats (208)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations in five-fold cross-validation",
+          "interpretation": "Median prediction-interval width.",
+          "evidence": [
+            {
+              "claim": "Oats median MPIW is 20.6 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Oats (208): MPIW 20.6.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE",
+          "value_or_summary": "5.2 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "5.2 days",
+            "numeric_value": 5.2,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Maize (215)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 297 produced surfaces",
+          "interpretation": "Median MAE over produced phase-year surfaces.",
+          "evidence": [
+            {
+              "claim": "Maize median MAE is 5.2 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Maize (215): MAE 5.2.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE range",
+          "value_or_summary": "3.1-7.5 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "range",
+            "as_reported": "3.1-7.5 days",
+            "lower_bound": 3.1,
+            "upper_bound": 7.5,
+            "unit_code": "d",
+            "aggregation": "other",
+            "range_basis": "across per-phase median MAE values"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Maize (215)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across produced phase-year surfaces",
+          "interpretation": "Range of per-phase median MAE values.",
+          "evidence": [
+            {
+              "claim": "Maize per-phase median MAE ranges from 3.1 to 7.5 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Maize (215): MAE range 3.1-7.5.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "RMSE",
+          "value_or_summary": "6.4 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "6.4 days",
+            "numeric_value": 6.4,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Maize (215)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 297 produced surfaces",
+          "interpretation": "Median RMSE over produced phase-year surfaces.",
+          "evidence": [
+            {
+              "claim": "Maize median RMSE is 6.4 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Maize (215): RMSE 6.4.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "PICP",
+          "value_or_summary": "0.897",
+          "unit": "proportion",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "0.897",
+            "numeric_value": 0.897,
+            "nominal_level": 0.9,
+            "unit_code": "1",
+            "aggregation": "median",
+            "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop",
+          "scope_label": "Maize (215)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations in five-fold cross-validation",
+          "interpretation": "Median empirical coverage of nominal 90% prediction intervals.",
+          "evidence": [
+            {
+              "claim": "Maize median PICP is 0.897.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Maize (215): PICP 0.897.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MPIW",
+          "value_or_summary": "21.1 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "21.1 days",
+            "numeric_value": 21.1,
+            "nominal_level": 0.9,
+            "unit_code": "d",
+            "aggregation": "median",
+            "range_basis": "Width of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop",
+          "scope_label": "Maize (215)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations in five-fold cross-validation",
+          "interpretation": "Median prediction-interval width.",
+          "evidence": [
+            {
+              "claim": "Maize median MPIW is 21.1 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Maize (215): MPIW 21.1.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE",
+          "value_or_summary": "4.6 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "4.6 days",
+            "numeric_value": 4.6,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Sugar beet (253)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 130 produced surfaces",
+          "interpretation": "Median MAE over produced phase-year surfaces.",
+          "evidence": [
+            {
+              "claim": "Sugar beet median MAE is 4.6 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Sugar beet (253): MAE 4.6.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE range",
+          "value_or_summary": "3.9-9.4 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "range",
+            "as_reported": "3.9-9.4 days",
+            "lower_bound": 3.9,
+            "upper_bound": 9.4,
+            "unit_code": "d",
+            "aggregation": "other",
+            "range_basis": "across per-phase median MAE values"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Sugar beet (253)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across produced phase-year surfaces",
+          "interpretation": "Range of per-phase median MAE values.",
+          "evidence": [
+            {
+              "claim": "Sugar beet per-phase median MAE ranges from 3.9 to 9.4 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Sugar beet (253): MAE range 3.9-9.4.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "RMSE",
+          "value_or_summary": "5.6 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "5.6 days",
+            "numeric_value": 5.6,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop",
+          "scope_label": "Sugar beet (253)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 130 produced surfaces",
+          "interpretation": "Median RMSE over produced phase-year surfaces.",
+          "evidence": [
+            {
+              "claim": "Sugar beet median RMSE is 5.6 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Sugar beet (253): RMSE 5.6.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "PICP",
+          "value_or_summary": "0.901",
+          "unit": "proportion",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "0.901",
+            "numeric_value": 0.901,
+            "nominal_level": 0.9,
+            "unit_code": "1",
+            "aggregation": "median",
+            "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop",
+          "scope_label": "Sugar beet (253)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations in five-fold cross-validation",
+          "interpretation": "Median empirical coverage of nominal 90% prediction intervals.",
+          "evidence": [
+            {
+              "claim": "Sugar beet median PICP is 0.901.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Sugar beet (253): PICP 0.901.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MPIW",
+          "value_or_summary": "18.7 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "18.7 days",
+            "numeric_value": 18.7,
+            "nominal_level": 0.9,
+            "unit_code": "d",
+            "aggregation": "median",
+            "range_basis": "Width of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop",
+          "scope_label": "Sugar beet (253)",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations in five-fold cross-validation",
+          "interpretation": "Median prediction-interval width.",
+          "evidence": [
+            {
+              "claim": "Sugar beet median MPIW is 18.7 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "Sugar beet (253): MPIW 18.7.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE",
+          "value_or_summary": "5.2 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "5.2 days",
+            "numeric_value": 5.2,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "dataset_family",
+          "scope_label": "All crops",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 1684 produced surfaces",
+          "interpretation": "Family-wide median MAE.",
+          "evidence": [
+            {
+              "claim": "The family-wide median MAE is 5.2 days over all 1684 produced surfaces.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "All crops: MAE 5.2.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE range",
+          "value_or_summary": "3.1-9.4 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "range",
+            "as_reported": "3.1-9.4 days",
+            "lower_bound": 3.1,
+            "upper_bound": 9.4,
+            "unit_code": "d",
+            "aggregation": "other",
+            "range_basis": "across crop-specific and phase-specific median MAE values"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "dataset_family",
+          "scope_label": "All crops",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 1684 produced surfaces",
+          "interpretation": "Range of per-phase median MAE values across all crops.",
+          "evidence": [
+            {
+              "claim": "The all-crop MAE range is 3.1-9.4 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "All crops: MAE range 3.1-9.4.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "RMSE",
+          "value_or_summary": "6.5 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "6.5 days",
+            "numeric_value": 6.5,
+            "unit_code": "d",
+            "aggregation": "median"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "dataset_family",
+          "scope_label": "All crops",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across 1684 produced surfaces",
+          "interpretation": "Family-wide median RMSE.",
+          "evidence": [
+            {
+              "claim": "The family-wide median RMSE is 6.5 days over all 1684 produced surfaces.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "All crops: RMSE 6.5.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "PICP",
+          "value_or_summary": "0.898",
+          "unit": "proportion",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "0.898",
+            "numeric_value": 0.898,
+            "nominal_level": 0.9,
+            "unit_code": "1",
+            "aggregation": "median",
+            "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "dataset_family",
+          "scope_label": "All crops",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations across 1684 produced surfaces",
+          "interpretation": "Family-wide median empirical coverage of nominal 90% intervals.",
+          "evidence": [
+            {
+              "claim": "The all-crop median PICP is 0.898.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "All crops: PICP 0.898.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MPIW",
+          "value_or_summary": "21.3 days",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "scalar",
+            "as_reported": "21.3 days",
+            "numeric_value": 21.3,
+            "nominal_level": 0.9,
+            "unit_code": "d",
+            "aggregation": "median",
+            "range_basis": "Width of nominal 90% prediction intervals"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "dataset_family",
+          "scope_label": "All crops",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out stations across 1684 produced surfaces",
+          "interpretation": "Family-wide median mean prediction-interval width.",
+          "evidence": [
+            {
+              "claim": "The all-crop median MPIW is 21.3 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.2 Accuracy and calibration across the crop family",
+              "source_location": "Table 3",
+              "source_text": "All crops: MPIW 21.3.",
+              "source_page": 17,
+              "source_item_id": "tbl_003",
+              "source_modality": "author_table",
+              "representation_method": "docling_structured",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MAE",
+          "value_or_summary": "2.8-5.1 days (median 3.9 days)",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "estimate_with_range",
+            "as_reported": "2.8-5.1 days (median 3.9 days)",
+            "numeric_value": 3.9,
+            "lower_bound": 2.8,
+            "upper_bound": 5.1,
+            "unit_code": "d",
+            "aggregation": "median",
+            "range_basis": "annual MAE values across the winter wheat heading phase"
+          },
+          "context": "out_of_sample_validation",
+          "scope": "crop_phase",
+          "scope_label": "Winter wheat heading phase",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Held-out station observations across the 1993-2025 winter wheat heading phase series",
+          "interpretation": "Annual out-of-sample MAE range and median for the heading phase.",
+          "evidence": [
+            {
+              "claim": "Winter wheat heading has an MAE of 2.8-5.1 days with median 3.9 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.3.2 Accuracy across phenological phases",
+              "source_text": "The heading phase (18) is interpolated most accurately, with an MAE of 2.8-5.1 days (median 3.9 days).",
+              "source_modality": "authored_prose",
+              "representation_method": "docling_clean_markdown",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "BSE",
+          "value_or_summary": "0.76 days in 1993 to 1.38 days in 2025",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "labeled_series",
+            "as_reported": "0.76 days in 1993 to 1.38 days in 2025",
+            "unit_code": "d",
+            "aggregation": "median",
+            "range_basis": "temporal endpoints of median per-pixel BSE for winter wheat heading",
+            "points": [
+              {
+                "label": "1993",
+                "value": 0.76,
+                "role": "start"
+              },
+              {
+                "label": "2025",
+                "value": 1.38,
+                "role": "end"
+              }
+            ]
+          },
+          "context": "spatial_uncertainty_summary",
+          "scope": "variable_or_layer",
+          "scope_label": "Winter wheat heading BSE layer",
+          "evaluation_support": "raster_cell",
+          "evaluation_population": "Germany-wide 1 km raster cells summarized by median",
+          "interpretation": "Median per-pixel model-mean precision increases over the study period.",
+          "evidence": [
+            {
+              "claim": "Median per-pixel BSE for winter wheat heading rises from 0.76 days in 1993 to 1.38 days in 2025.",
+              "evidence_type": "explicit",
+              "source_section": "3.3 Winter wheat example",
+              "source_location": "Figure 4",
+              "source_text": "For the heading phase, the median per-pixel BSE rises from 0.76 days in 1993 to 1.38 days in 2025.",
+              "source_page": 19,
+              "source_item_id": "fig_004",
+              "source_modality": "author_caption",
+              "representation_method": "docling_clean_markdown",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "PICP",
+          "value_or_summary": "0.900 (range 0.888-0.920 across years)",
+          "unit": "proportion",
+          "quantitative_value": {
+            "kind": "estimate_with_range",
+            "as_reported": "0.900 (range 0.888-0.920 across years)",
+            "numeric_value": 0.9,
+            "lower_bound": 0.888,
+            "upper_bound": 0.92,
+            "nominal_level": 0.9,
+            "unit_code": "1",
+            "aggregation": "mean",
+            "range_basis": "across years"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop_phase",
+          "scope_label": "Winter wheat heading phase",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Each station held out once in five-fold cross-validation",
+          "interpretation": "Mean empirical coverage of nominal 90% prediction intervals.",
+          "evidence": [
+            {
+              "claim": "Winter wheat heading has mean PICP 0.900 with annual range 0.888-0.920.",
+              "evidence_type": "explicit",
+              "source_section": "3.3 Winter wheat example",
+              "source_location": "Figure 4",
+              "source_text": "For the heading phase ... mean PICP of 0.900 (range 0.888-0.920 across years).",
+              "source_page": 19,
+              "source_item_id": "fig_004",
+              "source_modality": "author_caption",
+              "representation_method": "docling_clean_markdown",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "MPIW",
+          "value_or_summary": "16.0 days (range 12.6-21.4 days)",
+          "unit": "days",
+          "quantitative_value": {
+            "kind": "estimate_with_range",
+            "as_reported": "16.0 days (range 12.6-21.4 days)",
+            "numeric_value": 16.0,
+            "lower_bound": 12.6,
+            "upper_bound": 21.4,
+            "nominal_level": 0.9,
+            "unit_code": "d",
+            "aggregation": "mean",
+            "range_basis": "across years"
+          },
+          "context": "cross_validated_interval_assessment",
+          "scope": "crop_phase",
+          "scope_label": "Winter wheat heading phase",
+          "evaluation_support": "held_out_station",
+          "evaluation_population": "Each station held out once in five-fold cross-validation",
+          "interpretation": "Mean prediction-interval width.",
+          "evidence": [
+            {
+              "claim": "Winter wheat heading has mean MPIW 16.0 days with annual range 12.6-21.4 days.",
+              "evidence_type": "explicit",
+              "source_section": "3.3 Winter wheat example",
+              "source_location": "Figure 4",
+              "source_text": "Mean interval width of 16.0 days (range 12.6-21.4 days).",
+              "source_page": 19,
+              "source_item_id": "fig_004",
+              "source_modality": "author_caption",
+              "representation_method": "docling_clean_markdown",
+              "review_status": "machine_extracted"
+            }
+          ]
+        },
+        {
+          "name": "WI",
+          "value_or_summary": "16.3 ± 2.3 mm",
+          "unit": "mm",
+          "quantitative_value": {
+            "kind": "estimate_with_uncertainty",
+            "as_reported": "16.3 ± 2.3 mm",
+            "numeric_value": 16.3,
+            "unit_code": "mm",
+            "aggregation": "raw",
+            "uncertainty_components": [
+              {
+                "name": "precipitation component",
+                "value": 2.3,
+                "unit_code": "mm",
+                "scale": "one_sigma",
+                "note": "Accumulated E-OBS ensemble spread component."
+              }
+            ]
+          },
+          "context": "downstream_use_case",
+          "scope": "use_case",
+          "scope_label": "Uckermark winter wheat shooting-heading weather indicator, 2018",
+          "evaluation_support": "use_case",
+          "evaluation_population": "Uckermark district, 2018",
+          "interpretation": "Cumulative precipitation during the shooting-heading window with the reported precipitation-component uncertainty.",
+          "evidence": [
+            {
+              "claim": "For the Uckermark winter wheat shooting-heading window in 2018, WI is 16.3 ± 2.3 mm for the precipitation component.",
+              "evidence_type": "explicit",
+              "source_section": "3.3.5 Interpolated DOY and uncertainty maps",
+              "source_location": "Figure 7",
+              "source_text": "For 2018 ... yielding WI = 16.3 ± 2.3 mm (precipitation component).",
+              "source_page": 22,
+              "source_item_id": "fig_007",
+              "source_modality": "author_caption",
+              "representation_method": "docling_clean_markdown",
+              "review_status": "machine_extracted"
+            }
+          ]
+        }
+      ],
+      "model_fit_diagnostics": [
+        "Step 6 selection statistics and CAL diagnostics are in-sample by construction.",
+        "BSE is obtained from the Bayesian posterior standard error of the fitted BAM mean.",
+        "BAM smoothness is estimated using fast REML."
+      ],
+      "plausibility_checks": [
+        "DWD observations undergo quality control and IQR-based outlier removal.",
+        "Spatial patterns and BSE maps are interpreted alongside station density."
+      ],
+      "validation_limitations": [
+        "Validation is conditional on preceding filtering and thermal-time quantile selection.",
+        "Randomly held-out stations may remain spatially dependent on training stations.",
+        "The DWD volunteer network is not a probability sample.",
+        "PICP/MPIW uses final production-model residual variance and is not fully nested independent validation.",
+        "Validation assesses observation locations, not every cell of the Germany-wide prediction grid.",
+        "Prediction-interval assessment is based on held-out observation locations, not all raster/grid cells."
+      ],
+      "evidence": [
+        {
+          "claim": "The validation metrics are conditional on filtering and may be optimistic relative to the unfiltered volunteer record.",
+          "evidence_type": "explicit",
+          "source_section": "4.4 Limitations",
+          "source_location": "limitation 3",
+          "source_text": "The reported errors therefore describe the performance for the retained observations and may be optimistic compared with the unfiltered volunteer record.",
+          "source_modality": "authored_prose",
+          "representation_method": "docling_clean_markdown",
+          "review_status": "machine_extracted"
+        }
+      ]
+    },
+    "outputs_and_fitness_indicators": {
+      "primary_outputs": [
+        "Interpolated phase-entry DOY surfaces",
+        "Per-pixel BSE layers"
+      ],
+      "secondary_outputs": [
+        "VAM, CAL, GEM and PIC quality tables",
+        "Phenological windows",
+        "Demonstrated weather indicator products"
+      ],
+      "fitness_for_use_metrics": {
+        "producer_side_metrics": [
+          {
+            "name": "MAE",
+            "value_or_summary": "5.7 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "5.7 days",
+              "numeric_value": 5.7,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Winter wheat (202)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 231 produced phase-year surfaces",
+            "interpretation": "Median MAE over produced phase-year surfaces.",
+            "evidence": [
+              {
+                "claim": "Winter wheat median out-of-sample MAE is 5.7 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter wheat (202): MAE 5.7.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE range",
+            "value_or_summary": "3.9-7.5 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "range",
+              "as_reported": "3.9-7.5 days",
+              "lower_bound": 3.9,
+              "upper_bound": 7.5,
+              "unit_code": "d",
+              "aggregation": "other",
+              "range_basis": "across per-phase median MAE values"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Winter wheat (202)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across produced phase-year surfaces",
+            "interpretation": "Range of per-phase median MAE values.",
+            "evidence": [
+              {
+                "claim": "Winter wheat per-phase median MAE ranges from 3.9 to 7.5 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter wheat (202): MAE range 3.9-7.5.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "RMSE",
+            "value_or_summary": "7.1 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "7.1 days",
+              "numeric_value": 7.1,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Winter wheat (202)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 231 produced phase-year surfaces",
+            "interpretation": "Median RMSE over produced phase-year surfaces.",
+            "evidence": [
+              {
+                "claim": "Winter wheat median out-of-sample RMSE is 7.1 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter wheat (202): RMSE 7.1.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "PICP",
+            "value_or_summary": "0.898",
+            "unit": "proportion",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "0.898",
+              "numeric_value": 0.898,
+              "nominal_level": 0.9,
+              "unit_code": "1",
+              "aggregation": "median",
+              "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop",
+            "scope_label": "Winter wheat (202)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations in five-fold cross-validation",
+            "interpretation": "Median empirical coverage of nominal 90% prediction intervals.",
+            "evidence": [
+              {
+                "claim": "Winter wheat median PICP is 0.898 for nominal 90% prediction intervals.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter wheat (202): PICP 0.898.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MPIW",
+            "value_or_summary": "23.5 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "23.5 days",
+              "numeric_value": 23.5,
+              "nominal_level": 0.9,
+              "unit_code": "d",
+              "aggregation": "median",
+              "range_basis": "Width of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop",
+            "scope_label": "Winter wheat (202)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations in five-fold cross-validation",
+            "interpretation": "Median mean prediction-interval width.",
+            "evidence": [
+              {
+                "claim": "Winter wheat median MPIW is 23.5 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter wheat (202): MPIW 23.5.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE",
+            "value_or_summary": "5.4 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "5.4 days",
+              "numeric_value": 5.4,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Winter rye (203)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 263 produced surfaces",
+            "interpretation": "Median MAE over produced phase-year surfaces.",
+            "evidence": [
+              {
+                "claim": "Winter rye median MAE is 5.4 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter rye (203): MAE 5.4.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE range",
+            "value_or_summary": "3.8-7.5 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "range",
+              "as_reported": "3.8-7.5 days",
+              "lower_bound": 3.8,
+              "upper_bound": 7.5,
+              "unit_code": "d",
+              "aggregation": "other",
+              "range_basis": "across per-phase median MAE values"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Winter rye (203)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across produced phase-year surfaces",
+            "interpretation": "Range of per-phase median MAE values.",
+            "evidence": [
+              {
+                "claim": "Winter rye per-phase median MAE ranges from 3.8 to 7.5 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter rye (203): MAE range 3.8-7.5.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "RMSE",
+            "value_or_summary": "6.8 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "6.8 days",
+              "numeric_value": 6.8,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Winter rye (203)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 263 produced surfaces",
+            "interpretation": "Median RMSE over produced phase-year surfaces.",
+            "evidence": [
+              {
+                "claim": "Winter rye median RMSE is 6.8 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter rye (203): RMSE 6.8.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "PICP",
+            "value_or_summary": "0.896",
+            "unit": "proportion",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "0.896",
+              "numeric_value": 0.896,
+              "nominal_level": 0.9,
+              "unit_code": "1",
+              "aggregation": "median",
+              "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop",
+            "scope_label": "Winter rye (203)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations in five-fold cross-validation",
+            "interpretation": "Median empirical coverage of nominal 90% prediction intervals.",
+            "evidence": [
+              {
+                "claim": "Winter rye median PICP is 0.896.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter rye (203): PICP 0.896.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MPIW",
+            "value_or_summary": "22.6 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "22.6 days",
+              "numeric_value": 22.6,
+              "nominal_level": 0.9,
+              "unit_code": "d",
+              "aggregation": "median",
+              "range_basis": "Width of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop",
+            "scope_label": "Winter rye (203)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations in five-fold cross-validation",
+            "interpretation": "Median prediction-interval width.",
+            "evidence": [
+              {
+                "claim": "Winter rye median MPIW is 22.6 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter rye (203): MPIW 22.6.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE",
+            "value_or_summary": "4.6 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "4.6 days",
+              "numeric_value": 4.6,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Winter barley (204)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 198 produced surfaces",
+            "interpretation": "Median MAE over produced phase-year surfaces.",
+            "evidence": [
+              {
+                "claim": "Winter barley median MAE is 4.6 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter barley (204): MAE 4.6.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE range",
+            "value_or_summary": "3.3-6.9 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "range",
+              "as_reported": "3.3-6.9 days",
+              "lower_bound": 3.3,
+              "upper_bound": 6.9,
+              "unit_code": "d",
+              "aggregation": "other",
+              "range_basis": "across per-phase median MAE values"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Winter barley (204)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across produced phase-year surfaces",
+            "interpretation": "Range of per-phase median MAE values.",
+            "evidence": [
+              {
+                "claim": "Winter barley per-phase median MAE ranges from 3.3 to 6.9 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter barley (204): MAE range 3.3-6.9.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "RMSE",
+            "value_or_summary": "5.9 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "5.9 days",
+              "numeric_value": 5.9,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Winter barley (204)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 198 produced surfaces",
+            "interpretation": "Median RMSE over produced phase-year surfaces.",
+            "evidence": [
+              {
+                "claim": "Winter barley median RMSE is 5.9 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter barley (204): RMSE 5.9.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "PICP",
+            "value_or_summary": "0.896",
+            "unit": "proportion",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "0.896",
+              "numeric_value": 0.896,
+              "nominal_level": 0.9,
+              "unit_code": "1",
+              "aggregation": "median",
+              "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop",
+            "scope_label": "Winter barley (204)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations in five-fold cross-validation",
+            "interpretation": "Median empirical coverage of nominal 90% prediction intervals.",
+            "evidence": [
+              {
+                "claim": "Winter barley median PICP is 0.896.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter barley (204): PICP 0.896.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MPIW",
+            "value_or_summary": "19.3 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "19.3 days",
+              "numeric_value": 19.3,
+              "nominal_level": 0.9,
+              "unit_code": "d",
+              "aggregation": "median",
+              "range_basis": "Width of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop",
+            "scope_label": "Winter barley (204)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations in five-fold cross-validation",
+            "interpretation": "Median prediction-interval width.",
+            "evidence": [
+              {
+                "claim": "Winter barley median MPIW is 19.3 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter barley (204): MPIW 19.3.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE",
+            "value_or_summary": "5.3 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "5.3 days",
+              "numeric_value": 5.3,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Winter rapeseed (205)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 262 produced surfaces",
+            "interpretation": "Median MAE over produced phase-year surfaces.",
+            "evidence": [
+              {
+                "claim": "Winter rapeseed median MAE is 5.3 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter rapeseed (205): MAE 5.3.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE range",
+            "value_or_summary": "3.5-8.5 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "range",
+              "as_reported": "3.5-8.5 days",
+              "lower_bound": 3.5,
+              "upper_bound": 8.5,
+              "unit_code": "d",
+              "aggregation": "other",
+              "range_basis": "across per-phase median MAE values"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Winter rapeseed (205)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across produced phase-year surfaces",
+            "interpretation": "Range of per-phase median MAE values.",
+            "evidence": [
+              {
+                "claim": "Winter rapeseed per-phase median MAE ranges from 3.5 to 8.5 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter rapeseed (205): MAE range 3.5-8.5.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "RMSE",
+            "value_or_summary": "6.7 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "6.7 days",
+              "numeric_value": 6.7,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Winter rapeseed (205)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 262 produced surfaces",
+            "interpretation": "Median RMSE over produced phase-year surfaces.",
+            "evidence": [
+              {
+                "claim": "Winter rapeseed median RMSE is 6.7 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter rapeseed (205): RMSE 6.7.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "PICP",
+            "value_or_summary": "0.898",
+            "unit": "proportion",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "0.898",
+              "numeric_value": 0.898,
+              "nominal_level": 0.9,
+              "unit_code": "1",
+              "aggregation": "median",
+              "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop",
+            "scope_label": "Winter rapeseed (205)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations in five-fold cross-validation",
+            "interpretation": "Median empirical coverage of nominal 90% prediction intervals.",
+            "evidence": [
+              {
+                "claim": "Winter rapeseed median PICP is 0.898.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter rapeseed (205): PICP 0.898.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MPIW",
+            "value_or_summary": "22.2 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "22.2 days",
+              "numeric_value": 22.2,
+              "nominal_level": 0.9,
+              "unit_code": "d",
+              "aggregation": "median",
+              "range_basis": "Width of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop",
+            "scope_label": "Winter rapeseed (205)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations in five-fold cross-validation",
+            "interpretation": "Median prediction-interval width.",
+            "evidence": [
+              {
+                "claim": "Winter rapeseed median MPIW is 22.2 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Winter rapeseed (205): MPIW 22.2.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE",
+            "value_or_summary": "5.3 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "5.3 days",
+              "numeric_value": 5.3,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Spring barley (207)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 72 produced surfaces",
+            "interpretation": "Median MAE over produced phase-year surfaces.",
+            "evidence": [
+              {
+                "claim": "Spring barley median MAE is 5.3 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Spring barley (207): MAE 5.3.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE range",
+            "value_or_summary": "4.2-5.9 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "range",
+              "as_reported": "4.2-5.9 days",
+              "lower_bound": 4.2,
+              "upper_bound": 5.9,
+              "unit_code": "d",
+              "aggregation": "other",
+              "range_basis": "across per-phase median MAE values"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Spring barley (207)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across produced phase-year surfaces",
+            "interpretation": "Range of per-phase median MAE values.",
+            "evidence": [
+              {
+                "claim": "Spring barley per-phase median MAE ranges from 4.2 to 5.9 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Spring barley (207): MAE range 4.2-5.9.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "RMSE",
+            "value_or_summary": "6.5 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "6.5 days",
+              "numeric_value": 6.5,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Spring barley (207)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 72 produced surfaces",
+            "interpretation": "Median RMSE over produced phase-year surfaces.",
+            "evidence": [
+              {
+                "claim": "Spring barley median RMSE is 6.5 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Spring barley (207): RMSE 6.5.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "PICP",
+            "value_or_summary": "0.901",
+            "unit": "proportion",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "0.901",
+              "numeric_value": 0.901,
+              "nominal_level": 0.9,
+              "unit_code": "1",
+              "aggregation": "median",
+              "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop",
+            "scope_label": "Spring barley (207)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations in five-fold cross-validation",
+            "interpretation": "Median empirical coverage of nominal 90% prediction intervals.",
+            "evidence": [
+              {
+                "claim": "Spring barley median PICP is 0.901.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Spring barley (207): PICP 0.901.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MPIW",
+            "value_or_summary": "21.6 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "21.6 days",
+              "numeric_value": 21.6,
+              "nominal_level": 0.9,
+              "unit_code": "d",
+              "aggregation": "median",
+              "range_basis": "Width of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop",
+            "scope_label": "Spring barley (207)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations in five-fold cross-validation",
+            "interpretation": "Median prediction-interval width.",
+            "evidence": [
+              {
+                "claim": "Spring barley median MPIW is 21.6 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Spring barley (207): MPIW 21.6.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE",
+            "value_or_summary": "5.1 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "5.1 days",
+              "numeric_value": 5.1,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Oats (208)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 231 produced surfaces",
+            "interpretation": "Median MAE over produced phase-year surfaces.",
+            "evidence": [
+              {
+                "claim": "Oats median MAE is 5.1 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Oats (208): MAE 5.1.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE range",
+            "value_or_summary": "3.6-5.8 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "range",
+              "as_reported": "3.6-5.8 days",
+              "lower_bound": 3.6,
+              "upper_bound": 5.8,
+              "unit_code": "d",
+              "aggregation": "other",
+              "range_basis": "across per-phase median MAE values"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Oats (208)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across produced phase-year surfaces",
+            "interpretation": "Range of per-phase median MAE values.",
+            "evidence": [
+              {
+                "claim": "Oats per-phase median MAE ranges from 3.6 to 5.8 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Oats (208): MAE range 3.6-5.8.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "RMSE",
+            "value_or_summary": "6.4 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "6.4 days",
+              "numeric_value": 6.4,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Oats (208)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 231 produced surfaces",
+            "interpretation": "Median RMSE over produced phase-year surfaces.",
+            "evidence": [
+              {
+                "claim": "Oats median RMSE is 6.4 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Oats (208): RMSE 6.4.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "PICP",
+            "value_or_summary": "0.899",
+            "unit": "proportion",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "0.899",
+              "numeric_value": 0.899,
+              "nominal_level": 0.9,
+              "unit_code": "1",
+              "aggregation": "median",
+              "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop",
+            "scope_label": "Oats (208)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations in five-fold cross-validation",
+            "interpretation": "Median empirical coverage of nominal 90% prediction intervals.",
+            "evidence": [
+              {
+                "claim": "Oats median PICP is 0.899.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Oats (208): PICP 0.899.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MPIW",
+            "value_or_summary": "20.6 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "20.6 days",
+              "numeric_value": 20.6,
+              "nominal_level": 0.9,
+              "unit_code": "d",
+              "aggregation": "median",
+              "range_basis": "Width of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop",
+            "scope_label": "Oats (208)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations in five-fold cross-validation",
+            "interpretation": "Median prediction-interval width.",
+            "evidence": [
+              {
+                "claim": "Oats median MPIW is 20.6 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Oats (208): MPIW 20.6.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE",
+            "value_or_summary": "5.2 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "5.2 days",
+              "numeric_value": 5.2,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Maize (215)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 297 produced surfaces",
+            "interpretation": "Median MAE over produced phase-year surfaces.",
+            "evidence": [
+              {
+                "claim": "Maize median MAE is 5.2 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Maize (215): MAE 5.2.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE range",
+            "value_or_summary": "3.1-7.5 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "range",
+              "as_reported": "3.1-7.5 days",
+              "lower_bound": 3.1,
+              "upper_bound": 7.5,
+              "unit_code": "d",
+              "aggregation": "other",
+              "range_basis": "across per-phase median MAE values"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Maize (215)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across produced phase-year surfaces",
+            "interpretation": "Range of per-phase median MAE values.",
+            "evidence": [
+              {
+                "claim": "Maize per-phase median MAE ranges from 3.1 to 7.5 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Maize (215): MAE range 3.1-7.5.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "RMSE",
+            "value_or_summary": "6.4 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "6.4 days",
+              "numeric_value": 6.4,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Maize (215)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 297 produced surfaces",
+            "interpretation": "Median RMSE over produced phase-year surfaces.",
+            "evidence": [
+              {
+                "claim": "Maize median RMSE is 6.4 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Maize (215): RMSE 6.4.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "PICP",
+            "value_or_summary": "0.897",
+            "unit": "proportion",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "0.897",
+              "numeric_value": 0.897,
+              "nominal_level": 0.9,
+              "unit_code": "1",
+              "aggregation": "median",
+              "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop",
+            "scope_label": "Maize (215)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations in five-fold cross-validation",
+            "interpretation": "Median empirical coverage of nominal 90% prediction intervals.",
+            "evidence": [
+              {
+                "claim": "Maize median PICP is 0.897.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Maize (215): PICP 0.897.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MPIW",
+            "value_or_summary": "21.1 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "21.1 days",
+              "numeric_value": 21.1,
+              "nominal_level": 0.9,
+              "unit_code": "d",
+              "aggregation": "median",
+              "range_basis": "Width of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop",
+            "scope_label": "Maize (215)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations in five-fold cross-validation",
+            "interpretation": "Median prediction-interval width.",
+            "evidence": [
+              {
+                "claim": "Maize median MPIW is 21.1 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Maize (215): MPIW 21.1.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE",
+            "value_or_summary": "4.6 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "4.6 days",
+              "numeric_value": 4.6,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Sugar beet (253)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 130 produced surfaces",
+            "interpretation": "Median MAE over produced phase-year surfaces.",
+            "evidence": [
+              {
+                "claim": "Sugar beet median MAE is 4.6 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Sugar beet (253): MAE 4.6.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE range",
+            "value_or_summary": "3.9-9.4 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "range",
+              "as_reported": "3.9-9.4 days",
+              "lower_bound": 3.9,
+              "upper_bound": 9.4,
+              "unit_code": "d",
+              "aggregation": "other",
+              "range_basis": "across per-phase median MAE values"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Sugar beet (253)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across produced phase-year surfaces",
+            "interpretation": "Range of per-phase median MAE values.",
+            "evidence": [
+              {
+                "claim": "Sugar beet per-phase median MAE ranges from 3.9 to 9.4 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Sugar beet (253): MAE range 3.9-9.4.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "RMSE",
+            "value_or_summary": "5.6 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "5.6 days",
+              "numeric_value": 5.6,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop",
+            "scope_label": "Sugar beet (253)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 130 produced surfaces",
+            "interpretation": "Median RMSE over produced phase-year surfaces.",
+            "evidence": [
+              {
+                "claim": "Sugar beet median RMSE is 5.6 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Sugar beet (253): RMSE 5.6.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "PICP",
+            "value_or_summary": "0.901",
+            "unit": "proportion",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "0.901",
+              "numeric_value": 0.901,
+              "nominal_level": 0.9,
+              "unit_code": "1",
+              "aggregation": "median",
+              "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop",
+            "scope_label": "Sugar beet (253)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations in five-fold cross-validation",
+            "interpretation": "Median empirical coverage of nominal 90% prediction intervals.",
+            "evidence": [
+              {
+                "claim": "Sugar beet median PICP is 0.901.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Sugar beet (253): PICP 0.901.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MPIW",
+            "value_or_summary": "18.7 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "18.7 days",
+              "numeric_value": 18.7,
+              "nominal_level": 0.9,
+              "unit_code": "d",
+              "aggregation": "median",
+              "range_basis": "Width of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop",
+            "scope_label": "Sugar beet (253)",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations in five-fold cross-validation",
+            "interpretation": "Median prediction-interval width.",
+            "evidence": [
+              {
+                "claim": "Sugar beet median MPIW is 18.7 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "Sugar beet (253): MPIW 18.7.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE",
+            "value_or_summary": "5.2 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "5.2 days",
+              "numeric_value": 5.2,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "dataset_family",
+            "scope_label": "All crops",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 1684 produced surfaces",
+            "interpretation": "Family-wide median MAE.",
+            "evidence": [
+              {
+                "claim": "The family-wide median MAE is 5.2 days over all 1684 produced surfaces.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "All crops: MAE 5.2.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE range",
+            "value_or_summary": "3.1-9.4 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "range",
+              "as_reported": "3.1-9.4 days",
+              "lower_bound": 3.1,
+              "upper_bound": 9.4,
+              "unit_code": "d",
+              "aggregation": "other",
+              "range_basis": "across crop-specific and phase-specific median MAE values"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "dataset_family",
+            "scope_label": "All crops",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 1684 produced surfaces",
+            "interpretation": "Range of per-phase median MAE values across all crops.",
+            "evidence": [
+              {
+                "claim": "The all-crop MAE range is 3.1-9.4 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "All crops: MAE range 3.1-9.4.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "RMSE",
+            "value_or_summary": "6.5 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "6.5 days",
+              "numeric_value": 6.5,
+              "unit_code": "d",
+              "aggregation": "median"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "dataset_family",
+            "scope_label": "All crops",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across 1684 produced surfaces",
+            "interpretation": "Family-wide median RMSE.",
+            "evidence": [
+              {
+                "claim": "The family-wide median RMSE is 6.5 days over all 1684 produced surfaces.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "All crops: RMSE 6.5.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "PICP",
+            "value_or_summary": "0.898",
+            "unit": "proportion",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "0.898",
+              "numeric_value": 0.898,
+              "nominal_level": 0.9,
+              "unit_code": "1",
+              "aggregation": "median",
+              "range_basis": "Empirical coverage of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "dataset_family",
+            "scope_label": "All crops",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations across 1684 produced surfaces",
+            "interpretation": "Family-wide median empirical coverage of nominal 90% intervals.",
+            "evidence": [
+              {
+                "claim": "The all-crop median PICP is 0.898.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "All crops: PICP 0.898.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MPIW",
+            "value_or_summary": "21.3 days",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "scalar",
+              "as_reported": "21.3 days",
+              "numeric_value": 21.3,
+              "nominal_level": 0.9,
+              "unit_code": "d",
+              "aggregation": "median",
+              "range_basis": "Width of nominal 90% prediction intervals"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "dataset_family",
+            "scope_label": "All crops",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out stations across 1684 produced surfaces",
+            "interpretation": "Family-wide median mean prediction-interval width.",
+            "evidence": [
+              {
+                "claim": "The all-crop median MPIW is 21.3 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.2 Accuracy and calibration across the crop family",
+                "source_location": "Table 3",
+                "source_text": "All crops: MPIW 21.3.",
+                "source_page": 17,
+                "source_item_id": "tbl_003",
+                "source_modality": "author_table",
+                "representation_method": "docling_structured",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MAE",
+            "value_or_summary": "2.8-5.1 days (median 3.9 days)",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "estimate_with_range",
+              "as_reported": "2.8-5.1 days (median 3.9 days)",
+              "numeric_value": 3.9,
+              "lower_bound": 2.8,
+              "upper_bound": 5.1,
+              "unit_code": "d",
+              "aggregation": "median",
+              "range_basis": "annual MAE values across the winter wheat heading phase"
+            },
+            "context": "out_of_sample_validation",
+            "scope": "crop_phase",
+            "scope_label": "Winter wheat heading phase",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Held-out station observations across the 1993-2025 winter wheat heading phase series",
+            "interpretation": "Annual out-of-sample MAE range and median for the heading phase.",
+            "evidence": [
+              {
+                "claim": "Winter wheat heading has an MAE of 2.8-5.1 days with median 3.9 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.3.2 Accuracy across phenological phases",
+                "source_text": "The heading phase (18) is interpolated most accurately, with an MAE of 2.8-5.1 days (median 3.9 days).",
+                "source_modality": "authored_prose",
+                "representation_method": "docling_clean_markdown",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "BSE",
+            "value_or_summary": "0.76 days in 1993 to 1.38 days in 2025",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "labeled_series",
+              "as_reported": "0.76 days in 1993 to 1.38 days in 2025",
+              "unit_code": "d",
+              "aggregation": "median",
+              "range_basis": "temporal endpoints of median per-pixel BSE for winter wheat heading",
+              "points": [
+                {
+                  "label": "1993",
+                  "value": 0.76,
+                  "role": "start"
+                },
+                {
+                  "label": "2025",
+                  "value": 1.38,
+                  "role": "end"
+                }
+              ]
+            },
+            "context": "spatial_uncertainty_summary",
+            "scope": "variable_or_layer",
+            "scope_label": "Winter wheat heading BSE layer",
+            "evaluation_support": "raster_cell",
+            "evaluation_population": "Germany-wide 1 km raster cells summarized by median",
+            "interpretation": "Median per-pixel model-mean precision increases over the study period.",
+            "evidence": [
+              {
+                "claim": "Median per-pixel BSE for winter wheat heading rises from 0.76 days in 1993 to 1.38 days in 2025.",
+                "evidence_type": "explicit",
+                "source_section": "3.3 Winter wheat example",
+                "source_location": "Figure 4",
+                "source_text": "For the heading phase, the median per-pixel BSE rises from 0.76 days in 1993 to 1.38 days in 2025.",
+                "source_page": 19,
+                "source_item_id": "fig_004",
+                "source_modality": "author_caption",
+                "representation_method": "docling_clean_markdown",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "PICP",
+            "value_or_summary": "0.900 (range 0.888-0.920 across years)",
+            "unit": "proportion",
+            "quantitative_value": {
+              "kind": "estimate_with_range",
+              "as_reported": "0.900 (range 0.888-0.920 across years)",
+              "numeric_value": 0.9,
+              "lower_bound": 0.888,
+              "upper_bound": 0.92,
+              "nominal_level": 0.9,
+              "unit_code": "1",
+              "aggregation": "mean",
+              "range_basis": "across years"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop_phase",
+            "scope_label": "Winter wheat heading phase",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Each station held out once in five-fold cross-validation",
+            "interpretation": "Mean empirical coverage of nominal 90% prediction intervals.",
+            "evidence": [
+              {
+                "claim": "Winter wheat heading has mean PICP 0.900 with annual range 0.888-0.920.",
+                "evidence_type": "explicit",
+                "source_section": "3.3 Winter wheat example",
+                "source_location": "Figure 4",
+                "source_text": "For the heading phase ... mean PICP of 0.900 (range 0.888-0.920 across years).",
+                "source_page": 19,
+                "source_item_id": "fig_004",
+                "source_modality": "author_caption",
+                "representation_method": "docling_clean_markdown",
+                "review_status": "machine_extracted"
+              }
+            ]
+          },
+          {
+            "name": "MPIW",
+            "value_or_summary": "16.0 days (range 12.6-21.4 days)",
+            "unit": "days",
+            "quantitative_value": {
+              "kind": "estimate_with_range",
+              "as_reported": "16.0 days (range 12.6-21.4 days)",
+              "numeric_value": 16.0,
+              "lower_bound": 12.6,
+              "upper_bound": 21.4,
+              "nominal_level": 0.9,
+              "unit_code": "d",
+              "aggregation": "mean",
+              "range_basis": "across years"
+            },
+            "context": "cross_validated_interval_assessment",
+            "scope": "crop_phase",
+            "scope_label": "Winter wheat heading phase",
+            "evaluation_support": "held_out_station",
+            "evaluation_population": "Each station held out once in five-fold cross-validation",
+            "interpretation": "Mean prediction-interval width.",
+            "evidence": [
+              {
+                "claim": "Winter wheat heading has mean MPIW 16.0 days with annual range 12.6-21.4 days.",
+                "evidence_type": "explicit",
+                "source_section": "3.3 Winter wheat example",
+                "source_location": "Figure 4",
+                "source_text": "Mean interval width of 16.0 days (range 12.6-21.4 days).",
+                "source_page": 19,
+                "source_item_id": "fig_004",
+                "source_modality": "author_caption",
+                "representation_method": "docling_clean_markdown",
+                "review_status": "machine_extracted"
+              }
+            ]
+          }
+        ],
+        "application_specific_metrics": [
+          {
+            "name": "WI",
+            "value_or_summary": "16.3 ± 2.3 mm",
+            "unit": "mm",
+            "quantitative_value": {
+              "kind": "estimate_with_uncertainty",
+              "as_reported": "16.3 ± 2.3 mm",
+              "numeric_value": 16.3,
+              "unit_code": "mm",
+              "aggregation": "raw",
+              "uncertainty_components": [
+                {
+                  "name": "precipitation component",
+                  "value": 2.3,
+                  "unit_code": "mm",
+                  "scale": "one_sigma",
+                  "note": "Accumulated E-OBS ensemble spread component."
+                }
+              ]
+            },
+            "context": "downstream_use_case",
+            "scope": "use_case",
+            "scope_label": "Uckermark winter wheat shooting-heading weather indicator, 2018",
+            "evaluation_support": "use_case",
+            "evaluation_population": "Uckermark district, 2018",
+            "interpretation": "Cumulative precipitation during the shooting-heading window with the reported precipitation-component uncertainty.",
+            "evidence": [
+              {
+                "claim": "For the Uckermark winter wheat shooting-heading window in 2018, WI is 16.3 ± 2.3 mm for the precipitation component.",
+                "evidence_type": "explicit",
+                "source_section": "3.3.5 Interpolated DOY and uncertainty maps",
+                "source_location": "Figure 7",
+                "source_text": "For 2018 ... yielding WI = 16.3 ± 2.3 mm (precipitation component).",
+                "source_page": 22,
+                "source_item_id": "fig_007",
+                "source_modality": "author_caption",
+                "representation_method": "docling_clean_markdown",
+                "review_status": "machine_extracted"
+              }
+            ]
+          }
+        ]
+      },
+      "interpretability": "DOY layers represent conditional phase-entry dates if the crop were present at a grid cell; BSE represents fitted-mean precision.",
+      "transferability": "Supported for regional and Germany-wide contexts documented by the source, subject to spatial support, station-density and scale limitations.",
+      "evidence": [
+        {
+          "claim": "The dataset provides DOY and BSE layers and quality tables, and the BSE can be propagated into downstream processing.",
+          "evidence_type": "explicit",
+          "source_section": "3.3 Winter wheat example; 3.3.6 Use case",
+          "source_text": "For each phase ... the phase-entry DOY ... together with a matching per-pixel uncertainty layer (BSE) ... The BSE layer can be carried through downstream processing.",
+          "source_modality": "authored_prose",
+          "representation_method": "docling_clean_markdown",
+          "review_status": "machine_extracted"
+        }
+      ]
+    },
+    "limitations_and_risks": {
+      "known_limitations": [
+        "Only crop-phase combinations with sufficient suitable observations are included.",
+        "Station density varies considerably over space and time.",
+        "The 1 km grid does not resolve individual fields.",
+        "The product is not masked by crop occurrence or agricultural land use.",
+        "BSE is model-internal fitted-mean precision, not total predictive uncertainty.",
+        "Temperature-grid uncertainty is not propagated into BSE.",
+        "The weather-indicator uncertainty propagation is illustrative and incomplete."
+      ],
+      "risk_of_misuse": [
+        "Do not interpret raster values as crop occurrence or cultivation suitability.",
+        "Do not treat BSE as a calibrated prediction interval for an individual observation.",
+        "Do not generalize station-based validation to all raster cells.",
+        "Do not interpret illustrative 15% and 25% uncertainty guide lines as formal suitability thresholds."
+      ],
+      "bias_sources": [
+        "DWD volunteer observations are not a probability sample.",
+        "Phenological observations can contain environmental, geographic and timing inconsistencies.",
+        "Spatial autocorrelation may remain between held-out and training stations.",
+        "Filtering and thermal-time selection precede validation."
+      ],
+      "extrapolation_limits": [
+        "Predictions in sparsely observed regions or beyond the main observation support require caution.",
+        "Universal kriging can become unstable with declining station density.",
+        "Thin-plate splines have no formal extrapolation constraint beyond the convex hull.",
+        "Validation does not establish performance across all Germany-wide grid cells."
+      ],
+      "evidence": [
+        {
+          "claim": "The source explicitly warns that gridded predictions are conditional phase-entry dates and do not indicate crop occurrence or cultivation suitability.",
+          "evidence_type": "explicit",
+          "source_section": "4.4 Limitations",
+          "source_location": "limitation 1",
+          "source_text": "They do not indicate crop occurrence or cultivation suitability.",
+          "source_modality": "authored_prose",
+          "representation_method": "docling_clean_markdown",
+          "review_status": "machine_extracted"
+        },
+        {
+          "claim": "The source explicitly distinguishes BSE from total predictive uncertainty.",
+          "evidence_type": "explicit",
+          "source_section": "4.4 Limitations",
+          "source_location": "limitation 2",
+          "source_text": "The BSE describes the model-internal precision of the fitted mean and does not represent total predictive uncertainty.",
+          "source_modality": "authored_prose",
+          "representation_method": "docling_clean_markdown",
+          "review_status": "machine_extracted"
+        },
+        {
+          "claim": "The source states that the 15% and 25% lines are illustrative and not formal suitability thresholds.",
+          "evidence_type": "explicit",
+          "source_section": "Figure 9 caption",
+          "source_location": "Figure 9",
+          "source_text": "The lines are shown as visual reference levels and do not represent formal suitability thresholds for a specific application.",
+          "source_page": 25,
+          "source_item_id": "fig_009",
+          "source_modality": "author_caption",
+          "representation_method": "docling_clean_markdown",
+          "review_status": "machine_extracted"
+        }
+      ]
+    },
+    "reproducibility_and_fairness": {
+      "data_availability": "Dataset, input data, workflow and intermediate products are openly available through linked Zenodo records; CC BY 4.0 for deposits and MIT for workflows.",
+      "software_tools": [
+        "R >= 4.0",
+        "PhenoPhaseR",
+        "mgcv::bam",
+        "automap::autoKrige",
+        "fields::Tps",
+        "caret",
+        "WeatherIndicatoR",
+        "RO-Crate 1.2",
+        "roc-validator"
+      ],
+      "workflow_transparency": "The processing lineage from inputs through filter variants and final surfaces is published with machine-readable provenance.",
+      "fair_compliance": {
+        "findable": "Citable Zenodo deposits, collection record, concept DOIs and STAC development.",
+        "accessible": "Open Zenodo records under permissive licences.",
+        "interoperable": "COGs, CSV, EPSG:25832, RO-Crate, DCAT, DQV, PROV-O and controlled vocabulary terms.",
+        "reusable": "Open workflow, documented processing, quality tables, uncertainty layers and CC BY 4.0 data."
+      },
+      "machine_actionable_metadata": [
+        "RO-Crate 1.2",
+        "PROV-O",
+        "DCAT 3",
+        "DQV",
+        "ISO 19157-1-linked quality metadata",
+        "AGROVOC",
+        "Machine-readable DFFP evidence record"
+      ],
+      "evidence": [
+        {
+          "claim": "The deposits include machine-actionable provenance, cataloguing and quality metadata in RO-Crate packages.",
+          "evidence_type": "explicit",
+          "source_section": "2.4 Data publication and FAIR packaging",
+          "source_text": "Each deposit is a self-contained Research Object Crate ... persistent identification ... machine-actionable provenance ... and controlled-vocabulary terms.",
+          "source_modality": "authored_prose",
+          "representation_method": "docling_clean_markdown",
+          "review_status": "machine_extracted"
+        }
+      ]
+    },
+    "scalability_and_operational_aspects": {
+      "data_volume": "1684 produced phase-year surfaces across eight crops and 55 crop-phase combinations.",
+      "computational_scalability": "BAM is selected as the default because it remains computationally tractable at Germany-wide scale; TPS is described as impractical at Germany-wide 1 km resolution.",
+      "automation_potential": "High: the workflow is modular, reproducible and publication is integrated through automated RO-Crate hooks.",
+      "update_or_maintenance_model": "Annual extension after quality-checked DWD observations; new versions under unchanged concept DOIs.",
+      "evidence": [
+        {
+          "claim": "The workflow is designed for annual extension and integrated automated publication.",
+          "evidence_type": "explicit",
+          "source_section": "1 Introduction; 2.4 Data publication and FAIR packaging; 5 Code and data availability",
+          "source_text": "It is extended annually ... publication is not a separate manual step but an integral part of each processing run.",
+          "source_modality": "authored_prose",
+          "representation_method": "docling_clean_markdown",
+          "review_status": "machine_extracted"
+        }
+      ]
+    },
+    "decision_risk_profile": {
+      "critical_quality_dimensions": [
+        "Spatial support and station density",
+        "Out-of-sample DOY accuracy",
+        "Local model-mean precision",
+        "Empirical prediction-interval coverage and width",
+        "Completeness of crop-phase-year coverage"
+      ],
+      "failure_modes": [
+        "Sparse observations and extrapolation beyond observation support",
+        "Confusing BSE with predictive uncertainty",
+        "Treating station validation as pixel-wise validation",
+        "Using conditional phase-entry dates as crop occurrence or suitability information",
+        "Incomplete uncertainty propagation in the demonstrated weather indicator"
+      ],
+      "consequences_of_misuse": [
+        "Overconfidence in local or sparsely observed predictions",
+        "Incorrect crop occurrence or suitability conclusions",
+        "Underestimation of predictive uncertainty",
+        "Misinterpretation of illustrative uncertainty reference lines as formal decision thresholds"
+      ],
+      "evidence": [
+        {
+          "claim": "The paper identifies spatial support, BSE semantics, conditional validation and uncertainty propagation as decision-relevant limitations.",
+          "evidence_type": "explicit",
+          "source_section": "4.4 Limitations",
+          "source_location": "limitations 1-5",
+          "source_text": "Several limitations should be considered ...",
+          "source_modality": "authored_prose",
+          "representation_method": "docling_clean_markdown",
+          "review_status": "machine_extracted"
+        }
+      ]
+    },
+    "fitness_classification": {
+      "assessment_basis": "unassessed"
+    },
+    "evidence_and_maturity": {
+      "validation_strength": "unknown",
+      "operational_readiness": "unknown",
+      "transferability_risk": "unknown",
+      "assessment_basis": "unassessed",
+      "evidence_notes": "The source provides extensive producer-side validation and limitations but does not assign a categorical fitness class or universal suitability threshold."
+    },
+    "extraction_provenance": {
+      "schema_version": "fairagro-dffp-v3.5.2",
+      "canonical_source_sha256": "69b6cffd28e8cc6bf8981875259f8c1f325c3aecdeacf3ad0632810b1d34c916",
+      "source_bundle_sha256": "22905419b96c719738cf375c79bff7f61ee8bcac4a8fd77a56a184c211885e23",
+      "run_purpose": "test",
+      "extraction_scope": "producer_data_document",
+      "source_fidelity_status": "pass_after_recovery",
+      "source_fidelity_initial_status": "multimodal_review_recommended",
+      "explicitly_stated": [
+        "Dataset scope, formats, spatial and temporal coverage",
+        "Producer workflow inputs and processing stages",
+        "Out-of-sample validation and five-fold interval assessment",
+        "BSE semantics and uncertainty limitations",
+        "Demonstrated weather-indicator use case",
+        "FAIR packaging and linked resources"
+      ],
+      "inferred": [
+        "The source does not explicitly enumerate beneficiary/user groups; beneficiaries left null.",
+        "Potential downstream application contexts are separated from the demonstrated weather-indicator use case."
+      ],
+      "derived": [
+        "Canonical quantitative metric records were atomically organized from authored Table 3 and explicit prose/captions.",
+        "Structured numeric representations were generated from authored reported values."
+      ],
+      "assumed": [
+        "None material to the extracted scientific claims."
+      ],
+      "unresolved_or_missing": [
+        "Source document DOI is not provided; document_metadata.doi is null.",
+        "No formal suitability thresholds or categorical fitness classification are stated."
+      ],
+      "review_status": "machine_extracted"
+    }
+  }
+]
